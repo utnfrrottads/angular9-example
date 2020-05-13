@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-peti';
+  counterValue = 0;
+  onCountChanged(event) {
+    this.counterValue = event;
+  }
+  onSecondCounterNumberClicked(event) {
+    this.counterValue = 0;
+  }
+  onThirdCounterNumberClicked(event) {
+    this.counterValue = this.counterValue - 1;
+  }
 }
