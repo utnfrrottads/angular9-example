@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TodoItem} from '../model/todo-item';
+import { TodoItem } from '../model/todo-item';
+
 
 @Component({
   selector: 'app-todo',
@@ -7,8 +8,9 @@ import {TodoItem} from '../model/todo-item';
   styleUrls: ['./todo-app.component.scss']
 })
 export class TodoAppComponent implements OnInit {
-  list = [];
+  list: Array<TodoItem> = [];
   lastItemId = 0;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -17,4 +19,21 @@ export class TodoAppComponent implements OnInit {
   onItemStateChanged(item: TodoItem) {
     item.toggleCompleted();
   }
+
+  onTodoItemCreated(descTarea) {
+    this.lastItemId = this.lastItemId + 1;
+
+    var newItem = new TodoItem();
+    newItem.description = descTarea;
+    newItem.id = this.lastItemId;
+    newItem.isCompleted = false;
+
+    this.list.push(newItem)
+    
+  }
+  onTodoItemRemoved(item: TodoItem) {
+   this.list.splice(this.list.indexOf(item),1);
+  }
+
+
 }

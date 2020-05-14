@@ -1,3 +1,4 @@
+
 <app-todo-form (add)="onTodoItemCreated($event)"></app-todo-form>
 <app-todo-list
   [list]="list"
@@ -5,4 +6,9 @@
   (itemStateChanged)="onItemStateChanged($event)"
   >
 </app-todo-list>
-<app-todo-footer [list]="list"></app-todo-footer>
+
+<app-todo-footer 
+  [list]="list"
+  >
+</app-todo-footer>
+
