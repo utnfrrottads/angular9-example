@@ -17,4 +17,11 @@ export class TodoAppComponent implements OnInit {
   onItemStateChanged(item: TodoItem) {
     item.toggleCompleted();
   }
+
+  onTodoItemCreated($event){
+
+  }
+  onTodoItemRemoved($event){
+    
+  }
 }
