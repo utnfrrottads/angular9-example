@@ -15,10 +15,16 @@ export class TodoFormComponent implements OnInit {
   }
 
   addItem(input){
-    let item = new TodoItem();
-    item.description=input.value;
-    item.isCompleted=false;
-    input.value="";
-    this.add.emit(item);
+    if(input.value!==''){
+      let item = new TodoItem();
+      item.description=input.value;
+      item.isCompleted=false;
+      input.value="";
+      input.classList.remove("wrong-input")
+      this.add.emit(item);
+    }
+    else{
+      input.classList.add("wrong-input")
+    }
   }
 }
