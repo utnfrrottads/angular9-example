@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let item of list" [class.completed]="item.isCompleted" [class.incompleted]="!item.isCompleted">
+        {{"ID: "+item.id+" - Descripcion: "+item.description+" - Completa: "+item.isCompleted}}
+        <button (click)="toggleCompleted(item)" class="btn btn-primary">Toggle Completado</button>
+        <button (click)="deleteTodoItem(item)" class="btn btn-danger">Eliminar</button>
+      </li>
+</ul>

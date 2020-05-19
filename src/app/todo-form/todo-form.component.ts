@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { TodoItem } from '../model/todo-item';
 
 @Component({
   selector: 'app-todo-form',
@@ -13,4 +14,11 @@ export class TodoFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addItem(input){
+    let item = new TodoItem();
+    item.description=input.value;
+    item.isCompleted=false;
+    input.value="";
+    this.add.emit(item);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {TodoItem} from '../model/todo-item';
 
 @Component({
@@ -7,8 +7,11 @@ import {TodoItem} from '../model/todo-item';
   styleUrls: ['./todo-app.component.scss']
 })
 export class TodoAppComponent implements OnInit {
-  list = [];
-  lastItemId = 0;
+  
+  @Input() tema='';
+
+  list: TodoItem[] = [];
+  nextItemId = 0;
   constructor() { }
 
   ngOnInit(): void {
@@ -16,5 +19,16 @@ export class TodoAppComponent implements OnInit {
 
   onItemStateChanged(item: TodoItem) {
     item.toggleCompleted();
+  }
+
+  onTodoItemRemoved(item: TodoItem){
+    let index=this.list.findIndex(i=>i.id===item.id);
+    this.list.splice(index,1);
+  }
+
+  onTodoItemCreated(item: TodoItem){
+    item.id=this.nextItemId;
+    this.list.push(item);
+    this.nextItemId++;
   }
 }
