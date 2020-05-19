@@ -6,13 +6,9 @@ import { TodoItem } from '../model/todo-item';
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.scss']
 })
-export class TodoFormComponent implements OnInit {
+export class TodoFormComponent{
 
   @Output() add = new EventEmitter();
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   addItem(input){
     if(input.value!==''){

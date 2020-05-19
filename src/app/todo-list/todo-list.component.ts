@@ -6,16 +6,12 @@ import { TodoItem } from '../model/todo-item';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent{
 
   @Input() list: TodoItem[]=[];
   @Output() itemRemoved = new EventEmitter();
   @Output() itemStateChanged = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   toggleCompleted(item: TodoItem){
     this.itemStateChanged.emit(item);

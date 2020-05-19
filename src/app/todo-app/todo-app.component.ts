@@ -6,16 +6,12 @@ import {TodoItem} from '../model/todo-item';
   templateUrl: './todo-app.component.html',
   styleUrls: ['./todo-app.component.scss']
 })
-export class TodoAppComponent implements OnInit {
+export class TodoAppComponent{
   
   @Input() tema='';
 
   list: TodoItem[] = [];
   nextItemId = 0;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   onItemStateChanged(item: TodoItem) {
     item.toggleCompleted();

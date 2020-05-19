@@ -10,11 +10,22 @@
     transition: all 0.25s;
 }
 
-li{
-    list-style: none;
-    margin-bottom: 10px;
+.itemList{
+    background-color: white;
+    padding: 0px;
+    margin-top: 20px;
 }
 
-ul{
-    padding: 20px;
+.todo-item{
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+    list-style: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.item-attribute{
+    margin-left: 100px;
 }

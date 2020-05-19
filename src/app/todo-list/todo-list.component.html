@@ -1,7 +1,14 @@
-<ul class="bg-light">
-    <li *ngFor="let item of list" [class.completed]="item.isCompleted" [class.incompleted]="!item.isCompleted">
-        {{"ID: "+item.id+" - Descripcion: "+item.description+" - Completa: "}}{{item.isCompleted?"Si":"No"}}
-        <button (click)="toggleCompleted(item)" class="btn btn-success">Toggle Completado</button>
-        <button (click)="deleteTodoItem(item)" class="btn btn-danger">Eliminar</button>
+<ul class="itemList">
+    {{list.length===0?"No hay tareas pendientes":""}}
+    <li 
+      *ngFor="let item of list" 
+      [class.completed]="item.isCompleted" 
+      [class.incompleted]="!item.isCompleted"
+      [class]="'todo-item'">
+          <span class="item-attribute">{{"ID: "+item.id}}</span>
+          <span class="item-attribute">{{"Descripcion: "+item.description}}</span>
+          <span class="item-attribute">{{"Completa: "}}{{item.isCompleted?"Si":"No"}}</span>
+          <button (click)="toggleCompleted(item)" class="btn btn-success item-attribute">Toggle Completado</button>
+          <button (click)="deleteTodoItem(item)" class="btn btn-danger item-attribute">Eliminar</button>
       </li>
 </ul>
