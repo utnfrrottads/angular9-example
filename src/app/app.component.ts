@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-peti';
+  languages = [];
+  isDestroyed = false;
+
+  changeLanguages() {
+    this.languages = ['Javascript', 'Typescript', 'Java', 'Python', 'C#', 'Smalltalk', 'Pascal', 'Haskell', 'Lisp'];
+  }
+
+  destroy() {
+    this.isDestroyed = true;
+  }
 }
