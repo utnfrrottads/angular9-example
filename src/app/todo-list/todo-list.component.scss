@@ -1,0 +1,32 @@
+.completed{
+    color: #1c5c2d;
+}
+.notcompleted{
+    color: red;
+}
+
+ul{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    margin-right: 50%;
+    margin-left: 2rem;
+    border: solid 1px lightsteelblue;
+    border-radius: 10px;
+}
+
+li{
+    padding: 2px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 2em;
+}
+
+.btndelete{
+    color: red;
+    border-radius: 3px;
+}
+
+li .btndelete{
+    color: red;
+    border-radius: 3px;
+}
