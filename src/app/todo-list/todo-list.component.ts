@@ -12,10 +12,11 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onTodoItemRemoved($event){
-
+  onTodoItemRemoved(item){
+    const index = this.list.findIndex(each => each ===item);
+    this.list.splice(index, 1);
   }
-  onItemStateChanged($event){
-
+  onItemStateChanged(item){
+    item.completado = !item.completado;
   }
 }

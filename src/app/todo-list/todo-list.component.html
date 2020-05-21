@@ -1,1 +1,12 @@
-<p>todo-list works!</p>
+<h1>Lista de tareas</h1>
+
+
+<ul>
+    <li *ngFor="let item of list" [class.completado]="item.completado" [class.incompleto]="!item.completado"> 
+      ID: {{item.id}}
+      Tarea: {{item.descripcion}} 
+      Completado: {{item.completado}}
+      <button (click)="onTodoItemRemoved(item)">Eliminar</button>
+      <button (click)="onItemStateChanged(item)">Cambiar el estado</button>
+    </li>
+</ul>
