@@ -1,0 +1,5 @@
+<div *ngIf="list.length > 0">
+  Completed {{ (getCompletedItems() * 100) / list.length | number: "1.0-2" }}%
+  out of
+  {{ list.length }}
+</div>

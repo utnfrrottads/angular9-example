@@ -1,0 +1,12 @@
+<div *ngIf="list">
+  <div *ngFor="let item of list">
+    {{ item.id }}
+    {{ item.description }}
+    {{ item.isCompleted ? "Completed" : "Pending" }}
+
+    <button (click)="removeItem(item)">Delete</button>
+    <button (click)="toggleStateItem(item)">
+      {{ item.isCompleted ? "uncheck" : "check" }}
+    </button>
+  </div>
+</div>
