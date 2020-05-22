@@ -11,16 +11,10 @@ export class TodoFooterComponent{
   @Input() list: TodoItem[] = [];
 
   getCountCompleted(){
-    let i=0;
-    this.list.forEach(it => {
-      if(it.isCompleted){
-        i++;
-      }
-    });
-    return i
+    return this.list.filter(item=>item.isCompleted).length
   }
 
   getCountIncompleted(){
-    return this.list.length-this.getCountCompleted();
+    return this.list.length - this.getCountCompleted();
   }
 }
