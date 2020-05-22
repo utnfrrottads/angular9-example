@@ -1,9 +1,11 @@
 export class TodoItem {
   id: number;
   description: string;
-  isCompleted: boolean = false;
+  isCompleted: boolean;
 
-  toggleCompleted() {
-    this.isCompleted = !this.isCompleted;
+  constructor(params: Partial<TodoItem>) {
+    this.id = params.id;
+    this.description = params.description;
+    this.isCompleted = params.isCompleted || false;
   }
 }

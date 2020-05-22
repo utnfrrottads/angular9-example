@@ -1,0 +1,16 @@
+<ul>
+  <li
+    *ngFor="let item of list"
+    [class.done]="item.isCompleted"
+    [class.undone]="!item.isCompleted"
+  >
+    {{ item.id }}. {{ item.description }}
+    <button (click)="onItemRemove(item)">X</button>
+    <button (click)="onItemStateChanged(item)" *ngIf="!item.isCompleted">
+      Done
+    </button>
+    <button (click)="onItemStateChanged(item)" *ngIf="item.isCompleted">
+      Undo
+    </button>
+  </li>
+</ul>
