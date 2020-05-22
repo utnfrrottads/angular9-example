@@ -8,7 +8,6 @@ import { TodoItem } from '../model/todo-item';
 })
 export class TodoFormComponent {
   @Output() add = new EventEmitter<string>();
-  constructor() {}
 
   onAddElement(inputControl) {
     if (inputControl.value !== '') {

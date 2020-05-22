@@ -6,11 +6,10 @@ import { TodoItem } from '../model/todo-item';
   templateUrl: './todo-footer.component.html',
   styleUrls: ['./todo-footer.component.scss'],
 })
-export class TodoFooterComponent{
+export class TodoFooterComponent {
   @Input() list: TodoItem[] = [];
-  constructor() {}
 
-  countDoneOnes(){
-    return this.list.filter(e => e.isCompleted).length
+  countDoneOnes() {
+    return this.list.filter((e) => e.isCompleted).length;
   }
 }

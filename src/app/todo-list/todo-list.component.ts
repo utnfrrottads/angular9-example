@@ -10,7 +10,6 @@ export class TodoListComponent {
   @Input() list = [];
   @Output() itemRemoved = new EventEmitter<number>();
   @Output() itemStateChanged = new EventEmitter<TodoItem>();
-  constructor() {}
 
   onItemRemove(item: TodoItem) {
     this.itemRemoved.emit(item.id);

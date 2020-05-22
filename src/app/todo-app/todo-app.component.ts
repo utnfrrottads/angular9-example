@@ -9,8 +9,6 @@ import { TodoItem } from '../model/todo-item';
 export class TodoAppComponent {
   list = [];
   lastItemId = 0;
-  constructor() {}
-
 
   onItemStateChanged(item: TodoItem) {
     item.isCompleted = !item.isCompleted;
