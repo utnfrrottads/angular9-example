@@ -8,19 +8,23 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TodoFooterComponent implements OnInit {
   @Input() list = [];
   
-  itemsCompletados = 0;
-  itemsIncompletos = 0;
   constructor() { }
 
   ngOnInit(): void {
-    this.contarItems(this.list);
+    
   }
+
+
+    itemsCompletados(){
+      console.log(this.list);
+      let arrayItemsCompletos = this.list.filter(item => item.completado === true);
+      return Object.keys(arrayItemsCompletos).length;   //buscado de internet porque no funcionaba el reduce()
+    };
+
+    itemsIncompletos(){
+      let arrayItemsIncompletos = this.list.filter(item => item.completado === false);
+      return Object.keys(arrayItemsIncompletos).length; 
+
+    };
   
-    contarItems(list){
-      for(var i = 0; i < list.length; i++){
-        if(list[i].completado === true) 
-          this.itemsCompletados = this.itemsCompletados + 1
-        else this.itemsIncompletos = this.itemsIncompletos + 1;
-      }
-    }
 }

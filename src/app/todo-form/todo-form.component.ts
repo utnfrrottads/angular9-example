@@ -8,7 +8,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class TodoFormComponent implements OnInit {
 
   @Output() add = new EventEmitter<string>();
-  @Output() delete = new EventEmitter<object>();
 
   ngOnInit(): void {
   }

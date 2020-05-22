@@ -10,9 +10,7 @@ export class TodoAppComponent implements OnInit {
   list = [{id: 0, descripcion: "1", completado: false}];
   lastItemId = 0;
 
-  @Output() itemAgregadoFooter = new EventEmitter<object>();
 
-  constructor() { }
 
   ngOnInit(): void {
   }
@@ -24,11 +22,11 @@ export class TodoAppComponent implements OnInit {
   onTodoItemCreated(inputControl){
     this.lastItemId = this.lastItemId + 1;
     this.list.push({id: this.lastItemId, descripcion: inputControl.value, completado: false});
-
   }
 
 
   onTodoItemRemoved(event){
     
   }
+
 }
