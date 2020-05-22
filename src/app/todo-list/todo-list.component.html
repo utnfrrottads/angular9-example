@@ -1,16 +1,22 @@
 <ul>
-  <li
-    *ngFor="let item of list"
-    [class.done]="item.isCompleted"
-    [class.undone]="!item.isCompleted"
-  >
-    {{ item.id }}. {{ item.description }}
-    <button (click)="onItemRemove(item)">X</button>
-    <button (click)="onItemStateChanged(item)" *ngIf="!item.isCompleted">
-      Done
-    </button>
-    <button (click)="onItemStateChanged(item)" *ngIf="item.isCompleted">
-      Undo
-    </button>
+  <li *ngFor="let item of list" [class.done]="item.isCompleted">
+    <div class="content">{{ item.id }}. {{ item.description }}</div>
+    <div class="controls">
+      <button (click)="onItemRemove(item)" class="del-btn">Del</button>
+      <button
+        (click)="onItemStateChanged(item)"
+        *ngIf="!item.isCompleted"
+        class="done-btn"
+      >
+        Done
+      </button>
+      <button
+        (click)="onItemStateChanged(item)"
+        *ngIf="item.isCompleted"
+        class="undo-btn"
+      >
+        Undo
+      </button>
+    </div>
   </li>
 </ul>

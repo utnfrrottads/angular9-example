@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5em;
+}
+
+.add-input {
+  flex-grow: 4;
+}
+
+.add-btn {
+  flex-grow: 1;
+}
+
+.add-btn:hover {
+  background-color: yellow;
+}
