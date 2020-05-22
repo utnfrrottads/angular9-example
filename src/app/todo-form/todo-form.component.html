@@ -1,4 +1,4 @@
-<input class="todo-input" #itemInput>
+<input class="todo-input" [class.wrong-input]="itemInput.value===''" #itemInput>
 <button (click)="addItem(itemInput)" class="btn btn-primary">
     Agregar Tarea
 </button>

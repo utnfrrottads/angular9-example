@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 import { TodoItem } from '../model/todo-item';
 
 @Component({
@@ -15,12 +15,12 @@ export class TodoFormComponent{
       let item = new TodoItem();
       item.description=input.value;
       item.isCompleted=false;
-      input.value="";
-      input.classList.remove("wrong-input")
+      //input.value='';
+      //input.classList.remove("wrong-input")
       this.add.emit(item);
     }
     else{
-      input.classList.add("wrong-input")
+      //input.classList.add("wrong-input")
     }
   }
 }
