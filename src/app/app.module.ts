@@ -8,6 +8,7 @@ import { TodoAppComponent } from './todo-app/todo-app.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoFooterComponent } from './todo-footer/todo-footer.component';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TodoFooterComponent } from './todo-footer/todo-footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StorageServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
