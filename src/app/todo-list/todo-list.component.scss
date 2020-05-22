@@ -1,0 +1,39 @@
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px 20px;
+  max-width: 400px;
+  min-width: 400px;
+  margin: 8px auto;
+
+  border-radius: 10px;
+  background: #fcfcfc;
+
+  h1 {
+    font-size: larger;
+  }
+}
+
+.check {
+  all: unset;
+  margin: 0px 6px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  all: unset;
+  cursor: pointer;
+  float: right;
+}
+
+span {
+  border-radius: 10px;
+  background: #76dbd7;
+  padding: 2px 7px;
+}

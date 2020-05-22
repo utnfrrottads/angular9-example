@@ -1,12 +1,26 @@
-<div *ngIf="list">
-  <div *ngFor="let item of list">
-    {{ item.id }}
-    {{ item.description }}
-    {{ item.isCompleted ? "Completed" : "Pending" }}
+<div *ngIf="list" class="list">
+  <div
+    *ngFor="let item of list"
+    class="item"
+    [ngStyle]="{ 'background-color': item.isCompleted ? '#d7f0ef' : '#fde0be' }"
+  >
+    <h1>{{ item.description }}</h1>
 
-    <button (click)="removeItem(item)">Delete</button>
-    <button (click)="toggleStateItem(item)">
-      {{ item.isCompleted ? "uncheck" : "check" }}
-    </button>
+    <div>
+      <button (click)="toggleStateItem(item)" class="check">
+        <div *ngIf="item.isCompleted">
+          <i class="far fa-check-circle"></i>
+        </div>
+        <div *ngIf="!item.isCompleted">
+          <i class="far fa-circle"></i>
+        </div>
+      </button>
+      <span [ngStyle]="{ background: item.isCompleted ? '#76dbd7' : '#f6ba7c' }"
+        >{{ item.isCompleted ? "completed" : "pending" }}
+      </span>
+      <button (click)="removeItem(item)" class="delete-btn">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
   </div>
 </div>
