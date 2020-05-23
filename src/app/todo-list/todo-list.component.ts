@@ -13,7 +13,6 @@ export class TodoListComponent{
   @Output() itemStateChanged = new EventEmitter();
   @Output() itemUpdated = new EventEmitter();
   editionModeEnabledTo: Number;
-  //imagesURL="/root/Angular/angular9-example/node_modules/bootstrap-icons/icons/"
   imagesURL="../../../images/";
   imagesList=["cart.png","heart.png","light_bulb.png","like.png","text.png"];
   selectedImage='';

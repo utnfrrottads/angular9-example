@@ -6,6 +6,7 @@ export class TodoItem {
   dateTimeCreation: Date;
   dateTimeCompleted: Date;
 
+  //porque al recuperar objeto del localStorage, no tiene los metodos, solo sus atributos
   static createTodoItem(item){
     let newItem= new TodoItem();
     newItem.id=item.id;
