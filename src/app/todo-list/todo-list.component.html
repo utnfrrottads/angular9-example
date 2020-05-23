@@ -5,10 +5,29 @@
       [class.completed]="item.isCompleted" 
       [class.incompleted]="!item.isCompleted"
       [class]="'todo-item'">
+      
+            <select (click)="onImageChanged(imageChosen)" class="item-attribute" name="image_chosen" #imageChosen>
+                <option 
+                    *ngFor="let image of imagesList"
+                    value="{{this.imagesURL+image}}">
+                        {{image}}<img src="{{this.imagesURL+image}}">
+                </option>
+                <option value="-1">Elije una imagen</option>
+            </select>
+        
+          <img src="{{this.selectedImage}}">
           <span class="item-attribute">{{"ID: "+item.id}}</span>
-          <span class="item-attribute">{{"Descripcion: "+item.description}}</span>
+          <span (click)="toggleEdition(item)" class="item-attribute" #itemDescription>{{"Descripcion: "+item.description}}</span>
           <span class="item-attribute">{{"Completa: "}}{{item.isCompleted?"Si":"No"}}</span>
-          <button (click)="toggleCompleted(item)" class="btn btn-success item-attribute">Toggle Completado</button>
-          <button (click)="deleteTodoItem(item)" class="btn btn-danger item-attribute">Eliminar</button>
-      </li>
+          <button (click)="toggleCompleted(item)" class="btn btn-success item-button">Toggle Completado</button>
+          <button (click)="deleteTodoItem(item)" class="btn btn-danger item-button">Eliminar</button>
+          <button (click)="toggleEdition(item)" class="btn btn-primary item-button">Editar</button>
+            <app-todo-form 
+                class="inplaceEditor"
+                *ngIf="editionModeEnabledTo===item.id" 
+                [formMode]="'update'"
+                [currentItem]="item"
+                (itemUpdated)="updateTodoItem(item)" >
+            </app-todo-form>
+    </li>
 </ul>
