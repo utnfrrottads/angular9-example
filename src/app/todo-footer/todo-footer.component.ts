@@ -21,24 +21,26 @@ export class TodoFooterComponent{
   }
 
   getCountIncompleted(){
-    return this.list.length-this.getCountCompleted();
+    return this.list.length - this.getCountCompleted();
   }
 
   getMeanTime(){
-    let time=0;
-    let itemCompletedCount=0;
-    this.list.forEach(it => {
-      if(it.isCompleted){
-        time+=it.dateTimeCompleted.getMilliseconds() - it.dateTimeCreation.getMilliseconds();
-        itemCompletedCount++;
-      }
-    });
+    let completedItems = this.list.filter(item=>item.isCompleted);
+    //no funciona reduce()
+
+    //let time = completedItems.reduce(
+    //  (accum, item) => {
+    //     return accum + item.getCompletedTime()  //se acumula tiempo en milisegundos
+    //  },0);
+    
+    let time=10000;
     let result;
-    if(itemCompletedCount!=0){
-      let result=time/1000/itemCompletedCount;
+    if(completedItems.length!=0){
+      result=time/1000/completedItems.length;
+      result=result.toFixed(2);
     }
     else{
-      let result=' - ';
+      result='-';
     }
     return result;
   }
