@@ -1,10 +1,14 @@
 <div class="background-app">
   <h2>To Do List {{tema}}</h2>
-  <app-todo-form (add)="onTodoItemCreated($event)"></app-todo-form>
+  <app-todo-form
+    (itemCreated)="onTodoItemCreated($event)"
+    [formMode]="'create'">
+  </app-todo-form>
   <app-todo-list
     [list]="list"
     (itemRemoved)="onTodoItemRemoved($event)"
-    (itemStateChanged)="onItemStateChanged($event)"
+    (itemStateChanged)="onTodoItemStateChanged($event)"
+    (itemUpdated)="onTodoItemUpdated($event)"
     >
   </app-todo-list>
   <app-todo-footer [list]="list"></app-todo-footer>

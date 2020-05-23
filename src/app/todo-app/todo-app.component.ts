@@ -1,7 +1,6 @@
 import { Component, Input, Inject, Injectable, OnInit } from '@angular/core';
 import {TodoItem} from '../model/todo-item';
 import {LOCAL_STORAGE, WebStorageService} from 'ngx-webstorage-service'
-import { inject } from '@angular/core/testing';
 
 @Component({
   selector: 'app-todo',
@@ -30,9 +29,9 @@ export class TodoAppComponent implements OnInit{
       this.nextItemId=0
       this.storage.set(this.tema+"CantMax",this.nextItemId);
     }
-
+    
     for (let i=0; i < this.nextItemId; i++) {
-      let item= this.storage.get(this.tema+i.toString());
+      let item: TodoItem =  TodoItem.createTodoItem(this.storage.get(this.tema+i.toString()));
       if(item!==undefined){
         this.list.push(item);
       }
@@ -40,9 +39,8 @@ export class TodoAppComponent implements OnInit{
 
   }
 
-  onItemStateChanged(item: TodoItem) {
+  onTodoItemStateChanged(item: TodoItem) {
     item.toggleCompleted();
-    //this.storage.remove(this.tema+item.id.toString());
     this.storage.set(this.tema+item.id.toString(),item);
   }
 
@@ -58,5 +56,9 @@ export class TodoAppComponent implements OnInit{
     this.list.push(item);
     this.nextItemId++;
     this.storage.set(this.tema+"CantMax",this.nextItemId);
+  }
+
+  onTodoItemUpdated(item: TodoItem){
+    this.storage.set(this.tema+item.id.toString(),item);
   }
 }
