@@ -1,4 +1,6 @@
-<input class="todo-input" #itemInput>
-<button (click)="addItem(itemInput)" class="btn btn-primary">
-    Agregar Tarea
-</button>
+<div>
+    <input class="todo-input" value={{inputText}} #itemInput>
+    <button (click)="saveItem(itemInput)" class="btn btn-primary">
+        {{buttonText}}
+    </button>
+</div>
