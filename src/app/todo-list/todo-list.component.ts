@@ -5,18 +5,17 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit { 
-  
+export class TodoListComponent implements OnInit {
+
   @Input() list;
   @Output() itemRemoved = new EventEmitter<number>();
   @Output() itemStateChanged = new EventEmitter<number>();
 
   constructor() { }
 
-  ngOnInit(): void {
-  } 
+  ngOnInit(): void {}
 
-  remove(item){    
+  remove(item){
     this.itemRemoved.emit(item);
   }
 

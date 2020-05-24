@@ -7,15 +7,25 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TodoFooterComponent implements OnInit {
 
-  // @Input() listChanged = [];
-  @Input() completed: any;
-  @Input() pending: any;
+  @Input() list = [];
 
-  constructor() {
-   }
-  
+  constructor() { }
 
   ngOnInit(): void {
-    
-  }  
+  }
+
+  countCompleted(){
+    if(this.list){
+      return this.list.filter(item => item.isCompleted).length;
+    }
+
+  }
+
+  countPending(){
+    if(this.list){
+    return this.list.filter(item => !item.isCompleted).length;
+    }
+
+  }
+
 }

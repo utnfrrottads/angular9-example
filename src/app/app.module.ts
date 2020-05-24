@@ -15,7 +15,7 @@ import { TodoFooterComponent } from './todo-footer/todo-footer.component';
     TodoAppComponent,
     TodoFormComponent,
     TodoListComponent,
-    TodoFooterComponent
+    TodoFooterComponent    
   ],
   imports: [
     BrowserModule,

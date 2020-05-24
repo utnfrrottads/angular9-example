@@ -7,3 +7,7 @@ Completada: {{item.isCompleted}}
 <button (click)="stateChange(item)">Cambiar estado</button>
 </li>
 </ul>
+
+<app-todo-footer
+    [list]="list">
+</app-todo-footer>
