@@ -39,8 +39,9 @@ export class TodoListComponent{
     }
   }
 
-  onImageChanged(imageChosen){
-    this.selectedImage=imageChosen.options[imageChosen.selectedIndex].value
+  onImageChanged(imageChosen,item: TodoItem){
+    item.imageURL=imageChosen.options[imageChosen.selectedIndex].value;
+    this.itemUpdated.emit(item);
   }
 
 }

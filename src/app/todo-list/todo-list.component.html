@@ -6,17 +6,19 @@
       [class.incompleted]="!item.isCompleted"
       [class]="'todo-item'">
       
-            <select (click)="onImageChanged(imageChosen)" class="item-attribute" name="image_chosen" #imageChosen>
+            <select (click)="onImageChanged(imageChosen,item)" class="item-attribute" name="image_chosen" #imageChosen>
                 <option 
+                    #optionImage
                     *ngFor="let image of imagesList"
-                    value="{{this.imagesURL+image}}">
+                    value="{{this.imagesURL+image}}"
+                    [selected]="item.imageURL===optionImage.value">
                         {{image}}<img src="{{this.imagesURL+image}}">
                 </option>
                 <option value="-1">Elije una imagen</option>
             </select>
             
             <!--por si no funciona img dentro de option: -->
-          <img src="{{this.selectedImage}}">
+          <img src="{{item.imageURL}}">
           
           <span class="item-attribute">{{"ID: "+item.id}}</span>
           <span (click)="toggleEdition(item)" class="item-attribute" #itemDescription>{{"Descripcion: "+item.description}}</span>
