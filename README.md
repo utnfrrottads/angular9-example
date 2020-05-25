@@ -1,27 +1,38 @@
-# NgPeti
+## Ejercicio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+La idea es con los conceptos que ya tenemos de Angular, @Input, @Output y componentes
+Completar el presente repositorio para que la aplicacion funcione.
 
-## Development server
+## TodoList
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Tengo una lista de tareas. 
 
-## Code scaffolding
++ Como usuario quiero poder agregar una tarea. Una tera consiste en un texto y en un estado que puede ser pendiente o completada.
++ Al agregarse la tarea esta siempre pendiente.
++ A medida que se van agregando elementos se le asigna un id unico secuencial a cada tarea.
++ Como usuario quiero poder eliminar una tarea, haciendo click en un comando junto a ella.
++ como usuario quiero cambiar el estado de una tarea de completada a pendiente y viceversa.
++ Como usuario quiero que las tareas completadas se muestren con una diferenciacion visual de las pendientes, puede ser un tachado, un color de fondo o algo. 
++ como usuario quiero ver la cantidad total de tareas pendientes y completadas que tengo en mi lista en un footer.
++ En la lista de tareas se puede ver el id descripcion y el estado de cada tarea, ademas de un boton para elimnarla y otro para cambiar el estado.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Se deben usar los componentes que estan planteados y completar la funcionalidad faltante para que compile y se pueda hacer el 
 
-## Build
+```ng build```
+```ng build --prod```
+```ng serve```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Nivel 2 (opcional)
+Si te resulto muy facil la primera parte. o si ya tenes experiencia con Angular, React, Vue u otros frameworks.
++ Persistir la lista en localStorage
++ Permitir la edicion de una tarea.
++ Medir el tiempo que se tarda en completar una tarea y mostrar en el footer el tiempo promedio.
++ Permitir seleccionar un icono de fontawesome, bootstrap icons o cualquier libreria publica de iconos, para la tarea.
 
-## Running unit tests
+## Para entregar el trabajo 
++ Hacer un fork de este repositorio tomar la rama todo-list-exercise y hacer un pull request a dicha rama. 
+[Aqui](https://blog.desdelinux.net/tutorial-simple-primer-pr-pull-request/)
+y [Aqui](https://github.com/omegaup/omegaup/wiki/C%C3%B3mo-Hacer-un-Pull-Request) les deoj una guia de como usar git para un Pull request. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Me mandan el link al pull request asi les puedo mandar comentarios mediante github.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

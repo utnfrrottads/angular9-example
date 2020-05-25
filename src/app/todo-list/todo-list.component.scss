@@ -1,0 +1,51 @@
+.completed{
+    color: green;
+    font-weight: bold;
+    transition: all 0.25s;
+}
+
+.incompleted{
+    color: orange;
+    font-weight: bold;
+    transition: all 0.25s;
+}
+
+.itemList{
+    background-color: white;
+    padding: 0px;
+    margin-top: 20px;
+}
+
+.todo-item{
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+    list-style: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.item-attribute{
+    margin-left: 100px;
+}
+
+.item-button{
+    margin-left: 20px;
+}
+
+.inplaceEditor{
+    display: block;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    background-color: rgb(232, 238, 144);
+    text-align: center;
+    margin-left: 350px;
+    width: 25%;
+    padding: 10px 0px 10px 0;
+}
+
+.itemImage{
+    height: 15px;
+}
