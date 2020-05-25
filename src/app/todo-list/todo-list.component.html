@@ -1,0 +1,7 @@
+<div *ngFor="let item of list">
+  <span [class.completed]="item.isCompleted"
+    >{{ item.id }} - {{ item.description }}</span
+  >
+  <button (click)="onRemove(item)">Remove</button>
+  <button (click)="onToggleCompleted(item)">Toggle completed</button>
+</div>

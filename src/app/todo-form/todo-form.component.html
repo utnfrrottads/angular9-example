@@ -1,1 +1,5 @@
-<p>todo-form works!</p>
+<input [(ngModel)]="description" (keyup.enter)="onAdd()" /><button
+  (click)="onAdd()"
+>
+  Add item
+</button>
