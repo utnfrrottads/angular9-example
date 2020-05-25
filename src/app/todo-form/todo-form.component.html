@@ -1,6 +1,6 @@
 <div>
-    <input class="todo-input" value={{inputText}} #itemInput>
+    <input class="todo-input" value={{this.strategy.inputText}} #itemInput>
     <button (click)="saveItem(itemInput)" class="btn btn-primary">
-        {{buttonText}}
+        {{this.strategy.buttonText}}
     </button>
 </div>

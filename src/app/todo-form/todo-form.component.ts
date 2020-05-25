@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { TodoItem } from '../model/todo-item';
+import { Strategy } from '../model/strategy';
+import { CreateStrategy } from '../model/create-strategy';
+import { UpdateStrategy } from '../model/update-strategy';
 
 @Component({
   selector: 'app-todo-form',
@@ -10,19 +13,16 @@ export class TodoFormComponent implements OnInit{
 
   @Input() formMode='create'
   @Input() currentItem= new TodoItem();
-  buttonText='';
-  inputText='';
-  @Input() method='';
-  @Output() itemCreated = new EventEmitter();
-  @Output() itemUpdated = new EventEmitter();
+  @Output() itemSaved = new EventEmitter();
+  strategy: Strategy;
 
   ngOnInit(){
     switch (this.formMode) {
       case 'create':
-        this.buttonText="Agregar Tarea";
+        this.strategy= new CreateStrategy(this.currentItem);
         break;
       case 'update':
-        this.buttonText="Guardar";
+        this.strategy= new UpdateStrategy(this.currentItem);
         break;
       default:
         throw new Error();
@@ -32,33 +32,12 @@ export class TodoFormComponent implements OnInit{
   saveItem(input){
     if(input.value!==''){
       input.classList.remove("wrong-input")
-
-      switch (this.formMode) {
-        case 'create':
-          this.addItem(input);
-          break;
-        case 'update':
-          this.updateItem(input);
-          break;
-        default:
-          throw new Error();
-      }
-
+      this.strategy.saveItem(input)
+      this.itemSaved.emit(this.currentItem);
     }
     else{
       input.classList.add("wrong-input")
     }
   }
 
-  addItem(input){
-    this.currentItem = new TodoItem();
-    this.currentItem.description = input.value;
-    input.value="";
-    this.itemCreated.emit(this.currentItem);
-  }
-
-  updateItem(input){
-    this.currentItem.description=input.value;
-    this.itemUpdated.emit(this.currentItem);
-  }
 }

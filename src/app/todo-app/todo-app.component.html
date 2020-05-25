@@ -1,7 +1,7 @@
 <div class="background-app">
   <h2>To Do List {{tema}}</h2>
   <app-todo-form
-    (itemCreated)="onTodoItemCreated($event)"
+    (itemSaved)="onTodoItemCreated($event)"
     [formMode]="'create'">
   </app-todo-form>
   <app-todo-list

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TodoItem } from '../model/todo-item';
 
 @Component({
@@ -11,13 +11,7 @@ export class TodoFooterComponent{
   @Input() list: TodoItem[] = [];
 
   getCountCompleted(){
-    let i=0;
-    this.list.forEach(it => {
-      if(it.isCompleted){
-        i++;
-      }
-    });
-    return i
+    return this.list.filter(it => it.isCompleted).length
   }
 
   getCountIncompleted(){
@@ -36,7 +30,7 @@ export class TodoFooterComponent{
     let time=10000;
     let result;
     if(completedItems.length!=0){
-      result=time/1000/completedItems.length;
+      result=time / 1000 / completedItems.length;
       result=result.toFixed(2);
     }
     else{
