@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { TodoItem } from "../model/todo-item";
+import { Component, OnInit } from '@angular/core';
+import { TodoItem } from '../model/todo-item';
 
 @Component({
-  selector: "app-todo",
-  templateUrl: "./todo-app.component.html",
-  styleUrls: ["./todo-app.component.scss"],
+  selector: 'app-todo',
+  templateUrl: './todo-app.component.html',
+  styleUrls: ['./todo-app.component.scss'],
 })
 export class TodoAppComponent implements OnInit {
   list = [];
@@ -13,16 +13,18 @@ export class TodoAppComponent implements OnInit {
     this.loadState();
   }
   loadState(): void {
-    const savedList = localStorage.getItem("list");
-    const savedLastItemId = localStorage.getItem("lastItemId");
+    const savedList = localStorage.getItem('list');
+    const savedLastItemId = localStorage.getItem('lastItemId');
     if (savedList !== null && savedLastItemId !== null) {
-      this.list = JSON.parse(savedList);
+      this.list = JSON.parse(savedList).map((item) =>
+        Object.assign(new TodoItem(), item)
+      );
       this.lastItemId = JSON.parse(savedLastItemId);
     }
   }
   saveState(): void {
-    localStorage.setItem("list", JSON.stringify(this.list));
-    localStorage.setItem("lastItemId", JSON.stringify(this.lastItemId));
+    localStorage.setItem('list', JSON.stringify(this.list));
+    localStorage.setItem('lastItemId', JSON.stringify(this.lastItemId));
   }
   ngOnInit(): void {}
 
