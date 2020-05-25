@@ -1,0 +1,27 @@
+
+
+<div class="container" *ngIf="list.length <=0">
+  No hay ninguna tarea
+</div>
+
+<table class="table table-sm table-hover" *ngIf="list.length >0">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" style="width: 10%">ID</th>
+      <th scope="col" style="width: 60%">DESCRIPTION</th>
+      <th scope="col" style="width: 15%">STATE</th>
+      <th scope="col" style="width: 15%">ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of list;" [ngClass]="item.isCompleted ? 'inactive-row' : ''">
+      <td scope="row">{{item.id}}</td>
+      <td [ngClass]="item.isCompleted ? 'done-task' : ''">{{item.description}}</td>
+      <td>{{item.isCompletedToString()}}</td>
+      <td>
+        <button type="button" [ngClass]="item.isCompleted ? 'btn btn-sm btn-outline-secondary':'btn btn-sm btn-outline-success'" (click)="changeState(item)"><i [ngClass]="item.isCompleted ? 'far fa-times-circle' : 'far fa-check-circle'" ></i></button>          
+        <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteItem(item)"><i class="far fa-trash-alt"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,1 +1,10 @@
-<p>todo-form works!</p>
+<form>
+    <div class="form-row align-items-center">
+        <div class="input-group mb-3">         
+            <input type="text" class="form-control" placeholder="Tarea nueva" #inputTask>
+            <div class="input-group-append">
+              <button class="btn btn-dark" type="button" (click)="addTask(inputTask)"><i class="fas fa-plus-circle"></i></button>
+            </div>
+        </div>
+    </div>
+</form>
