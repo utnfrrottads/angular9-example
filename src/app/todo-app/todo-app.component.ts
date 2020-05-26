@@ -26,7 +26,7 @@ export class TodoAppComponent implements OnInit {
     localStorage.setItem('list', JSON.stringify(this.list));
     localStorage.setItem('lastItemId', JSON.stringify(this.lastItemId));
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onTodoItemCreated(item: TodoItem) {
     item.id = this.lastItemId;
@@ -41,7 +41,7 @@ export class TodoAppComponent implements OnInit {
   }
 
   onItemStateChanged(item: TodoItem) {
-    this.list = this.list.map((i) => (i.id === item ? item : i));
+    this.list = this.list.map((i) => (i.id === item.id ? item : i));
     this.saveState();
   }
 }
