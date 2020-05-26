@@ -1,0 +1,5 @@
+<li *ngFor="let item of list" >
+    <label>{{item.description}}</label>
+    <label class="ml-3" [ngClass]="{'pending': item.isCompleted === false, 'completed': item.isCompleted === true}" (click)="cambiarEstado(item)">{{item.isCompleted ? 'Completada' : 'Pendiente'}}</label>
+    <label class="btn btn-outline-danger rounded-circle ml-3" (click)="removerItem(item)">x</label>
+</li>
