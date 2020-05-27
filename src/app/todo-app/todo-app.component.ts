@@ -6,15 +6,18 @@ import {TodoItem} from '../model/todo-item';
   templateUrl: './todo-app.component.html',
   styleUrls: ['./todo-app.component.scss']
 })
-export class TodoAppComponent implements OnInit {
-  list = [];
-  lastItemId = 0;
-  constructor() { }
+export class TodoAppComponent {
+  ListItems = [];
+  LastItemId = 0;
 
-  ngOnInit(): void {
+  OnTodoItemCreated(Item: TodoItem) {
+    Item.id = this.LastItemId++;
+    this.ListItems.push(Item);
   }
 
-  onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+  OnTodoItemRemoved(Item: TodoItem)
+  {
+    let Index = this.ListItems.findIndex(x => x.id === Item.id);
+    this.ListItems.splice(Index, 1);
   }
 }

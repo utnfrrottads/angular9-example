@@ -1,0 +1,26 @@
+<div class="col-5">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Descripción</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let Item of ListItems'>
+                <th scope="row" [ngClass]="Item.isCompleted ? 'strikethrough' : ''">{{Item.id}}</th>
+                <td [ngClass]="Item.isCompleted ? 'strikethrough' : ''">{{Item.description}}</td>
+                <td *ngIf="Item.isCompleted">Completado</td>
+                <td *ngIf="!Item.isCompleted">Pendiente</td>
+                <td class="text-center"> 
+                    <div>
+                        <input (click)="ChangeState(Item)" style="margin-right: 10px;" type="button" class="btn btn-primary" value="Cambiar"/>
+                        <button (click)="Remove(Item)" type="button" class="btn btn-danger end">Borrar</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,1 +1,8 @@
-<p>todo-form works!</p>
+<div class="form-group col-3"
+    style="padding: 1em;">
+    <label for="exampleInputEmail1">Task:</label>
+    <input type="text" class="form-control" #InputController/>
+    <button style="margin-top: 10px;" class="btn btn-primary" (click)="AddTask(InputController)" >Save</button>
+</div>
+
+
