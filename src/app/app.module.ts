@@ -9,6 +9,7 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { CardComponent } from './card/card.component';
 import { FormsModule } from '@angular/forms';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

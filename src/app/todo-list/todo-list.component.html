@@ -1,3 +1,7 @@
 <app-card *ngFor="let task of taskList" [cardStatus]="task.isCompleted ? 'completed' : 'pending'">
-    <p class="card-content"> {{task.id}} - <span>{{task.description}}</span></p>
+    <p class="card-content">
+        {{task.id}} - 
+        <span>{{task.description}}</span>
+        <i class="fas fa-check-circle fa-3x"></i>
+    </p>
 </app-card>
