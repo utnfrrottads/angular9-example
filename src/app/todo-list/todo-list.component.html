@@ -1,0 +1,3 @@
+<app-card *ngFor="let task of taskList" [cardStatus]="task.isCompleted ? 'completed' : 'pending'">
+    <p class="card-content"> {{task.id}} - <span>{{task.description}}</span></p>
+</app-card>

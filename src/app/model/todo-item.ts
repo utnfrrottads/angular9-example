@@ -1,4 +1,4 @@
-export class TodoItem {
+export class ToDoItem {
   id: number;
   description: string;
   isCompleted: boolean = false;

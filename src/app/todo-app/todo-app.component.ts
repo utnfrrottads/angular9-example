@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {TodoItem} from '../model/todo-item';
+import {ToDoItem} from '../model/todo-item';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo-app.component.html',
   styleUrls: ['./todo-app.component.scss']
 })
-export class TodoAppComponent implements OnInit {
-  list = [];
-  lastItemId = 0;
-  constructor() { }
+export class TodoAppComponent{
+  taskList : ToDoItem[] = [];
+  
 
-  ngOnInit(): void {
-  }
-
-  onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+  onNewTaskAdded(newTask : ToDoItem){
+    this.taskList.push(newTask);
   }
 }

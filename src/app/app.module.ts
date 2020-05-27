@@ -6,17 +6,22 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TodoAppComponent } from './todo-app/todo-app.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { CardComponent } from './card/card.component';
+import { FormsModule } from '@angular/forms';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoAppComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    CardComponent,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

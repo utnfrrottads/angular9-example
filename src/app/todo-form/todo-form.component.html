@@ -1,1 +1,9 @@
-<p>todo-form works!</p>
+<app-card [cardStatus]="'new'">
+    <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+        <label class="card-label">
+            New Task
+            <input type="text" class="card-input" [(ngModel)]="newTask.description" 
+            name="description" #description="ngModel" placeholder="Add note">
+        </label>
+    </form> 
+</app-card>
