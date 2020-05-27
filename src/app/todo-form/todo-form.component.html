@@ -1,1 +1,5 @@
-<p>todo-form works!</p>
+<h4 class="card-title">Lista de tareas</h4>
+<div class="add-items d-flex"> 
+    <input #InTask type="text" class="form-control todo-list-input" placeholder="Qué necesitas hacer hoy?"> 
+    <button (click) = "addTask(InTask)" class="add btn btn-primary font-weight-bold todo-list-add-btn">Agregar</button> 
+</div>

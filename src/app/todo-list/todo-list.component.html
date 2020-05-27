@@ -1,0 +1,13 @@
+<ul class="d-flex flex-column-reverse todo-list">
+    <li *ngFor = "let item of list">
+        <div class="form-check"> 
+            <input (click) = "changeStatus(item)" class="checkbox" type="checkbox"> 
+            <label>
+                <label [ngClass] = "item.isCompleted ? 'completed': ''"><strong>{{item.id}}</strong> - {{item.description}} </label> - <label *ngIf = "item.isCompleted">Completado</label> <label *ngIf = "!item.isCompleted">Pendiente</label> 
+            </label>
+            <i class="input-helper"></i>
+        </div> 
+        <i (click) = "remove(item)" class="remove mdi mdi-close-circle-outline"></i>
+    </li>
+</ul>
+

@@ -1,8 +1,19 @@
-<app-todo-form (add)="onTodoItemCreated($event)"></app-todo-form>
-<app-todo-list
-  [list]="list"
-  (itemRemoved)="onTodoItemRemoved($event)"
-  (itemStateChanged)="onItemStateChanged($event)"
-  >
-</app-todo-list>
-<app-todo-footer [list]="list"></app-todo-footer>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-lg-12">
+                <div class="card px-3">
+                    <div class="card-body">
+                        <app-todo-form (add) = "onItemCreated($event)"></app-todo-form>
+                        <div class="list-wrapper">
+                            <app-todo-list [list] = "list"
+                                           (removeItem) = "onItemRemoved($event)">
+                            </app-todo-list>
+                        </div>
+                        <app-todo-footer [list] = "list"></app-todo-footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
