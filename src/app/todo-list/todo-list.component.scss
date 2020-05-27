@@ -3,7 +3,7 @@
     width: 25%;
     margin-bottom: 5px;
 }
-#id{
+.id{
     font-size: large;
     font-weight: bolder;
     color: white;
@@ -13,7 +13,7 @@
     margin-left: 10px;
     padding-bottom: 0px;
 }
-#desc{
+.desc{
     font-size: larger;
     text-align: center;
     font-size: x-large;
@@ -30,6 +30,8 @@
 .completa{
     background-color: #74E39A;
 }
-button{
+.btn{
     margin-top: 20px;
+    margin-right: 2px;
+    margin-bottom: 5px;
 }

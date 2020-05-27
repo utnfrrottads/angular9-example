@@ -23,7 +23,7 @@ export class TodoAppComponent implements OnInit {
   onTodoItemCreated(descTarea) {
     this.lastItemId = this.lastItemId + 1;
 
-    var newItem = new TodoItem();
+    let newItem = new TodoItem();
     newItem.description = descTarea;
     newItem.id = this.lastItemId;
     newItem.isCompleted = false;

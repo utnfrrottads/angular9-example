@@ -2,12 +2,12 @@
     <h2>Lista de actividades.</h2>
     <ul>
         <div class="item" *ngFor="let item of list" [class.completa]="item.isCompleted">
-            <p id="id">- ID: {{item.id}} -</p>
-            <p id="desc">{{item.description}}</p>
+            <p class="id">- ID: {{item.id}} -</p>
+            <p class="desc">{{item.description}}</p>
 
             <div class="container">
-                <button (click)="eliminarTarea(item)">Eliminar</button>
-                <button (click)="cambiarEstado(item)">Cambiar Estado</button>
+                <button class="btn" (click)="eliminarTarea(item)">Eliminar</button>
+                <button class="btn" (click)="cambiarEstado(item)">Cambiar Estado</button>
             </div>
 
         </div>

@@ -6,23 +6,18 @@ import { TodoItem } from "../model/todo-item"
   templateUrl: './todo-footer.component.html',
   styleUrls: ['./todo-footer.component.scss']
 })
-export class TodoFooterComponent implements OnInit {
+export class TodoFooterComponent  {
 
   @Input() list: Array<TodoItem> = [];
   tareasCompletas = 0;
   tareasPendientes = 0;
 
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
   calculaPendientes(list) {
-    return this.tareasPendientes = this.list.filter(e => !e.isCompleted).length;
+    return this.list.filter(e => !e.isCompleted).length;
   }
   calculaCompletas(list){
-    return this.tareasCompletas = this.list.filter(e => e.isCompleted).length;
+    return this.list.filter(e => e.isCompleted).length;
   }
 
 
