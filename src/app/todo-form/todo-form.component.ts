@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-todo-form',
@@ -8,9 +8,19 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 export class TodoFormComponent implements OnInit {
 
   @Output() add = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  addNewTarea(input){
+    if(input.value === ''){
+      return;
+    }
+    this.add.emit(input);
+    input.value = '';
+  }
+
 
 }

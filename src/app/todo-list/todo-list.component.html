@@ -1,0 +1,18 @@
+
+<div class="lista" >
+
+    <h1>Lista de tareas ({{total}})</h1>
+    <ul >
+        <li *ngFor="let item of list" [class.completed]="item.isCompleted" [class.notCompleted]="!item.isCompleted">
+            <span>Tarea {{item.id}}</span>
+            <p>{{item.description}}</p>
+            <span *ngIf="item.isCompleted">Completada </span>
+            <span *ngIf="!item.isCompleted">Pendiente </span>
+            <button (click)="onItemRemoved(item)">
+                Eliminar </button>
+            <button (click)="onItemStateChanged(item)">
+                Cambiar</button> 
+        </li>
+    </ul>
+
+</div>
