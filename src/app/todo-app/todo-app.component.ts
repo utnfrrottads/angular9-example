@@ -13,4 +13,12 @@ export class TodoAppComponent{
   onNewTaskAdded(newTask : ToDoItem){
     this.taskList.push(newTask);
   }
+
+  onToggleCompleted(task : ToDoItem){
+    task.toggleCompleted();
+  }
+
+  onRemoveTask(task : ToDoItem){
+    this.taskList = this.taskList.filter(taskItem => taskItem !== task);
+  }
 }

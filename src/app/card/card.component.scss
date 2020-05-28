@@ -2,18 +2,18 @@
     min-height: 20vh;
     margin: 1% 0;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .new{
     background-color: #dcd6d6;
 }
 
-
 .completed{
-    background-color: green;
+    background-color: #93e893;
 }
 
 
 .pending{
-    background-color: yellow;
+    background-color: #e4e488;
 }
