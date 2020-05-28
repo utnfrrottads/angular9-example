@@ -8,7 +8,6 @@ import {TodoItem} from '../model/todo-item';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor() { }
   @Input() list = [];
   @Output() itemRemoved = new EventEmitter();
   @Output() itemStateChanged = new EventEmitter();
@@ -16,12 +15,11 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changeState(item: TodoItem)
-    {
-      this.itemStateChanged.emit(item)
-    }
-  deleteItem(item: TodoItem)
-  {
+  changeState(item: TodoItem){
+    this.itemStateChanged.emit(item)
+  }
+
+  deleteItem(item: TodoItem){
     this.itemRemoved.emit(item)
   }
 

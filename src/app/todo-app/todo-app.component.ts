@@ -7,28 +7,12 @@ import {TodoItem} from '../model/todo-item';
   styleUrls: ['./todo-app.component.scss']
 })
 export class TodoAppComponent implements OnInit {
-  private list = [];
-  private lastItemId = 0;
-  completeTasks = 0;
-  totalTasks = 0;
+  list = [];
+  lastItemId = 0;
 
   ngOnInit(): void {
   }
 
-  get getList(){
-    return this.list;
-  }
-
-  updateStats(){
-    this.totalTasks = this.list.length;
-
-    this.completeTasks = 0;
-    for( var i = 0; i < this.list.length; i++){ 
-      if(this.list[i].isCompleted === true){
-        this.completeTasks++;
-      }
-    }
-  }
 
   onTodoItemRemoved(event){
     console.log(event);
@@ -38,8 +22,6 @@ export class TodoAppComponent implements OnInit {
         this.list.splice(i, 1);
       }
     }
-    
-    this.updateStats();
   }
 
   onTodoItemCreated(event){
@@ -48,14 +30,9 @@ export class TodoAppComponent implements OnInit {
     this.lastItemId++;
 
     this.list.push(event);
-    console.log(this.list);
-
-    this.updateStats();
   }
 
   onItemStateChanged(item: TodoItem) {
     item.toggleCompleted();
-
-    this.updateStats();
   }
 }

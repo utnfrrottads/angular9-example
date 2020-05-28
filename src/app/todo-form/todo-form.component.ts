@@ -9,7 +9,6 @@ import { TodoItem} from '../model/todo-item';
 export class TodoFormComponent implements OnInit {
   @Output() add = new EventEmitter();
   todoItem;
-  constructor() { }
 
   addTask(task){    
     if(task.value !== ''){
