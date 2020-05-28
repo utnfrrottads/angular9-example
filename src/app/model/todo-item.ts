@@ -6,4 +6,8 @@ export class TodoItem {
   toggleCompleted() {
     this.isCompleted = !this.isCompleted;
   }
+
+  constructor(){
+    this.isCompleted = false;
+  }
 }
