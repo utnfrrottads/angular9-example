@@ -1,10 +1,11 @@
 <app-card [cardStatus]="'new'">
-    <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #taskForm="ngForm" automplete="off">
         <label class="card-label" for="description">New Task</label>
         <div class="d-flex input-button-container">
             <input type="text" class="card-input" [(ngModel)]="newTask.description" 
-                name="description" #description="ngModel" placeholder="Add note">
-            <button mat-flat-button color="primary" type="submit" class="submit-button">Add</button>
+            name="description" #description="ngModel" placeholder="Add note" required>
+            <button mat-flat-button color="primary" type="submit" class="submit-button" 
+            [disabled]="!taskForm.form.valid">Add</button>
         </div>
     </form> 
 </app-card>

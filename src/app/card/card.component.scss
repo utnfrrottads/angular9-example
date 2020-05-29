@@ -1,5 +1,4 @@
 .container{
-    min-height: 20vh;
     margin: 1% 0;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -7,13 +6,16 @@
 
 .new{
     background-color: #dcd6d6;
+    min-height: 15vh;
 }
 
 .completed{
+    min-height: 10vh;
     background-color: #93e893;
 }
 
 
 .pending{
+    min-height: 10vh;
     background-color: #e4e488;
 }
