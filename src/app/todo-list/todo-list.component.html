@@ -7,3 +7,14 @@
         </div>  
     </div>
 </app-card>
+
+<div class="tasks-progress-bar" *ngIf="taskList.length">
+    <h2>Tareas Completadas:</h2>
+    <ngb-progressbar 
+    type="success" 
+    height="2rem"
+    [value]="countCompletedTasks()" 
+    [max]="taskList.length">
+        <b class="progress-bar-text">{{countCompletedTasks()}} of {{taskList.length}}</b>
+    </ngb-progressbar>
+</div>

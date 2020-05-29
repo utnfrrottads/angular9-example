@@ -15,6 +15,11 @@
     border: none;
 }
 
+.card-input:focus{
+    outline-color: black;
+    outline-width: thin;
+}
+
 .submit-button{
     border-radius: 5px;
 }

@@ -10,6 +10,7 @@ import { CardComponent } from './card/card.component';
 import { FormsModule } from '@angular/forms';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import {MatButtonModule} from '@angular/material/button';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

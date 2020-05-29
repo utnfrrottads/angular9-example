@@ -11,6 +11,19 @@ export class TodoListComponent{
   @Output() toggleCompleted = new EventEmitter<ToDoItem>();
   @Output() removeTask = new EventEmitter<ToDoItem>();
 
+  
+  countCompletedTasks() : number{
+    let completedTasks = 0;
+
+    for (let task of this.taskList) {
+      if (task.isCompleted) {
+        completedTasks++;
+      }
+    }
+
+    return completedTasks;
+  }
+
   onToggleCompletedClick(task : ToDoItem){
     this.toggleCompleted.emit(task);
   }
