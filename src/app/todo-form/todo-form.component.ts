@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 import { TodoItem } from '../model/todo-item';
 
 
@@ -7,13 +7,9 @@ import { TodoItem } from '../model/todo-item';
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.scss']
 })
-export class TodoFormComponent implements OnInit {
+export class TodoFormComponent {
 
   @Output() add = new EventEmitter<TodoItem>();
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   agregarTarea(textoTarea: any){
     if (textoTarea.value!=""){

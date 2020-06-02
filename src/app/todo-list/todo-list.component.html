@@ -12,11 +12,11 @@
       <th scope="row">{{item.id}}</th>
       <td>{{item.description}}</td>
       <td>
-        <button *ngIf="item.isCompleted" class="btn btn-success" (click)="cambiarEstado(item)">Realizado</button>
-        <button *ngIf="!item.isCompleted" class="btn btn-warning" (click)="cambiarEstado(item)">Pendiente</button>
+        <button *ngIf="item.isCompleted" class="btn btn-success" (click)="changeState(item)">Realizado</button>
+        <button *ngIf="!item.isCompleted" class="btn btn-warning" (click)="changeState(item)">Pendiente</button>
       </td>
       <td>
-       <button class="btn btn-danger" (click)="borrarTarea(item)">Eliminar</button>
+       <button class="btn btn-danger" (click)="deleteTask(item)">Eliminar</button>
       </td>
       
     </tr>
