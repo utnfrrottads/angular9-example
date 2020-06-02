@@ -1,5 +1,5 @@
 import { ToDoItem } from './../model/todo-item';
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,15 +8,15 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent {
-  nextTaskId : number = 1;
+  @Input() nextToDoItemId : number;
   newTask = new ToDoItem();
   
   @Output() newTaskAdded = new EventEmitter<ToDoItem>();
   
 
   onSubmit(){
-    this.newTask.id = this.nextTaskId;
-    this.nextTaskId++;
+    this.newTask.id = this.nextToDoItemId;
+    this.nextToDoItemId++;
     
     this.newTaskAdded.emit(this.newTask);
 

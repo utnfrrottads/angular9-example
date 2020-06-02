@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TodoListComponent{
   @Input() taskList : ToDoItem[];
+
   @Output() toggleCompleted = new EventEmitter<ToDoItem>();
   @Output() removeTask = new EventEmitter<ToDoItem>();
 
