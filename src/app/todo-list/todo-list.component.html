@@ -1,0 +1,9 @@
+<ul>
+    <li *ngFor="let item of list" [class.completed]="item.isCompleted">
+        <span >{{item.id}}</span>
+        <span >{{item.description}}</span>
+        <span >{{item.isCompleted ? 'Realizado' : 'Pendiente'}}</span>
+        <button class="removeButton" (click)="remove(item)">Remover</button>
+        <button class="toggleButton" (click)="toggle(item)">Marcar/Desmarcar</button>
+    </li>
+</ul>

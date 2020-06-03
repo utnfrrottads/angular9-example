@@ -1,0 +1,50 @@
+.completed {
+    background: rgb(120, 228, 120) !important;
+    font-weight: bold;
+}
+
+ul{
+    position: relative;
+    width: 900px;
+    margin: 10px auto 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.1);
+}
+
+ul li{
+    display: flex;
+    background: rgb(206, 206, 206);
+    padding: 20px 40px;
+    margin: 5px 0;
+}
+
+ul li span:nth-child(1){
+    width: 60px;
+}
+
+ul li span:nth-child(2){
+    width: 400px;
+}
+
+ul li span:nth-child(3){
+    width: 100px;
+    text-align: left;
+}
+
+.removeButton{
+    width:100px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background: red;
+    text-align: center;
+}
+
+.toggleButton{
+    width:150px;
+    margin-left: 10px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background: blue;
+    text-align: center;
+}
