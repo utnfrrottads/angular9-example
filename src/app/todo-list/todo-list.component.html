@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let item of list" [class.completed]="item.isCompleted">
+      <b>ID:</b> {{item.id}}   <b>Description:</b> {{item.description}}   <b>Status:</b> {{getItemStatus(item.isCompleted)}}
+      <button (click)="remove(item)">X</button>
+      <button (click)="toggle(item)">V</button>
+    </li>
+</ul>
