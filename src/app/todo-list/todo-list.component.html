@@ -1,11 +1,14 @@
 <ul class="list">
-    <li
-      *ngFor="let task of list" [class.completed] = "task.isCompleted"
-      class="list-item">
-      {{task.description}}
-      <span>
-        <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
-        <button class="btn btn-success" (click)="completeTask(task)">V</button>
-      </span>
-    </li>
-  </ul>
+  <li *ngFor="let task of list" [class.completed]="task.isCompleted" class="list-item">
+    
+    <p class="lessImportant">id = {{task.id}}</p>
+    <p class="description">{{task.description}}</p>
+    
+    
+    <span class = "buttons">
+      <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
+      <button class="btn btn-success" (click)="completeTask(task)">V</button>
+    </span>
+    
+  </li>
+</ul>
