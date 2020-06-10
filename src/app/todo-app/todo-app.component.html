@@ -5,4 +5,8 @@
   (itemStateChanged)="onItemStateChanged($event)"
   >
 </app-todo-list>
-<app-todo-footer [list]="list"></app-todo-footer>
+<app-todo-footer 
+(itemRemoved)="onTodoItemRemoved($event)"
+(itemStateChanged)="onItemStateChanged($event)"
+[list]="list">
+</app-todo-footer>
