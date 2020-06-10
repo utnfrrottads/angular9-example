@@ -8,6 +8,8 @@ import { TodoAppComponent } from './todo-app/todo-app.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoFooterComponent } from './todo-footer/todo-footer.component';
+import { TodoService } from './todo.service';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { TodoFooterComponent } from './todo-footer/todo-footer.component';
     TodoAppComponent,
     TodoFormComponent,
     TodoListComponent,
-    TodoFooterComponent
+    TodoFooterComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
