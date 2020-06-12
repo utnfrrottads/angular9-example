@@ -9,12 +9,12 @@ export class TodoFormComponent {
 
   @Output() add = new EventEmitter<string>();
 
-  addTask(task_input){
-    if(task_input.value === ''){
+  addTask(taskInput){
+    if(taskInput.value === ''){
       return;
     }
-    this.add.emit(task_input.value);
-    task_input.value = '';
+    this.add.emit(taskInput.value);
+    taskInput.value = '';
   }
 
 }

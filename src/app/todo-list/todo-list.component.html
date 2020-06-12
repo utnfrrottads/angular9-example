@@ -1,13 +1,14 @@
+<div class="main">
 <ul>
     <li *ngFor="let task of list"
      [class.completed]="task.isCompleted"
      [class.notcompleted]="!task.isCompleted"> 
-        ID:{{task.id}} - {{task.description}} - 
+        {{task.description}} - 
         <span *ngIf="task.isCompleted">Completed  </span>
         <span *ngIf="!task.isCompleted">Pending  </span>
-
-            <button (click)="toggle(task)" *ngIf="!task.isCompleted">Done it</button>
-            <button (click)="toggle(task)" *ngIf="task.isCompleted">Undo it</button>
-            <button [class.btndelete] (click)="remove(task)">Remove</button> 
-        </li> 
+        <button class="btn btn-success btn-sm" (click)="toggle(task)" *ngIf="!task.isCompleted">Do</button>
+        <button class="btn btn-info btn-sm" (click)="toggle(task)" *ngIf="task.isCompleted">Undo</button>
+        <button class="btn btn-danger btn-sm" (click)="remove(task)">Remove</button> 
+    </li> 
 </ul>
+</div>
