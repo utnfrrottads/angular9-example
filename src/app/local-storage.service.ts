@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TodoItem } from './model/todo-item';
+import { plainToClass } from 'class-transformer';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,15 @@ export class LocalStorageService {
     localStorage.setItem('todo-list', JSON.stringify(todoItems));
   }
 
-  getItemsInStorage(): TodoItem[] | null {
-    return JSON.parse(localStorage.getItem('todo-list'));
+  getItemsInStorage(): TodoItem[] {
+    const storageTodoItems = JSON.parse(localStorage.getItem('todo-list'));
+
+    if (storageTodoItems == null){
+      return [];
+    }
+
+    return storageTodoItems.map((item) =>
+    plainToClass(TodoItem, item)
+  );
   }
 }

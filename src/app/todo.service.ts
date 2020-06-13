@@ -9,7 +9,7 @@ export class TodoService {
   lastItemId = 0;
 
   constructor(private storage: LocalStorageService) {
-    this.list = storage.getItemsInStorage() == null? []: storage.getItemsInStorage();
+    this.list = storage.getItemsInStorage();
   }
 
   add(task) {
