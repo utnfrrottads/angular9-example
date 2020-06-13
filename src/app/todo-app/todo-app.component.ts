@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoItem} from '../model/todo-item';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -7,18 +8,13 @@ import {TodoItem} from '../model/todo-item';
   styleUrls: ['./todo-app.component.scss']
 })
 export class TodoAppComponent {
-  list = [];
-  lastItemId = 0;
+  
+  constructor(
+    private todoService: TodoService
+  ){}
 
-  onTodoItemCreated(event: string){
-    this.lastItemId ++;
-
-    let item = new TodoItem();
-    item.id = this.lastItemId;
-    item.description = event;
-    item.isCompleted = false;
-
-    this.list.push(item);
+  onTodoItemCreated(task: string){
+    this.todoService.add(task);
   }
 
   onItemStateChanged(item: TodoItem) {
@@ -26,7 +22,10 @@ export class TodoAppComponent {
   }
 
   onTodoItemRemoved(item: TodoItem){
-    const index = this.list.findIndex(each => each.description === item.description);
-    this.list.splice(index, 1);
+    this.todoService.remove(item);
+  }
+
+  getList(){
+    return this.todoService.list;
   }
 }
