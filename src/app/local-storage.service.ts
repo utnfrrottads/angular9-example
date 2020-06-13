@@ -16,12 +16,10 @@ export class LocalStorageService {
   getItemsInStorage(): TodoItem[] {
     const storageTodoItems = JSON.parse(localStorage.getItem('todo-list'));
 
-    if (storageTodoItems == null){
+    if (storageTodoItems == null) {
       return [];
     }
 
-    return storageTodoItems.map((item) =>
-    plainToClass(TodoItem, item)
-  );
+    return storageTodoItems.map((item) => plainToClass(TodoItem, item));
   }
 }
