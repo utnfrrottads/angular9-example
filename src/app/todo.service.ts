@@ -23,15 +23,11 @@ export class TodoService {
     this.list.splice(index, 1);
   }
 
-  incompletedSize() {
+  uncompletedTaskNumber() {
     return this.list.filter(item => !item.isCompleted).length;
 
   }
-  completedSize() {
+  completedTaskNumber() {
     return  this.list.filter(item => item.isCompleted).length ;
-  }
-
-  getName() {
-    return 'TodoService 123' + this.storage.getName();
   }
 }

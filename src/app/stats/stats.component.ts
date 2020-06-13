@@ -15,6 +15,6 @@ export class StatsComponent implements OnInit {
   ngOnInit(): void {
   }
   completedPercentage() {
-    return Math.round(this.service.completedSize() /  this.service.list.length * 100) || 0
+    return Math.round(this.service.completedTaskNumber() /  this.service.list.length * 100) || 0
   }
 }

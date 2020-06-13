@@ -18,12 +18,12 @@ export class TodoFooterComponent implements OnInit {
   ngOnInit() {
 
   }
-  incompletedSize() {
-    this.countTodo = this.service.incompletedSize()
+  uncompletedTaskNumber() {
+    this.countTodo = this.service.uncompletedTaskNumber()
     return this.countTodo;
   }
-  completedSize() {
-    this.countCompleted =this.service.completedSize()
+  completedTaskNumber() {
+    this.countCompleted =this.service.completedTaskNumber()
     return this.countCompleted;
   }
 
