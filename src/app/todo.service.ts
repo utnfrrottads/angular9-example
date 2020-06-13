@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { TodoItem } from './model/todo-item';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,12 @@ export class TodoService {
     task.id = id;
     this.list.push(task);
     this.lastItemId += 10;
+
+    this.storage.updateStorage(this.list);
+  }
+
+  toggleItem(task: TodoItem) {
+    task.toggleCompleted();
 
     this.storage.updateStorage(this.list);
   }
