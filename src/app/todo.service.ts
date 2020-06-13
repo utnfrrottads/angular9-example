@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { TodoItem } from './model/todo-item';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  list = [];
+  list: TodoItem[] = [];
   lastItemId = 0;
 
   constructor(private storage: LocalStorageService) {
-    this.list = storage.getItemsInStorage() == null? []: storage.getItemsInStorage();
+    this.list = storage.getItemsInStorage();
   }
 
-  add(task) {
+  add(task: TodoItem) {
     const id = this.lastItemId;
     task.id = id;
     this.list.push(task);
     this.lastItemId += 10;
+
+    this.storage.updateStorage(this.list);
+  }
+
+  toggleItem(task: TodoItem) {
+    task.toggleCompleted();
 
     this.storage.updateStorage(this.list);
   }
