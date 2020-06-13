@@ -6,14 +6,14 @@ import { TodoItem } from './model/todo-item';
   providedIn: 'root',
 })
 export class TodoService {
-  list = [];
+  list: TodoItem[] = [];
   lastItemId = 0;
 
   constructor(private storage: LocalStorageService) {
     this.list = storage.getItemsInStorage();
   }
 
-  add(task) {
+  add(task: TodoItem) {
     const id = this.lastItemId;
     task.id = id;
     this.list.push(task);
