@@ -5,6 +5,7 @@
 <app-todo-list 
     [taskList]="taskList"
     (removeTask)="onRemoveTask($event)"
-    (toggleCompleted)="onToggleCompleted($event)">
+    (toggleCompleted)="onToggleCompleted($event)"
+    (editedTask)="onEditedTask($event)">
 </app-todo-list>
 

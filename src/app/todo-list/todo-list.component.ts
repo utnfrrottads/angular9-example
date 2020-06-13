@@ -7,10 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent{
+  selectedTask : ToDoItem;
+
   @Input() taskList : ToDoItem[];
 
   @Output() toggleCompleted = new EventEmitter<ToDoItem>();
   @Output() removeTask = new EventEmitter<ToDoItem>();
+  @Output() editedTask = new EventEmitter<ToDoItem>();
 
   
   countCompletedTasks() : number{
@@ -31,5 +34,16 @@ export class TodoListComponent{
   
   onRemoveClick(task : ToDoItem){
     this.removeTask.emit(task);
+  }
+
+  onEditClick(task : ToDoItem){
+    this.selectedTask = task;
+  }
+
+  onContentChanged(newDescription : string){
+    this.selectedTask.description = newDescription;
+    this.editedTask.emit(this.selectedTask);
+
+    this.selectedTask = undefined;
   }
 }

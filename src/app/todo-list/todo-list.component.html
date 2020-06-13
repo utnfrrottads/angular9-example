@@ -1,20 +1,27 @@
 <app-card *ngFor="let task of taskList" [cardStatus]="task.isCompleted ? 'completed' : 'pending'">
     <div class="card-content d-flex align-items-center justify-content-between">
-        <div>{{task.id}} - {{task.description}}</div>
+        <div class="d-flex align-items-center">
+            <div class="id-task-box">{{task.id}}</div>
+            <app-editable-text [initialContent]="task.description" [editMode]="task === selectedTask"
+            (contentChanged)="onContentChanged($event)">
+            </app-editable-text>
+        </div>
         <div class="buttons-container d-flex">
+            <button (click)="onEditClick(task)" class="card-button"><i class="fas fa-edit fa-3x"></i></button>
             <button (click)="onToggleCompletedClick(task)" class="card-button"><i class="fas fa-check-circle fa-3x" [ngClass]="task.isCompleted ? 'completed' : ''"></i></button>
             <button (click)="onRemoveClick(task)"class="card-button"><i class="fas fa-trash-alt fa-3x"></i></button>
         </div>  
     </div>
 </app-card>
 
-<div class="tasks-progress-bar" *ngIf="taskList.length">
+<div class="progress-bar-container" *ngIf="taskList.length">
     <h2>Tareas Completadas:</h2>
-    <ngb-progressbar 
-    type="success" 
-    height="2rem"
-    [value]="countCompletedTasks()" 
-    [max]="taskList.length">
+    <ngb-progressbar
+        class="progress-bar"
+        type="success" 
+        height="2rem"
+        [value]="countCompletedTasks()" 
+        [max]="taskList.length">
         <b class="progress-bar-text">{{countCompletedTasks()}} of {{taskList.length}}</b>
     </ngb-progressbar>
 </div>

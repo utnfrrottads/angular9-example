@@ -55,4 +55,8 @@ export class TodoAppComponent implements OnInit, OnDestroy{
     this.taskList = this.taskList.filter(taskItem => taskItem !== task);
     this.persistList();
   }
+
+  onEditedTask(editedTask : ToDoItem){
+    this.persistList();
+  }
 }

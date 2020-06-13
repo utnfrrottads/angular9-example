@@ -1,0 +1,3 @@
+<p *ngIf="!editMode">{{initialContent}}</p>
+<input *ngIf="editMode" [value]="initialContent" #content (focusout)="onContentChanged()" 
+(keyup.enter)="onContentChanged()">

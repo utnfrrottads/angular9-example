@@ -2,6 +2,13 @@
     font-size: 1.1rem;
 }
 
+.id-task-box{
+    background-color: #7d7d7d;
+    border-radius: 50%;
+    padding: 0.3rem;
+    margin-right: 1vw;
+}
+
 .card-button{
     background: none;
     color: #7d7d7d;
@@ -17,7 +24,13 @@
 }
 
 
-.tasks-progress-bar{
+.progress-bar-container{
     margin: 5vh 0;
 }
+
+.progress-bar{
+    border: 1px solid #7d7d7d;
+}
+
+
 

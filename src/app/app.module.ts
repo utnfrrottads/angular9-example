@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import {MatButtonModule} from '@angular/material/button';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditableTextComponent } from './editable-text/editable-text.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TodoAppComponent,
     TodoFormComponent,
     CardComponent,
-    TodoListComponent
+    TodoListComponent,
+    EditableTextComponent,
   ],
   imports: [
     BrowserModule,
