@@ -1,1 +1,9 @@
-<p>todo-form works!</p>
+<div class="main">
+    <h2>ToDo List</h2>
+    <div class="input-group mb-3">
+        <input type="text" #taskInput placeholder="Add your task" class="form-control">
+        <div class="input-group-append">
+            <button (click)="addTask(taskInput)" class="btn btn-primary">Add Task</button>
+        </div>
+    </div>
+</div>
