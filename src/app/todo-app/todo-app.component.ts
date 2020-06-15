@@ -9,6 +9,8 @@ import { TodoService } from '../services/todo.service';
 })
 export class TodoAppComponent {
   
+  list = this.todoService.list;
+
   constructor(
     private todoService: TodoService
   ){}
@@ -19,6 +21,7 @@ export class TodoAppComponent {
 
   onItemStateChanged(item: TodoItem) {
     item.toggleCompleted();
+    this.todoService.save();
   }
 
   onTodoItemRemoved(item: TodoItem){
@@ -26,6 +29,6 @@ export class TodoAppComponent {
   }
 
   getList(){
-    return this.todoService.list;
+    return this.list;
   }
 }

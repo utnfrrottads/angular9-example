@@ -6,4 +6,10 @@ export class TodoItem {
   toggleCompleted() {
     this.isCompleted = !this.isCompleted;
   }
+
+  constructor(object){
+    this.id = object.id || '';
+    this.description = object.description || '';
+    this.isCompleted = object.isCompleted || '';
+  }
 }
