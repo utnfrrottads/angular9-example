@@ -22,8 +22,4 @@ export class TodoFooterComponent implements OnInit {
     this.countCompleted = this.service.completedSize();
     return this.countCompleted;
   }
-
-  clear() {
-    this.service.clearStorage();
-  }
 }

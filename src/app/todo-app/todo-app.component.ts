@@ -15,10 +15,10 @@ export class TodoAppComponent {
     return this.service.getLocalList();
   }
   onTodoItemRemoved(id) {
-    this.service.remove(id);
+    this.service.removeItem(id);
   }
   onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+    this.service.updateItemState(item);
   }
   onTodoItemCreated(task) {
     this.service.add(task);

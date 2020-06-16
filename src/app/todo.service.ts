@@ -1,44 +1,47 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { TodoItem } from './model/todo-item';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
   list = [];
-  lastItemId = 0;
+  idStorage = window.localStorage;
 
-  constructor(private storage: LocalStorageService) {}
+  constructor(private storage: LocalStorageService) {
+    if (this.storage.myStorage.length === 0) {
+      this.idStorage.setItem('lastInsertedId', '0');
+    }
+  }
 
   add(task) {
-    const id = this.lastItemId;
-    task.id = id;
-    this.list.push(task);
-    this.lastItemId += 10;
-    this.storage.addPersistentTask(task);
+    const lastId = parseInt(this.idStorage.getItem('lastInsertedId'));
+    task.id = lastId;
+    const newLastId = 1 + lastId;
+    this.idStorage.setItem('lastInsertedId', String(newLastId));
+    this.storage.save(task);
+  }
+
+  removeItem(id) {
+    this.storage.delete(String(id));
+    this.list = this.getLocalList();
+  }
+
+  updateItemState(task: TodoItem) {
+    this.storage.updateState(task);
+    this.list = this.getLocalList();
   }
 
   getLocalList() {
-    const localList = this.storage.getStorage();
-    if (localList.length > 0) {
-      return localList;
-    }
-    return [];
-  }
-  
-  clearStorage() {
-    this.storage.clearStorage();
-  }
-
-  remove(id) {
-    const index = this.list.findIndex((element) => element.id === id);
-    this.list.splice(index, 1);
+    console.log(this.storage.getStorage());
+    return this.storage.getStorage();
   }
 
   incompletedSize() {
-    return this.list.filter((item) => !item.isCompleted).length;
+    return this.getLocalList().filter((item) => !item.isCompleted).length;
   }
   completedSize() {
-    return this.list.filter((item) => item.isCompleted).length;
+    return this.getLocalList().filter((item) => item.isCompleted).length;
   }
 }
