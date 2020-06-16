@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { TodoItem } from './model/todo-item';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
   // https://developer.mozilla.org/es/docs/Web/API/Window/localStorage
-  
-  myStorage = window.localStorage
+
+  myStorage = window.localStorage;
   constructor() {}
 
   addPersistentTask(task: TodoItem) {
@@ -15,7 +15,7 @@ export class LocalStorageService {
     this.myStorage.setItem(`${task.id}`, jsonTask);
   }
 
-  getStorage(){
+  getStorage() {
     const storageElements = [];
     for (let index = 0; index < this.myStorage.length; index++) {
       const key = this.myStorage.key(index);
@@ -24,9 +24,8 @@ export class LocalStorageService {
     }
     return storageElements;
   }
-    
-  clearStorage(){
+
+  clearStorage() {
     this.myStorage.clear();
   }
-
 }
