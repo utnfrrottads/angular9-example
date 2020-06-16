@@ -16,7 +16,15 @@ export class TodoService {
     task.id = id;
     this.list.push(task);
     this.lastItemId += 10;
+    this.storage.addPersistentTask(task);
   }
+
+  test(){
+     const st = this.storage.getStorage();
+     console.log(st);
+     
+    }
+  clearStorage(){this.storage.clearStorage()}
 
   remove(id) {
     const index = this.list.findIndex((element) => element.id === id);
@@ -31,7 +39,4 @@ export class TodoService {
     return  this.list.filter(item => item.isCompleted).length ;
   }
 
-  getName() {
-    return 'TodoService 123' + this.storage.getName();
-  }
 }
