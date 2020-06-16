@@ -34,7 +34,6 @@ export class TodoService {
   }
 
   getLocalList() {
-    console.log(this.storage.getStorage());
     return this.storage.getStorage();
   }
 

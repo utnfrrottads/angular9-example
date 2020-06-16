@@ -16,4 +16,7 @@ export class StatsComponent implements OnInit {
         (this.service.completedSize() / this.service.getLocalList().length) * 100) || 0
     );
   }
+  areThereTasks(){
+    return (this.service.getLocalList().length > 0);
+  }
 }
