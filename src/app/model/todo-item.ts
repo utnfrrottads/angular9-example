@@ -2,6 +2,8 @@ export class ToDoItem {
   id: number;
   description: string;
   isCompleted: boolean = false;
+  startedDate : Date;
+  completedDate : Date;
 
   toggleCompleted() {
     this.isCompleted = !this.isCompleted;

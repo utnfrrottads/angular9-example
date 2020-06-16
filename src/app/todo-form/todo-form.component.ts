@@ -18,6 +18,8 @@ export class TodoFormComponent {
     this.newTask.id = this.nextToDoItemId;
     this.nextToDoItemId++;
     
+    this.newTask.startedDate = new Date();
+
     this.newTaskAdded.emit(this.newTask);
 
     this.newTask = new ToDoItem();

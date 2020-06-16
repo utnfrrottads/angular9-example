@@ -8,4 +8,4 @@
     (toggleCompleted)="onToggleCompleted($event)"
     (editedTask)="onEditedTask($event)">
 </app-todo-list>
-
+<div *ngIf="averageTimeToCompleteTask">Complete Task Average Time: {{averageTimeToCompleteTask}}</div>
