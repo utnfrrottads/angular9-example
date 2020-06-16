@@ -1,6 +1,7 @@
 <div
     class="progressbar"
     [ngStyle]="{width: completedPercentage() + '%'}"
+    *ngIf="areThereTasks()"
 >
 {{completedPercentage()}} %
 </div>

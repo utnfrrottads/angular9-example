@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TodoItem} from '../model/todo-item';
+import { TodoItem } from '../model/todo-item';
 import { element } from 'protractor';
 import { TodoService } from '../todo.service';
 /** */
@@ -8,22 +8,19 @@ import { TodoService } from '../todo.service';
   templateUrl: './todo-app.component.html',
   styleUrls: ['./todo-app.component.scss'],
 })
-export class TodoAppComponent  {
-
-  constructor(
-    private service: TodoService
-  ) {}
+export class TodoAppComponent {
+  constructor(private service: TodoService) {}
 
   getList() {
-    return this.service.list;
+    return this.service.getLocalList();
   }
   onTodoItemRemoved(id) {
-    this.service.remove(id);
+    this.service.removeItem(id);
   }
   onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+    this.service.updateItemState(item);
   }
   onTodoItemCreated(task) {
-    this.service.add(task)
+    this.service.add(task);
   }
 }
