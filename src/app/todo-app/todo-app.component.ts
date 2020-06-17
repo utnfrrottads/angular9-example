@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import {TodoItem} from '../model/todo-item';
 import { element } from 'protractor';
 import { TodoService } from '../todo.service';
+
 /** */
 @Component({
   selector: 'app-todo',
   templateUrl: './todo-app.component.html',
   styleUrls: ['./todo-app.component.scss'],
 })
-export class TodoAppComponent  {
+export class TodoAppComponent {
 
   constructor(
     private service: TodoService
+    
   ) {}
 
   getList() {
