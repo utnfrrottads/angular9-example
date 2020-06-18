@@ -5,7 +5,7 @@
 .id-task-box{
     background-color: #7d7d7d;
     border-radius: 50%;
-    padding: 0.3rem;
+    padding: 0.3rem 0.6rem;
     margin-right: 1vw;
 }
 
@@ -16,6 +16,10 @@
     outline: none;
     font-size: 0.6rem;
     
+}
+
+.edit-on{
+    color: blue;
 }
 
 .completed{

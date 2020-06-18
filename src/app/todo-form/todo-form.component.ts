@@ -1,6 +1,7 @@
-import { ToDoItem } from './../model/todo-item';
+import { TaskListService } from './../services/task-list/task-list.service';
+import { Task } from '../model/task';
 import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-form',
@@ -8,21 +9,22 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent {
-  @Input() nextToDoItemId : number;
-  newTask = new ToDoItem();
+  @Output() newTaskAdded = new EventEmitter();
   
-  @Output() newTaskAdded = new EventEmitter<ToDoItem>();
-  
+  taskForm = new FormGroup({
+    description: new FormControl(''),
+  });
+
+  constructor(private taskListService : TaskListService){
+  }
 
   onSubmit(){
-    this.newTask.id = this.nextToDoItemId;
-    this.nextToDoItemId++;
+    let description = this.taskForm.value.description;
+    this.taskListService.addTask(description);
     
-    this.newTask.startedDate = new Date();
+    this.newTaskAdded.emit();
 
-    this.newTaskAdded.emit(this.newTask);
-
-    this.newTask = new ToDoItem();
+    this.taskForm.controls.description.setValue("");
   }
 
 }

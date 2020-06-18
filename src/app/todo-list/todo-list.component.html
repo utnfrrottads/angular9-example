@@ -3,11 +3,11 @@
         <div class="d-flex align-items-center">
             <div class="id-task-box">{{task.id}}</div>
             <app-editable-text [initialContent]="task.description" [editMode]="task === selectedTask"
-            (contentChanged)="onContentChanged($event)">
+            (contentChanged)="onContentChanged($event, task.id)">
             </app-editable-text>
         </div>
         <div class="buttons-container d-flex">
-            <button (click)="onEditClick(task)" class="card-button"><i class="fas fa-edit fa-3x"></i></button>
+            <button (click)="onEditClick(task)" class="card-button"><i class="fas fa-edit fa-3x" [ngClass]="task === selectedTask ? 'edit-on' : ''"></i></button>
             <button (click)="onToggleCompletedClick(task)" class="card-button"><i class="fas fa-check-circle fa-3x" [ngClass]="task.isCompleted ? 'completed' : ''"></i></button>
             <button (click)="onRemoveClick(task)"class="card-button"><i class="fas fa-trash-alt fa-3x"></i></button>
         </div>  
@@ -20,8 +20,8 @@
         class="progress-bar"
         type="success" 
         height="2rem"
-        [value]="countCompletedTasks()" 
+        [value]="taskListService.countCompletedTasks()" 
         [max]="taskList.length">
-        <b class="progress-bar-text">{{countCompletedTasks()}} of {{taskList.length}}</b>
+        <b class="progress-bar-text">{{taskListService.countCompletedTasks()}} of {{taskList.length}}</b>
     </ngb-progressbar>
 </div>

@@ -1,11 +1,12 @@
 <app-todo-form 
-    [nextToDoItemId]="nextToDoItemId"
-    (newTaskAdded)="onNewTaskAdded($event)">
+    (newTaskAdded)="onNewTaskAdded()">
 </app-todo-form>
-<app-todo-list 
+<app-todo-list
     [taskList]="taskList"
-    (removeTask)="onRemoveTask($event)"
-    (toggleCompleted)="onToggleCompleted($event)"
-    (editedTask)="onEditedTask($event)">
+    (toggleCompleted)="onToggleCompleteTask()"
+    (removedTask)="onRemovedTask()"
+    (editedTask)="onEditedTask()"
+    >
 </app-todo-list>
-<div *ngIf="averageTimeToCompleteTask">Complete Task Average Time: {{averageTimeToCompleteTask}}</div>
+
+<div *ngIf="averageTimeToCompleteTask" class="average-time">Average time to complete a task: {{averageTimeToCompleteTask}} seconds</div>

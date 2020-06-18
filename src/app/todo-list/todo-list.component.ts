@@ -1,4 +1,5 @@
-import { ToDoItem } from './../model/todo-item';
+import { TaskListService } from './../services/task-list/task-list.service';
+import { Task } from './../model/task';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,43 +8,37 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent{
-  selectedTask : ToDoItem;
+  selectedTask : Task;
 
-  @Input() taskList : ToDoItem[];
+  @Input() taskList : Task[];
 
-  @Output() toggleCompleted = new EventEmitter<ToDoItem>();
-  @Output() removeTask = new EventEmitter<ToDoItem>();
-  @Output() editedTask = new EventEmitter<ToDoItem>();
+  @Output() toggleCompleted = new EventEmitter();
+  @Output() removedTask = new EventEmitter();
+  @Output() editedTask = new EventEmitter();
+
+
+  constructor(public taskListService : TaskListService){
+  }
 
   
-  countCompletedTasks() : number{
-    let completedTasks = 0;
-
-    for (let task of this.taskList) {
-      if (task.isCompleted) {
-        completedTasks++;
-      }
-    }
-
-    return completedTasks;
-  }
-
-  onToggleCompletedClick(task : ToDoItem){
-    this.toggleCompleted.emit(task);
+  
+  onToggleCompletedClick(task : Task){
+    this.taskListService.toggleCompleted(task);
+    this.toggleCompleted.emit();
   }
   
-  onRemoveClick(task : ToDoItem){
-    this.removeTask.emit(task);
+  onRemoveClick(task : Task){
+    this.taskListService.removeTask(task);
+    this.removedTask.emit();
   }
 
-  onEditClick(task : ToDoItem){
+  onEditClick(task : Task){
     this.selectedTask = task;
   }
 
-  onContentChanged(newDescription : string){
-    this.selectedTask.description = newDescription;
-    this.editedTask.emit(this.selectedTask);
-
+  onContentChanged(newDescription : string, editedTaskId : number){
+    this.taskListService.editTask(newDescription, editedTaskId);
     this.selectedTask = undefined;
+    this.editedTask.emit();
   }
 }
