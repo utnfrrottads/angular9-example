@@ -1,0 +1,9 @@
+
+<div *ngFor="let article of articles">
+    <h1>{{article.title}} </h1>
+    <p>{{article.body}}</p>
+</div>
+
+<button (click)="loadArticles()">Cargar</button>
+{{tags | json}}
+<button (click)="loadTags()">Cargar Tags</button>
