@@ -1,0 +1,24 @@
+.tag-container{
+    width: fit-content;
+    display: inline-block;
+    margin-left: 10px;
+
+}
+.title{
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    background-color: #0EC143;
+    border-radius: 10px;
+    font-size: 24;  
+
+    margin:0;
+    margin-top: 10px;
+}
+
+.title:hover{
+    background-color: green;
+    transition: 0.2s;
+    cursor: pointer;
+}

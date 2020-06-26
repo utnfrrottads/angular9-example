@@ -1,0 +1,38 @@
+<div class="bodyArticle">
+    <p class="art title">{{title}}</p>
+    <p class="art description">{{description}}</p>
+    <p class="art date">{{date}}</p>
+
+    <div class="miniTagsContainer">
+        <p> Tags asociados </p>
+        <div *ngFor="let tag of asociatedTags" class="tag-container">
+            <p class="tagTitle" (click)="tagClicked(tag)">
+                {{tag}}
+            </p>
+        </div>
+    </div>
+    
+        <div class="commentSection">
+            <!-- preComented -->
+            <div (click)="changeState('commenting')" *ngIf="state === 'precommenting'">
+                <p class="pcomment">Dejar un comentario ...</p>
+            </div>
+
+            <!-- comenting -->
+            <div *ngIf="state === 'commenting'">
+
+                <textarea class="comment" [(ngModel)]="commentValue"></textarea>
+
+                <button (click)="changeState('precommenting'); commentValue = ''">Cancelar</button>
+                <button (click)="sendComment(commentValue); changeState('success')">Comentar</button>
+            </div>
+
+            <!-- success-->
+            <div *ngIf="state === 'success'">
+                <p class="pcomment">¡Comentario enviado con exito!</p>
+                <button (click)="commentValue = '';changeState('commenting')">Enviar otro comentario.</button>
+            </div>
+        </div>
+
+    
+</div>

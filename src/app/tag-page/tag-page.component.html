@@ -1,0 +1,25 @@
+<button 
+*ngIf = "!istagSelected"
+class="startButton"
+(click)="loadTags()">Cargar Tags</button>
+
+<div class="tagContainer">
+    <app-tag *ngFor="let tag of tags" [title]="tag" (click)="loadArticlesByTag(tag)"></app-tag>
+</div>
+
+
+<div *ngIf="tagSelected" class="articleContainer">
+    <h1>
+        Articlos para el tag seleccionado: {{tagSelected}}
+    </h1>
+
+    <app-article *ngFor="let article of articles" 
+        [title]="article.title" 
+        [description]="article.body"
+        [date]="article.createdAt" 
+        [asociatedTags]="article.tagList"
+        [slug] = article.slug
+        (newTagSelected)="onNewTagSelection($event)"
+        >        
+    </app-article>
+</div>
