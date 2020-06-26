@@ -1,9 +1,26 @@
 
-<div *ngFor="let article of articles">
-    <h1>{{article.title}} </h1>
-    <p>{{article.body}}</p>
-</div>
+<!-- <button class="btn btn-primary" (click)="loadArticles()">Cargar Articulos</button> -->
 
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
-<button (click)="loadTags()">Cargar Tags</button>
+<div class="container">
+    <div class="row no-gutters">
+        <div class="col-">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let tag of tags">
+                    {{tag}}
+                    <button class="btn btn-success" (click)="showArticles(tag)">Select</button>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-auto">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let article of articles">
+                    <h1>{{article.title}} </h1>
+                    <p>{{article.description}}</p>
+                    <p>{{article.body}}</p>
+                    <p>{{article.createdAt}}</p>
+                    <p>{{article.tagList}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

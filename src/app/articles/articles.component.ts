@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticlesService } from '../articles.service';
+import { ArticlesService } from '../services/articles.service';
 
 @Component({
   selector: 'app-articles',
@@ -8,17 +8,24 @@ import { ArticlesService } from '../articles.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  articles:any = []
+  articles:any = [];
   tags: any = [];
+  selectedTag: any;
   constructor(private service: ArticlesService) { }
 
   ngOnInit(): void {
-
+    this.loadTags();
   }
+
   loadArticles() {
     this.service.getArticles().subscribe(response => this.articles = response.articles);
   }
+
   loadTags() {
     this.service.getTags().subscribe(response => this.tags = response.tags);
+  }
+
+  showArticles(tag){
+    this.service.getArticlesByTag(tag).subscribe(response => this.articles = response.articles)
   }
 }

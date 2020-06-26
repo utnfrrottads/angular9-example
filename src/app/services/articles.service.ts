@@ -9,12 +9,19 @@ export class ArticlesService {
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
   constructor(private http: HttpClient) { }
+  
   getArticles() {
     const url = this.baseUrl + 'articles';
     return this.http.get<any>(url);
   }
+  
   getTags() {
     const url = this.baseUrl + 'tags';
+    return this.http.get<any>(url);
+  }
+
+  getArticlesByTag(tag){
+    const url = this.baseUrl + 'articles' + '?tag=' + tag + '&limit=5'
     return this.http.get<any>(url);
   }
 }
