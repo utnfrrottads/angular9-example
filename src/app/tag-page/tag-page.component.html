@@ -18,6 +18,7 @@ class="startButton"
         [description]="article.body"
         [date]="article.createdAt" 
         [asociatedTags]="article.tagList"
+        [slug] = article.slug
         (newTagSelected)="onNewTagSelection($event)"
         >        
     </app-article>

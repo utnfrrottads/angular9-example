@@ -1,62 +1,98 @@
 .bodyArticle {
-    background-color: dodgerblue;
-    border-radius: 20px;
-    margin: 10px;
+  background-color: dodgerblue;
+  border-radius: 20px;
+  margin: 10px;
 
-    width: 70%;
-    
+  width: 70%;
+
+  padding-bottom: 5px;
 }
 
-.art{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    margin: 0px;
+.art {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin: 0px;
 }
 
-.title{
-    font-size: xx-large;
-    font-weight: bold;
+.title {
+  font-size: xx-large;
+  font-weight: bold;
 
-
-    margin: 0;
+  margin: 0;
 }
-.description{
-    font-size: large;
+.description {
+  font-size: large;
 }
-.date{
-    text-align-last: right;
-    
+.date {
+  text-align-last: right;
 }
 
-.tag-container{
-    width: fit-content;
-    display: inline-block;
-    margin-left: 10px;
-    margin-bottom: 10px;
-
+.tag-container {
+  width: fit-content;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
-.tagTitle{
-    padding: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
+.tagTitle {
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
 
-    background-color: #0EC143;
-    border-radius: 10px;
-    font-size: 24;  
+  background-color: #0ec143;
+  border-radius: 10px;
+  font-size: 24;
 
-    margin:0;
-    margin-top: 10px;
-    
+  margin: 0;
+  margin-top: 10px;
 }
 
-.tagTitle:hover{
-    background-color: green;
-    transition: 0.2s;
-    cursor: pointer;
+.tagTitle:hover {
+  background-color: green;
+  transition: 0.2s;
+  cursor: pointer;
 }
-.miniTagsContainer{
-    padding-right: 20px;
-    padding-left: 10px;
+.miniTagsContainer {
+  padding-right: 20px;
+  padding-left: 10px;
+}
+
+.preCommented:hover {
+  cursor: pointer;
+}
+.comment {
+  display: block;
+  width: 100%;
+  resize: none;
+  height: 70px;
+  background-color: #7c7b7b;
+  border-radius: 10px;
+}
+.comment:focus {
+  outline: none !important;
+}
+.commentSection {
+  height: max-content;
+  background-color: rgb(82, 169, 255);
+
+  border-radius: 20px;
+  margin: 10px;
+
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+
+ 
+}
+.pcomment {
+  font-size: larger;
+  font-weight: bold;
+  padding-bottom: 5px;
+  color: white;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  cursor: pointer;
 }
