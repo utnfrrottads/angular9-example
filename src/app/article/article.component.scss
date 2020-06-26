@@ -1,0 +1,62 @@
+.bodyArticle {
+    background-color: dodgerblue;
+    border-radius: 20px;
+    margin: 10px;
+
+    width: 70%;
+    
+}
+
+.art{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 0px;
+}
+
+.title{
+    font-size: xx-large;
+    font-weight: bold;
+
+
+    margin: 0;
+}
+.description{
+    font-size: large;
+}
+.date{
+    text-align-last: right;
+    
+}
+
+.tag-container{
+    width: fit-content;
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+}
+.tagTitle{
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    background-color: #0EC143;
+    border-radius: 10px;
+    font-size: 24;  
+
+    margin:0;
+    margin-top: 10px;
+    
+}
+
+.tagTitle:hover{
+    background-color: green;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.miniTagsContainer{
+    padding-right: 20px;
+    padding-left: 10px;
+}
