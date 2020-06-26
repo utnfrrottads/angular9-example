@@ -1,19 +1,20 @@
-
 <!-- <button class="btn btn-primary" (click)="loadArticles()">Cargar Articulos</button> -->
 
-<div class="container">
+<div class="container-fluid">
     <div class="row no-gutters">
-        <div class="col-">
+        <div class="col-2">
+            <div class="card-header text-center">
+                Tags
+              </div>
             <ul class="list-group">
-                <li class="list-group-item" *ngFor="let tag of tags">
+                <li class="list-group-item" [class.active]="classActive(tag)" *ngFor="let tag of tags" (click)="loadArticlesByTag(tag)">
                     {{tag}}
-                    <button class="btn btn-success" (click)="showArticles(tag)">Select</button>
                 </li>
             </ul>
         </div>
-        <div class="col-md-auto">
+        <div class="col">
             <ul class="list-group">
-                <li class="list-group-item" *ngFor="let article of articles">
+                <li class="list-group-item word-break" *ngFor="let article of articles">
                     <h1>{{article.title}} </h1>
                     <p>{{article.description}}</p>
                     <p>{{article.body}}</p>

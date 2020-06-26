@@ -25,7 +25,18 @@ export class ArticlesComponent implements OnInit {
     this.service.getTags().subscribe(response => this.tags = response.tags);
   }
 
-  showArticles(tag){
-    this.service.getArticlesByTag(tag).subscribe(response => this.articles = response.articles)
+  loadArticlesByTag(tag){
+    this.selectedTag = tag;
+    this.service.getArticlesByTag(this.selectedTag).subscribe(response => this.articles = response.articles);
+  }
+
+  classActive(tag)
+  {
+    if(this.selectedTag == tag){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
