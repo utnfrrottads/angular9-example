@@ -6,7 +6,7 @@ import { ArticlesService } from '../articles.service';
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent  {
   constructor(private service: ArticlesService) {}
 
   @Input() title;
@@ -20,11 +20,6 @@ export class ArticleComponent implements OnInit {
 
   commentValue = '';
 
-
-
-  //hacer el output
-  ngOnInit(): void {}
-
   tagClicked(tag) {
     this.newTagSelected.emit(tag);
   }
@@ -33,9 +28,6 @@ export class ArticleComponent implements OnInit {
     this.state = state;
   }
   sendComment(text) {
-
-    //login.
     this.service.sendComment(text,this.slug);
-
   }
 }

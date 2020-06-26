@@ -6,7 +6,7 @@ import { ArticlesService } from '../articles.service';
   templateUrl: './tag-page.component.html',
   styleUrls: ['./tag-page.component.scss'],
 })
-export class TagPageComponent implements OnInit {
+export class TagPageComponent {
   constructor(private service: ArticlesService) {}
 
   tags: any = [];
@@ -14,8 +14,6 @@ export class TagPageComponent implements OnInit {
 
   istagSelected = false;
   tagSelected: string;
-
-  ngOnInit(): void {}
 
   loadTags() {
     this.service.getTags().subscribe((response) => {

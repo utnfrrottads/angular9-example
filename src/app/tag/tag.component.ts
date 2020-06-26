@@ -5,13 +5,9 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss']
 })
-export class TagComponent implements OnInit {
+export class TagComponent  {
 
   constructor() { }
-
-  @Input() title = "unkTag";
-
-  ngOnInit(): void {
-  }
+  @Input() title = "unknownTag";
 
 }
