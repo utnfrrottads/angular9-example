@@ -1,0 +1,25 @@
+.title{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    color: darkslategrey;
+    text-align: center;
+}
+//https://platzi.com/blog/tutorial-como-construir-un-layout-con-css-grid/
+.tag-group{
+    display: inline-grid;
+    width: 150px;
+    height: 150px;
+    background-color: rgb(79, 123, 255);
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+
+.tag-grid{
+    //display: grid;
+    background-color: lightgrey;
+    justify-items: center;
+    align-items: center;
+}

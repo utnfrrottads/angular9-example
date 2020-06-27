@@ -9,8 +9,9 @@ export class ArticlesService {
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
   constructor(private http: HttpClient) { }
-  getArticles() {
-    const url = this.baseUrl + 'articles';
+  getArticlesByTag(tag:string) {
+    const limit = 5;
+    const url = `${this.baseUrl}articles?tag=${tag}&limit=${limit}`;
     return this.http.get<any>(url);
   }
   getTags() {

@@ -1,9 +1,21 @@
+<h1 class="title"> Lista de tags </h1>
 
-<div *ngFor="let article of articles">
-    <h1>{{article.title}} </h1>
-    <p>{{article.body}}</p>
+<div class="tag-grid">
+    <div 
+    class="tag-group"
+    *ngFor="let tag of tags">
+        <p>{{tag}}</p>
+        
+        <button (click)="loadArticlesByTag(tag)">Mostrar articulos</button>
+    </div>
+
+    
 </div>
 
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
-<button (click)="loadTags()">Cargar Tags</button>
+<button (click)="loadTags()">Actualizar tags</button>
+
+    <div>
+        <p *ngFor='let article of articles'>
+            {{article}}
+        </p>
+    </div>
