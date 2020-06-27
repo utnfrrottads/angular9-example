@@ -1,4 +1,7 @@
-<div *ngFor="let article of articles">
+<div class="article" *ngFor="let article of articles">
   <h1>{{ article.title }}</h1>
+  <small>{{article.createdAt}}</small>
+  <h4>{{article.description}}</h4>
   <p>{{ article.body }}</p>
+  <app-tags [tags]="article.tagList"></app-tags>
 </div>
