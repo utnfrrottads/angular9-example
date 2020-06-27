@@ -1,3 +1,5 @@
-<div *ngFor="let tag of tags">
-  <p (click)="onTagSelected(tag)">{{ tag }}</p>
+<div class="tag-bubble">
+  <div *ngFor="let tag of tags">
+    <button class="tag" (click)="onTagSelected(tag)">{{ tag }}</button>
+  </div>
 </div>

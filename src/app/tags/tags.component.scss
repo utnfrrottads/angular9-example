@@ -1,0 +1,14 @@
+.tag-bubble {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.tag {
+  flex-grow: 1;
+  flex-shrink: auto;
+  text-align: center;
+  border-radius: 0.5em;
+  margin: 0.2em;
+  background-color: #4287f5;
+  color: white;
+}

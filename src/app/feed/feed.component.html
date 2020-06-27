@@ -1,2 +1,4 @@
-<app-tags [tags]="tags" (tagSelected)="onTagSelected($event)"></app-tags>
-<app-articles [articles]="articles"></app-articles>
+<div class="feed">
+  <app-tags [tags]="tags" (tagSelected)="onTagSelected($event)"></app-tags>
+  <app-articles [articles]="articles"></app-articles>
+</div>
