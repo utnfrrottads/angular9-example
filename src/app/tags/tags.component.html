@@ -1,5 +1,5 @@
-<div class="tag-bubble">
+<mat-chip-list aria-label="tag cloud">
   <div *ngFor="let tag of tags">
-    <button class="tag" (click)="onTagSelected(tag)">{{ tag }}</button>
+    <mat-chip color="primary" selected (click)="onTagSelected(tag)">{{ tag }}</mat-chip>
   </div>
-</div>
+</mat-chip-list>

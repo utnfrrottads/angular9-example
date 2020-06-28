@@ -1,11 +1,25 @@
-<div class="article" *ngFor="let article of articles">
-  <h1>{{ article.title }}</h1>
-  <small>{{ article.createdAt }}</small>
-  <h4>{{ article.description }}</h4>
-  <p>{{ article.body }}</p>
-  <app-tags [tags]="article.tagList"></app-tags>
-  <div>
-    <textarea #comment></textarea>
-    <button (click)="onCommentSubmit(comment, article.slug)">Submit</button>
-  </div>
+<div *ngFor="let article of articles">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ article.title }}</mat-card-title>
+      <mat-card-subtitle>{{ article.createdAt }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h4>{{ article.description }}</h4>
+      <p>{{ article.body }}</p>
+      <mat-chip-list>
+        <div *ngFor="let tag of article.tagList">
+          <mat-chip>{{ tag }}</mat-chip>
+        </div>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
+  <mat-form-field class="comment">
+    <mat-label>Leave a comment</mat-label>
+    <textarea #input matInput></textarea>
+    <button
+      mat-button
+      (click)="onCommentSubmit(input, article.slug)"
+    >Submit</button>
+  </mat-form-field>
 </div>
