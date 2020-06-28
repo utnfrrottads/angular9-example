@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ArticleList } from './model/article-list';
 import { TagList } from './model/tag-list';
+import { Comment } from './model/comment';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +32,7 @@ export class ArticlesService {
         Authorization: `Token ${params.token}`,
       }),
     };
-    return this.http.post(
+    return this.http.post<{ comment: Comment }>(
       url,
       { comment: { body: params.commentBody } },
       httpOptions
