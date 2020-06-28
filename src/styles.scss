@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0.5rem;
+    background-color: cornsilk;
+    background-image: url("assets/office-background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
