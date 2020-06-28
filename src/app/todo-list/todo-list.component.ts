@@ -22,5 +22,4 @@ export class TodoListComponent implements OnInit {
     this.itemStateChanged.emit(item);
 
   }
-
 }
