@@ -29,7 +29,7 @@
                     <p>{{article.createdAt}}</p>
                     <p>{{article.tagList}}</p>
                     <input type='text' #comment>
-                    <button class="btn btn-primary" (click)="commentArticle(article.slug, comment.value)">
+                    <button class="btn btn-primary" (click)="commentArticle(article.slug, comment)">
                         Comment
                     </button>
                 </li>

@@ -47,7 +47,8 @@ export class ArticlesComponent implements OnInit {
   }
 
   commentArticle(slug, comment){
-    this.service.commentArticle(this.user.token, slug, comment).subscribe(response => console.log(response));
+    this.service.commentArticle(this.user.token, slug, comment.value).subscribe(response => console.log(response));
+    comment.value = '';
   }
 
   userIsLogged(){
