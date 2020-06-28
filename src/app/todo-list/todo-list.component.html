@@ -1,0 +1,23 @@
+<ul class="tasks">
+    <li *ngFor="let item of list; let i = index"
+      [class.completed]="item.isCompleted">
+      <div class="row">
+        <div class="col">
+          {{ item.description }}
+        </div>
+        <div class="col-*">
+          <button
+            class="btn btn-sm"
+            [ngClass]="item.isCompleted ? 'btn-warning' : 'btn-success'"
+            (click)="toggle(item)">
+              Mark as <span *ngIf="item.isCompleted">Not</span> Completed
+          </button>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="remove(i)">
+              Delete
+          </button>
+        </div>
+      </div>
+    </li> 
+</ul>

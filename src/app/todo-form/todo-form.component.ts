@@ -13,4 +13,16 @@ export class TodoFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isEmpty = (value: any) => {
+    return (value === undefined || value === null || value === "");
+  }
+
+  addTask(taskInput: any) {
+    if (this.isEmpty(taskInput.value)) {
+      return;
+    }
+    this.add.emit(taskInput.value);
+    taskInput.value = "";
+  }
+
 }
