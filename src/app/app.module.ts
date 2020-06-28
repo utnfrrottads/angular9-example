@@ -12,9 +12,18 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, ArticlesComponent, FeedComponent, TagsComponent],
+  declarations: [
+    AppComponent,
+    ArticlesComponent,
+    FeedComponent,
+    TagsComponent,
+    CommentDialogComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +33,8 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatButtonModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

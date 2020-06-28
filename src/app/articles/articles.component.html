@@ -16,6 +16,10 @@
   </mat-card>
   <mat-form-field class="comment">
     <mat-label>Leave a comment</mat-label>
-    <textarea matInput></textarea>
+    <textarea #input matInput></textarea>
+    <button
+      mat-button
+      (click)="onCommentSubmit(input, article.slug)"
+    >Submit</button>
   </mat-form-field>
 </div>
