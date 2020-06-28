@@ -11,6 +11,7 @@ export class ArticlesComponent implements OnInit {
   articles:any = [];
   tags: any = [];
   selectedTag: any;
+  user: any = false;
   constructor(private service: ArticlesService) { }
 
   ngOnInit(): void {
@@ -37,6 +38,24 @@ export class ArticlesComponent implements OnInit {
     }
     else{
       return false;
+    }
+  }
+
+  login(){
+    this.service.logIn().subscribe(response => this.user = response.user);
+    console.log(this.user.token);
+  }
+
+  commentArticle(slug, comment){
+    this.service.commentArticle(this.user.token, slug, comment).subscribe(response => console.log(response));
+  }
+
+  userIsLogged(){
+    if(this.user === false){
+      return false;
+    }
+    else{
+      return true;
     }
   }
 }
