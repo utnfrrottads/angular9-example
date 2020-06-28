@@ -8,21 +8,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { FeedComponent } from './feed/feed.component';
 import { TagsComponent } from './tags/tags.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ArticlesComponent,
-    FeedComponent,
-    TagsComponent
-  ],
+  declarations: [AppComponent, ArticlesComponent, FeedComponent, TagsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatChipsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
