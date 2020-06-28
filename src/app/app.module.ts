@@ -9,6 +9,7 @@ import { FeedComponent } from './feed/feed.component';
 import { TagsComponent } from './tags/tags.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [AppComponent, ArticlesComponent, FeedComponent, TagsComponent],
@@ -18,6 +19,7 @@ import { MatChipsModule } from '@angular/material/chips';
     HttpClientModule,
     BrowserAnimationsModule,
     MatChipsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
