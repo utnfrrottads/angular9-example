@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ArticleList } from './model/article-list';
 import { TagList } from './model/tag-list';
@@ -19,5 +19,22 @@ export class ArticlesService {
   getTags(): Observable<TagList> {
     const url = `${this.baseUrl}/tags`;
     return this.http.get<TagList>(url);
+  }
+  commentOnArticle(params: {
+    smug: string;
+    commentBody: string;
+    token: string;
+  }) {
+    const url = `${this.baseUrl}/articles/${params.smug}/comments`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Token ${params.token}`,
+      }),
+    };
+    return this.http.post(
+      url,
+      { comment: { body: params.commentBody } },
+      httpOptions
+    );
   }
 }
