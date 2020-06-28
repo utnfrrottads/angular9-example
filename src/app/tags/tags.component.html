@@ -1,0 +1,5 @@
+<mat-chip-list aria-label="tag cloud">
+  <div *ngFor="let tag of tags">
+    <mat-chip color="primary" selected (click)="onTagSelected(tag)">{{ tag }}</mat-chip>
+  </div>
+</mat-chip-list>
