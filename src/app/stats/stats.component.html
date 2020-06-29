@@ -1,6 +1,11 @@
 <div
-    class="progressbar"
-    [ngStyle]="{width: completedPercentage() + '%'}"
->
-{{completedPercentage()}} %
+  *ngIf="notEmptyListCheck()"
+  class="progressbar"
+  [ngStyle]="{width: completedPercentage() + '%'}">
+    {{completedPercentage()}}%
+</div>
+<div
+  *ngIf="!notEmptyListCheck()"
+  class="container">
+    Add tasks to the list to enable statistic information...
 </div>

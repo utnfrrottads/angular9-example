@@ -10,20 +10,26 @@ import { TodoService } from '../todo.service';
 })
 export class TodoAppComponent  {
 
-  constructor(
-    private service: TodoService
-  ) {}
+  constructor(private todoService: TodoService) { }
+  
+  ngOnInit() {
+    this.todoService.loadList();
+  }
 
   getList() {
-    return this.service.list;
+    return this.todoService.list;
   }
-  onTodoItemRemoved(id) {
-    this.service.remove(id);
+
+  onTodoItemRemoved(index: number) {
+    this.todoService.removeTask(index);
   }
+
   onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+    item.isCompleted = !item.isCompleted;
+    this.todoService.saveList();
   }
-  onTodoItemCreated(task) {
-    this.service.add(task)
+
+  onTodoItemCreated(task: any) {
+    this.todoService.addTask(task)
   }
 }

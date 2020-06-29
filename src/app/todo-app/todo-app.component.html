@@ -2,11 +2,7 @@
 <app-todo-list
   [list]="getList()"
   (itemRemoved)="onTodoItemRemoved($event)"
-  (itemStateChanged)="onItemStateChanged($event)"
->
+  (itemStateChanged)="onItemStateChanged($event)">
 </app-todo-list>
-<app-todo-footer
-  [list]="getList()"
->
-</app-todo-footer>
+<app-todo-footer [list]="getList()"></app-todo-footer>
 <app-stats></app-stats>

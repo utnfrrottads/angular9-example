@@ -14,7 +14,12 @@ export class StatsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  notEmptyListCheck() {
+    return (this.service.list.length > 0);
+  }
+
   completedPercentage() {
-    return Math.round(this.service.completedSize() /  this.service.list.length * 100) || 0
+    return Math.round(this.service.completedSize() / this.service.list.length * 100) || 0;
   }
 }
