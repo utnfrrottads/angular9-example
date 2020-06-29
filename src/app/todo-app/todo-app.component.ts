@@ -10,20 +10,35 @@ import { TodoService } from '../todo.service';
 })
 export class TodoAppComponent  {
 
+  list: any = [];
   constructor(
     private service: TodoService
-  ) {}
+  ) {
+    this.list = this.service.getList();
+  }
 
-  getList() {
-    return this.service.list;
+  getList() {    
+    return this.list;
+    
   }
-  onTodoItemRemoved(id) {
+
+  onTodoItemRemoved(id) {    
     this.service.remove(id);
+
   }
-  onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+  onItemStateChanged(item: TodoItem) {    
+    debugger;
+    // item.toggleCompleted();
+    if(item.isCompleted){
+      item.isCompleted = false;
+    }else{
+      item.isCompleted = true;
+    }
+    this.service.update(item);
+
   }
-  onTodoItemCreated(task: TodoItem) {
+  onTodoItemCreated(task: TodoItem) {    
     this.service.add(task);
+
   }
 }

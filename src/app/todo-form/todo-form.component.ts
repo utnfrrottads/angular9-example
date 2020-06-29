@@ -10,8 +10,8 @@ export class TodoFormComponent {
 
   @Output() add = new EventEmitter();
 
-  save(description){
-    if(description.value || description.value === '') {
+  save(description){    
+    if(!description.value || description.value === '') {
       return;
     }
     let task = new TodoItem();

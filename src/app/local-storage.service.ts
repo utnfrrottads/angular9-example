@@ -8,19 +8,31 @@ import { TodoItem } from './model/todo-item';
 })
 export class LocalStorageService {
   // https://developer.mozilla.org/es/docs/Web/API/Window/localStorage
-  constructor() {
-    this.cargarLocalStorage();
-   }
+  list: any = [];
+  constructor() {    
+  }
   getName() {
     return 'LocalStorageService';
   }
-  cargarLocalStorage(){
-    const items = JSON.parse(localStorage.getItem('todo-item'));
-    return items;
+  cargarLocalStorage(){    
+    this.list = [];
+    debugger;
+    Object.values(localStorage).forEach(p => {
+      this.list.push(JSON.parse(p));
+
+    });
+
+    return this.list;
   }
 
   grabarLocalStorage(item: TodoItem){
     localStorage.setItem(item.id.toString(), JSON.stringify(item));
+  }
+
+  updateLocalStorage(item: TodoItem){    
+    localStorage.removeItem(item.id.toString());
+    localStorage.setItem(item.id.toString(), JSON.stringify(item));
+
   }
 
   eliminarLocalStorage(key){
@@ -30,9 +42,4 @@ export class LocalStorageService {
       localStorage.removeItem(key);
     }
   }
-
-  // editarLocalStorage(key, item){
-  //   let value = localStorage.getItem(key);
-  //   console.dir(value);
-  // }
 }
