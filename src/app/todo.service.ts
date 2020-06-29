@@ -9,29 +9,41 @@ export class TodoService {
   list = [];
   lastItemId = 0;
 
-  constructor(private storage: LocalStorageService) { }
+  constructor(private localStorageService: LocalStorageService) { }
   
-  add(task) {
+  loadList() {
+    const {list, lastItemId} = this.localStorageService.listInitialization();
+    this.list = list;
+    this.lastItemId = lastItemId;
+  }
+
+  saveList() {
+    this.localStorageService.listSave(this.list, this.lastItemId);
+  }
+
+  addTask(task: any) {
     const id = this.lastItemId;
     task.id = id;
     this.list.push(task);
-    this.lastItemId += 10;
+    this.lastItemId += 1;
+    this.saveList();
   }
 
-  remove(id) {
-    const index = this.list.findIndex((element) => element.id === id);
+  removeTask(index: number) {
+    // const index = this.list.findIndex((element) => element.id === id);
     this.list.splice(index, 1);
+    this.saveList();
   }
 
-  incompletedSize() {
-    return this.list.filter(item => !item.isCompleted).length;
-
+  clearAll() {
+    this.localStorageService.listClear();
   }
+
   completedSize() {
-    return  this.list.filter(item => item.isCompleted).length ;
+    return this.list.filter(item => item.isCompleted).length;
   }
 
-  getName() {
-    return 'TodoService 123' + this.storage.getName();
+  uncompletedSize() {
+    return this.list.filter(item => !item.isCompleted).length;
   }
 }

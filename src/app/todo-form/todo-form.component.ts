@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { TodoItem } from '../model/todo-item';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -10,7 +11,9 @@ export class TodoFormComponent {
 
   @Output() add = new EventEmitter();
 
-  save(description){
+  constructor(private todoService: TodoService) { }
+
+  save(description) {
     if(!description.value || description.value === '') {
       return;
     }
@@ -20,5 +23,8 @@ export class TodoFormComponent {
     this.add.emit(task);
     description.value = '';
   }
-}
 
+  clear() {
+    this.todoService.clearAll();
+  }
+}
