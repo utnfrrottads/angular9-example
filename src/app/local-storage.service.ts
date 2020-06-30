@@ -15,17 +15,18 @@ export class LocalStorageService {
     return 'LocalStorageService';
   }
   cargarLocalStorage(){    
-    this.list = [];
+    
     debugger;
     Object.values(localStorage).forEach(p => {
-      this.list.push(JSON.parse(p));
+      this.list.push(JSON.parse(p)); 
 
     });
-
     return this.list;
   }
 
   grabarLocalStorage(item: TodoItem){
+    debugger;
+    item.id = localStorage.length;
     localStorage.setItem(item.id.toString(), JSON.stringify(item));
   }
 
@@ -35,7 +36,7 @@ export class LocalStorageService {
 
   }
 
-  eliminarLocalStorage(key){
+  eliminarLocalStorage(key){    
     const value = localStorage.getItem(key);
     console.dir(value);
     if(value !== undefined && value){

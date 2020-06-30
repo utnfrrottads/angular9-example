@@ -8,12 +8,14 @@ import { TodoService } from '../todo.service';
   templateUrl: './todo-app.component.html',
   styleUrls: ['./todo-app.component.scss'],
 })
-export class TodoAppComponent  {
+export class TodoAppComponent implements OnInit  {
 
   list: any = [];
   constructor(
     private service: TodoService
-  ) {
+  ) { }
+
+  ngOnInit() {    
     this.list = this.service.getList();
   }
 
@@ -27,7 +29,6 @@ export class TodoAppComponent  {
 
   }
   onItemStateChanged(item: TodoItem) {    
-    debugger;
     // item.toggleCompleted();
     if(item.isCompleted){
       item.isCompleted = false;

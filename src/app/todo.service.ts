@@ -22,10 +22,8 @@ export class TodoService {
    }
 
   add(task: TodoItem) {    
-    const id = this.lastItemId;
-    task.id = id;
-    this.storage.grabarLocalStorage(task);    
-    this.lastItemId += 1;
+    this.storage.grabarLocalStorage(task);
+    
   }
 
   remove(id) {
@@ -34,14 +32,16 @@ export class TodoService {
   }
 
   incompletedSize() {    
-     this.items = this.storage.cargarLocalStorage();
-    return this.items.filter(item => !item.isCompleted).length;
+    return this.list.filter(item => !item.isCompleted).length;
+    //  this.items = this.storage.cargarLocalStorage();
+    // return this.items.filter(item => !item.isCompleted).length;
 
   }
   
   completedSize() {    
-    this.items = this.storage.cargarLocalStorage();
-    return this.items.filter(item => item.isCompleted).length;
+    return this.list.filter(item => item.isCompleted).length;
+    // this.items = this.storage.cargarLocalStorage();
+    // return this.items.filter(item => item.isCompleted).length;
 
   }
 
