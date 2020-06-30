@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { stringify } from 'querystring';
-import { JsonPipe } from '@angular/common';
 import { TodoItem } from './model/todo-item';
 
 @Injectable({
@@ -8,39 +6,44 @@ import { TodoItem } from './model/todo-item';
 })
 export class LocalStorageService {
   // https://developer.mozilla.org/es/docs/Web/API/Window/localStorage
-  list: any = [];
-  constructor() {    
-  }
+  
+  myStorage = localStorage;
+  constructor() { }
   getName() {
     return 'LocalStorageService';
   }
-  cargarLocalStorage(){    
-    
-    debugger;
-    Object.values(localStorage).forEach(p => {
-      this.list.push(JSON.parse(p)); 
+  cargarLocalStorage(){
+    const list = [];
+    Object.values(this.myStorage).forEach(p => {
+      list.push(JSON.parse(p)); 
 
     });
-    return this.list;
+    return list; 
+    
   }
 
   grabarLocalStorage(item: TodoItem){
     debugger;
-    item.id = localStorage.length;
+    item.id = this.myStorage.length;
     localStorage.setItem(item.id.toString(), JSON.stringify(item));
   }
 
-  updateLocalStorage(item: TodoItem){    
-    localStorage.removeItem(item.id.toString());
-    localStorage.setItem(item.id.toString(), JSON.stringify(item));
+  updateLocalStorage(item: TodoItem){
+    this.myStorage.removeItem(item.id.toString());
+    this.myStorage.setItem(item.id.toString(), JSON.stringify(item));
 
   }
 
-  eliminarLocalStorage(key){    
-    const value = localStorage.getItem(key);
+  deleteItem(key){    
+    const value = this.myStorage.getItem(key);
     console.dir(value);
     if(value !== undefined && value){
-      localStorage.removeItem(key);
+      this.myStorage.removeItem(key);
     }
   }
+
+  Clean(){
+    this.myStorage.clear();
+  }
+
 }

@@ -7,7 +7,7 @@ import { TodoItem } from '../model/todo-item';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  @Input() list: any = [];
+  @Input() list: any[];
   @Output() itemRemoved = new EventEmitter();
   @Output() itemStateChanged = new EventEmitter();
   constructor() {    
