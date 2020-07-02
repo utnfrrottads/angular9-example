@@ -22,6 +22,7 @@ export class TodoAppComponent  {
   }
   onItemStateChanged(item: TodoItem) {
     item.toggleCompleted();
+    this.service.changeState(item);
   }
   onTodoItemCreated(task) {
     this.service.add(task)
