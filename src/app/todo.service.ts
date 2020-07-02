@@ -13,7 +13,6 @@ export class TodoService {
   constructor(private storage: LocalStorageService) { }
 
    getList(){     
-     debugger;
     this.list = this.storage.cargarLocalStorage();
      
    }
@@ -25,7 +24,15 @@ export class TodoService {
 
   remove(id) {
     this.storage.deleteItem(id);
+  }
 
+  save(lstItems: any[]){
+    this.storage.Save(lstItems);
+  }
+
+  clear(){    
+    this.storage.Clean();
+    this.list = [];
   }
 
   // incompletedSize() {    

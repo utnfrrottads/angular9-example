@@ -22,10 +22,10 @@ export class LocalStorageService {
     
   }
 
-  grabarLocalStorage(item: TodoItem){
-    debugger;
+  grabarLocalStorage(item: TodoItem){    
     item.id = this.myStorage.length;
     localStorage.setItem(item.id.toString(), JSON.stringify(item));
+    
   }
 
   updateLocalStorage(item: TodoItem){
@@ -40,6 +40,14 @@ export class LocalStorageService {
     if(value !== undefined && value){
       this.myStorage.removeItem(key);
     }
+  }
+
+  Save(list: any[]){
+    this.Clean();
+    list.forEach(x => {
+      this.myStorage.setItem(x.id.toString(), JSON.stringify(x));
+
+    });
   }
 
   Clean(){

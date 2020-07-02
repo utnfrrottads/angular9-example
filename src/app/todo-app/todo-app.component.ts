@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TodoItem} from '../model/todo-item';
+import { TodoItem } from '../model/todo-item';
 import { TodoService } from '../todo.service';
 /** */
 @Component({
@@ -7,41 +7,50 @@ import { TodoService } from '../todo.service';
   templateUrl: './todo-app.component.html',
   styleUrls: ['./todo-app.component.scss'],
 })
-export class TodoAppComponent implements OnInit  {
+export class TodoAppComponent implements OnInit {
 
   cant: number = 0;
-  list: any = [];
+  list: any[];
   constructor(
     private service: TodoService
   ) { }
 
-  ngOnInit() { 
-    this.service.getList(); 
-    
+  ngOnInit() {
+    this.service.getList();
+
   }
 
-  getList() {
-    debugger;
-    return this.service.list;
-    
+  getList() {    
+    this.list = this.service.list;
+    return this.list;
+
   }
 
-  onTodoItemRemoved(id) {    
-    this.service.remove(id);
-    this.getList();
+  onTodoItemRemoved(id) {
+    var items = this.list.find(x => x.id === id);
+    this.list.splice(items.id);    
+
   }
   onItemStateChanged(item: TodoItem) {    
-    // item.toggleCompleted();
-    if(item.isCompleted){
+    if (item.isCompleted) {
       item.isCompleted = false;
-    }else{
+    } else {
       item.isCompleted = true;
-    }
-    this.service.update(item);
+    }    
 
   }
   onTodoItemCreated(task: TodoItem) {    
-    this.service.add(task);
-    this.getList();
+    let lastId = this.list.length;
+    task.id = lastId;
+    this.list.push(task);    
+  }
+
+  save() {    
+    this.service.save(this.list);
+
+  }
+
+  clear() {
+    this.service.clear();    
   }
 }

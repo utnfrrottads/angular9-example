@@ -15,8 +15,7 @@ export class StatsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  completedPercentage() {
-    debugger;
+  completedPercentage() {    
     this.list = this.service.list;
     if(this.list && this.list !== undefined){ 
       const completed = this.list.filter(item => item.isCompleted).length * 100;

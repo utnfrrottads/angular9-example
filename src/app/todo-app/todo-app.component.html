@@ -1,15 +1,12 @@
 <app-todo-form (add)="onTodoItemCreated($event)"></app-todo-form>
-<app-todo-list
-  [list]="getList()"
-  (itemRemoved)="onTodoItemRemoved($event)"
-  (itemStateChanged)="onItemStateChanged($event)"
->
+<app-todo-list [list]="getList()" (itemRemoved)="onTodoItemRemoved($event)"
+  (itemStateChanged)="onItemStateChanged($event)">
 </app-todo-list>
-<app-todo-footer
-  [list]="getList()"
->
+<div class="buttons">
+  <button class="btn btn-primary" type="button" (click)="save()" >Guardar</button>
+  <button class="btn btn-danger" type="button" (click)="clear()" >Limpiar</button>
+</div>
+<app-todo-footer [list]="getList()">
 </app-todo-footer>
-<app-stats
-[list]="getList()"
->
+<app-stats [list]="getList()">
 </app-stats>
