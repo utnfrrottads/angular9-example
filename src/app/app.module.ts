@@ -23,7 +23,7 @@ import { StatsComponent } from './stats/stats.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,30 +1,33 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TodoItem } from '../model/todo-item';
-import { TodoService } from '../todo.service';
+// import { TodoItem } from '../model/todo-item';
+// import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo-footer',
   templateUrl: './todo-footer.component.html',
   styleUrls: ['./todo-footer.component.scss']
 })
-export class TodoFooterComponent implements OnInit {
-  countTodo = 0;
-  countCompleted = 0;
-  @Input() list;
-  constructor(
-    private service: TodoService
-  ) { }
+export class TodoFooterComponent implements OnInit {  
+  @Input() list: any = [];
+  constructor( ) { }
 
   ngOnInit() {
 
   }
   incompletedSize() {
-    this.countTodo = this.service.incompletedSize()
-    return this.countTodo;
+    if(this.list && this.list !== undefined){
+      return this.list.filter(item => !item.isCompleted).length;
+    } else {
+      return 0;
+    }
+    
   }
-  completedSize() {
-    this.countCompleted =this.service.completedSize()
-    return this.countCompleted;
+  completedSize() {    
+    if(this.list && this.list !== undefined){
+      return this.list.filter(item => item.isCompleted).length;;
+    }else {
+      return 0;
+    }    
   }
 
 }

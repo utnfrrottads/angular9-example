@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TodoService } from '../todo.service';
 
 @Component({
@@ -8,13 +8,21 @@ import { TodoService } from '../todo.service';
 })
 export class StatsComponent implements OnInit {
 
+  @Input() list: any[];
   constructor(
     private service: TodoService
   ) { }
 
   ngOnInit(): void {
   }
-  completedPercentage() {
-    return Math.round(this.service.completedSize() /  this.service.list.length * 100) || 0
+  completedPercentage() {    
+    this.list = this.service.list;
+    if(this.list && this.list !== undefined){ 
+      const completed = this.list.filter(item => item.isCompleted).length * 100;
+      const percenter = this.list.length;
+      return Math.round(completed / percenter);
+    }    
+    return 0;
+
   }
 }

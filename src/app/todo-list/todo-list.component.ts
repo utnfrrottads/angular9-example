@@ -10,17 +10,18 @@ export class TodoListComponent implements OnInit {
   @Input() list: any[];
   @Output() itemRemoved = new EventEmitter();
   @Output() itemStateChanged = new EventEmitter();
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {    
   }
-  removeItem(id) {
+
+  ngOnInit() {    
+  }
+  
+  removeItem(id) {    
     this.itemRemoved.emit(id);
   }
 
-  completeTask(item:TodoItem) {
+  completeTask(item:TodoItem) {    
     this.itemStateChanged.emit(item);
 
   }
-
 }
