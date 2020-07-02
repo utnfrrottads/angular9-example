@@ -14,9 +14,8 @@ export class TodoFormComponent {
     if(!description.value || description.value === '') {
       return;
     }
-    let task = new TodoItem();
-    task.description = description.value;
-    task.isCompleted = false;
+    let task = {description:description.value, isCompleted:false, id:0 };
+
     this.add.emit(task);
     description.value = '';
   }
