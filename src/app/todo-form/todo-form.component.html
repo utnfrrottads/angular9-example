@@ -1,0 +1,15 @@
+
+<!-- <form> -->
+    <div class="form-group">
+        <fieldset>
+            <label for="inputTask" class="control-label">Task</label>
+            <input #taskInput type="text" class="form-control" id="inputTask" aria-describedby="taskHelp" placeholder="My task to do">
+            <small *ngIf="taskInput!=''" id="taskHelp" class="form-text text-muted">No dejes para mañana lo que puedes hacer hoy</small> 
+            <button
+                class="btn btn-primary"
+                (click)="addTask(taskInput)">
+                Add Task
+            </button>
+        </fieldset>
+    </div> 
+<!-- </form> -->
