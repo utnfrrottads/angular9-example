@@ -3,10 +3,11 @@
 <div class="tag-grid">
     <div 
     class="tag-group"
+    [class.selected-tag]="tag===this.selectedTag"
     *ngFor="let tag of tags">
         <p>{{tag}}</p>
         
-        <button (click)="loadArticlesByTag(tag)">Mostrar articulos</button>
+        <button (click)="loadArticlesByTag(tag)" class="btn btn-primary my-button">Mostrar articulos</button>
     </div>
 
     

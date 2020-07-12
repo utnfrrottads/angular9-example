@@ -10,6 +10,7 @@ export class ArticlesComponent implements OnInit {
 
   articles:any = []
   tags: any = [];
+  selectedTag = '';
 
   constructor(private service: ArticlesService) { }
 
@@ -18,6 +19,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   loadArticlesByTag(tag:string) {
+    this.selectedTag = tag;
     this.service.getArticlesByTag(tag).subscribe(response => this.articles = response.articles);
   }
   loadTags() {
