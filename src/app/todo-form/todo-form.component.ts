@@ -7,9 +7,8 @@ import { TodoItem } from '../model/todo-item';
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent {
-
   @Output() add = new EventEmitter();
-
+  
   save(description){
     if(!description.value || description.value === '') {
       return;

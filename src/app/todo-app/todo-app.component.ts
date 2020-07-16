@@ -11,7 +11,7 @@ import { TodoService } from '../todo.service';
 export class TodoAppComponent  {
 
   constructor(
-    private service: TodoService
+    private service: TodoService,
   ) {}
 
   getList() {
@@ -21,7 +21,7 @@ export class TodoAppComponent  {
     this.service.remove(id);
   }
   onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+    this.service.update(item);
   }
   onTodoItemCreated(task) {
     this.service.add(task)
