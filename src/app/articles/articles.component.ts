@@ -13,12 +13,12 @@ export class ArticlesComponent implements OnInit {
   constructor(private service: ArticlesService) { }
 
   ngOnInit(): void {
+    this.service.login();
+  }
 
-  }
-  loadArticles() {
-    this.service.getArticles().subscribe(response => this.articles = response.articles);
-  }
   loadTags() {
     this.service.getTags().subscribe(response => this.tags = response.tags);
   }
+
+
 }

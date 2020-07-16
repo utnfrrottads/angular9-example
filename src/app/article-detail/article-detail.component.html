@@ -1,0 +1,12 @@
+<div>
+    <h2>{{article.title}}</h2>
+    <h2>{{article.description}}</h2>
+    <h2>{{article.body}}</h2>
+    <h2>{{article.createdAt}}</h2>
+    <h2>{{article.tagList | json}}</h2>
+    <button (click)="this.textAreaVisible = true;">Leave a Comment</button>    
+</div>
+<div *ngIf="textAreaVisible">
+    <input type="text" #comment>
+        <button (click)="save(comment)">Send</button>
+</div>
