@@ -11,7 +11,7 @@ export class ArticlesService {
   
   constructor(private http: HttpClient) { }
   usrReturned:any;
-  respuesta:any;
+  response:any;
 
   getTagArticles(tag) {
     const url = this.baseUrl + 'articles?tag='+tag;
@@ -25,19 +25,34 @@ export class ArticlesService {
     const url = this.baseUrl + 'tags';
     return this.http.get<any>(url);
   }
-  setComment(token,comment,slug){
-    const url = this.baseUrl + 'articles/'+ slug +'/comments';
-    const httpOptions = {headers: new HttpHeaders({
-      'Authorization': 'Token '+ token
-    })}
+  setComment(comment, article){
 
-     this.http.post(url, comment, httpOptions).subscribe(response=>{this.respuesta = response});
-     return this.respuesta;
-  }
-  authentication(usuario){
-    const url = this.baseUrl + 'users/login';
-    this.http.post(url,usuario).subscribe(response=>{this.usrReturned = response});
-    return this.usrReturned.user;
+    //user: igc@ttadsmail.com
+    //pass: igcttads2020
+    let usuario = {
+      "user":{
+        "email": "igc@ttadsmail.com",
+        "password": "igcttads2020"
+      }
     }
-    
+    let slug = article.slug;
+
+
+    const urlAuthentication = this.baseUrl + 'users/login';
+    this.http.post(urlAuthentication,usuario).subscribe((response:any)=>{
+      let token = response.user.token;
+
+      let urlComment = this.baseUrl + 'articles/'+ slug +'/comments';
+      let httpOptions = {headers: new HttpHeaders({
+        'Authorization': 'Token '+ token
+      })}
+
+      this.http.post(urlComment, comment, httpOptions).subscribe(response=>{
+        this.response = response
+        console.log(this.response)
+      });
+      return this.response;
+    });
+
+  }    
 }
