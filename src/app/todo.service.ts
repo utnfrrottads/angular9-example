@@ -34,7 +34,7 @@ export class TodoService {
     this.lastItemId += 1;
 
     //objeto json - JSON.stringify(task.id,task.description,task.isCompleted)
-    this.storage.actualizarLocalStorage(this.list);
+    this.storage.updateLocalStorage(this.list);
   }
 
   update(task){
@@ -44,9 +44,7 @@ export class TodoService {
     const index = this.list.findIndex((element) => element.id === task.id);
     this.list[index] = task;
     //guardo la lista nueva
-    this.storage.actualizarLocalStorage(this.list);
-
-    console.log(task)
+    this.storage.updateLocalStorage(this.list);
   }
 
   remove(id) {

@@ -13,12 +13,11 @@ export class LocalStorageService {
     return localStorage.getItem('lista');
   }
 
-  actualizarLocalStorage(lista){
+  updateLocalStorage(lista){
     localStorage.setItem('lista',JSON.stringify(lista));
   }
 
   removeItem(id){
-    //el parse sirve para traerme el objeto JSON
     var lista = JSON.parse(localStorage.getItem('lista'));
 
     lista.forEach(elemento => {      
@@ -27,7 +26,6 @@ export class LocalStorageService {
       }
   
       localStorage.setItem('lista',JSON.stringify(lista));  
-    console.log(lista);
     });
 
   }
