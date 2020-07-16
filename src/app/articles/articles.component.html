@@ -1,9 +1,5 @@
 
-<div *ngFor="let article of articles">
-    <h1>{{article.title}} </h1>
-    <p>{{article.body}}</p>
+<div *ngFor="let tag of tags">
+    <app-tag [tag]="tag"></app-tag>
 </div>
-
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
 <button (click)="loadTags()">Cargar Tags</button>

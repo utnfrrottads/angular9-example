@@ -15,10 +15,10 @@ export class ArticlesComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  loadArticles() {
-    this.service.getArticles().subscribe(response => this.articles = response.articles);
-  }
+
   loadTags() {
     this.service.getTags().subscribe(response => this.tags = response.tags);
   }
+
+
 }

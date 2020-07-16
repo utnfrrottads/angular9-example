@@ -1,0 +1,6 @@
+<h1>{{tag}} </h1>
+<button (click)="loadArticles()">Buscar Artículos</button>
+
+<div *ngFor = "let article of articles">
+    <app-article-detail [article] = "article"></app-article-detail>
+</div>
