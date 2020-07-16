@@ -1,6 +1,6 @@
 .article {
     border: 2px solid lightgray;
-    background-color: silver;
+    background-color: #d4d4d4;
     padding: 2em;
     margin: 1em;
 }
@@ -29,4 +29,8 @@
 .title{
     margin-left: 10px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+textarea {
+    resize: none;
 }
