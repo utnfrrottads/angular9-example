@@ -17,4 +17,8 @@ export class ArticlesService {
     const url = this.baseUrl + 'tags';
     return this.http.get<any>(url);
   }
+  getArticlesByTag(tag: string){
+    const url = this.baseUrl + `articles?tag=${tag}`;
+    return this.http.get<any>(url);
+  }
 }
