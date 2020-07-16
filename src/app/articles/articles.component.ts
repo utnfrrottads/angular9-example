@@ -13,7 +13,7 @@ export class ArticlesComponent implements OnInit {
   constructor(private service: ArticlesService) { }
 
   ngOnInit(): void {
-
+    this.service.login();
   }
 
   loadTags() {

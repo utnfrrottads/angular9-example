@@ -19,23 +19,22 @@ export class ArticlesService {
     return this.http.get<any>(url);
   }
 
+  login(){
+    const url = this.baseUrl + 'users/login';
+    let body = { user: {email:'sebisportivo@gmail.com', password:'123123123'} };
+    this.http.post<any>(url,body).subscribe(response => this.user = response.user);
+  }
 
   postComment(commentParameter, article){
 
-    const url = this.baseUrl + 'users/login'; 
-    let body = { user: {email:"sebisportivo@gmail.com", password:"123123123"} }
-    this.http.post<any>(url,body).subscribe(response => {
-      const url2 = this.baseUrl + 'articles/' + article.slug + '/comments';
+      const url = this.baseUrl + 'articles/' + article.slug + '/comments';
       let postBody = {comment: {body:commentParameter}};
       const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': 'Token ' + response.user.token
+        'Authorization': 'Token ' + this.user.token
         })
       };
-      console.log(article.slug)
-      return this.http.post(url2, postBody, httpOptions).subscribe(res=> console.log(res));
-    })
-
+      return this.http.post(url, postBody, httpOptions);
   }
 
      

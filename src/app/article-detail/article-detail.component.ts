@@ -17,6 +17,6 @@ export class ArticleDetailComponent implements OnInit {
 
   }
   save(comment){    
-    this.service.postComment(comment.value,this.article);
+    this.service.postComment(comment.value,this.article).subscribe();
   }
 }
