@@ -33,17 +33,11 @@ export class ArticlesComponent implements OnInit {
 
   classActive(tag)
   {
-    if(this.selectedTag == tag){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return this.selectedTag === tag;
   }
 
   login(){
     this.service.logIn().subscribe(response => this.user = response.user);
-    console.log(this.user.token);
   }
 
   commentArticle(slug, comment){
@@ -52,11 +46,6 @@ export class ArticlesComponent implements OnInit {
   }
 
   userIsLogged(){
-    if(this.user === false){
-      return false;
-    }
-    else{
-      return true;
-    }
+    return this.user !== false;
   }
 }
