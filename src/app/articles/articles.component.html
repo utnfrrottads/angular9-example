@@ -14,12 +14,12 @@
   <div *ngFor="let ownTag of article.tagList">
     <button class="ownTag">{{ ownTag }}</button>
   </div>
-  <textarea
+  <textarea ref-textarea
     rows="3"
     cols="60"
     maxlength="150"
     placeholder="Leave a comment"
   ></textarea>
   <br>
-  <button class="tag">Comment</button>
+  <button class="tag" (click)="commentArticle(textarea.value)">Comment</button>
 </div>

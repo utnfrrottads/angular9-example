@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ArticlesService {
-
   readonly baseUrl = 'https://conduit.productionready.io/api/';
+  hardcodedMail = 'utnfrro@utn.frro';
+  hardcodedPass = 'utnutnutn';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   getArticles() {
     const url = this.baseUrl + 'articles';
     return this.http.get<any>(url);
@@ -17,8 +18,21 @@ export class ArticlesService {
     const url = this.baseUrl + 'tags';
     return this.http.get<any>(url);
   }
-  getArticlesByTag(tag: string){
+  getArticlesByTag(tag: string) {
     const url = this.baseUrl + `articles?tag=${tag}`;
     return this.http.get<any>(url);
+  }
+  postComment(comment: string) {
+    const loginUrl = this.baseUrl + 'users/login';
+    this.http
+      .post(loginUrl, {
+        user: {
+          email: this.hardcodedMail,
+          password: this.hardcodedPass,
+        },
+      })
+      .subscribe(
+        (response) => console.log(response)
+      );
   }
 }

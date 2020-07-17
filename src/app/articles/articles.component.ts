@@ -9,7 +9,9 @@ import { ArticlesService } from '../articles.service';
 export class ArticlesComponent implements OnInit {
   articles: any = [];
   tags: any = [];
-  constructor(private service: ArticlesService) {this.loadTags()}
+  constructor(private service: ArticlesService) {
+    this.loadTags();
+  }
 
   ngOnInit(): void {}
   loadArticles() {
@@ -18,13 +20,15 @@ export class ArticlesComponent implements OnInit {
       .subscribe((response) => (this.articles = response.articles));
   }
   loadTags() {
-    this.service
-      .getTags()
-      .subscribe((response) => (this.tags = response.tags));
+    this.service.getTags().subscribe((response) => (this.tags = response.tags));
   }
-  showArticlesForTag(tag){
+  showArticlesForTag(tag) {
     this.service
       .getArticlesByTag(tag)
-      .subscribe( (response) => (this.articles = response.articles.slice(0, 5)));
+      .subscribe((response) => (this.articles = response.articles.slice(0, 5)));
+  }
+  commentArticle(comment: string) {
+    this.service
+      .postComment(comment);
   }
 }
