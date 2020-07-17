@@ -1,0 +1,36 @@
+.article {
+    border: 2px solid lightgray;
+    background-color: #d4d4d4;
+    padding: 2em;
+    margin: 1em;
+}
+
+.tag{
+    border: none;
+    border-radius: 3px;
+    background-color: steelblue;
+    color: white;
+    padding: 5px;
+    margin: 2px;
+    float: left;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.ownTag{
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(57, 185, 157);
+    padding: 5px;
+    margin: 2px;
+    float: right;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.title{
+    margin-left: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+textarea {
+    resize: none;
+}

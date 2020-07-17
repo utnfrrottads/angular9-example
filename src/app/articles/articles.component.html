@@ -1,9 +1,31 @@
-
-<div *ngFor="let article of articles">
-    <h1>{{article.title}} </h1>
-    <p>{{article.body}}</p>
+<div class="title">
+  <h1>Filter articles by your favorite TAG</h1>
 </div>
 
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
-<button (click)="loadTags()">Cargar Tags</button>
+<div *ngFor="let tag of tags">
+  <button (click)="showArticlesForTag(tag)" class="tag">{{ tag }}</button>
+</div>
+<br />
+<div class="article" *ngFor="let article of articles">
+  <h1>{{ article.title }}</h1>
+  <h3>{{ article.description }}</h3>
+  <p>{{ article.body }}</p>
+  <p><strong>Article created at</strong> {{ article.createdAt }}</p>
+  <div *ngFor="let ownTag of article.tagList">
+    <button class="ownTag">{{ ownTag }}</button>
+  </div>
+  <textarea
+    ref-textarea
+    rows="3"
+    cols="60"
+    maxlength="150"
+    placeholder="Leave a comment"
+  ></textarea>
+  <br />
+  <button
+    class="tag"
+    (click)="commentArticle({ text: textarea.value, slug: article.slug })"
+  >
+    Comment
+  </button>
+</div>
