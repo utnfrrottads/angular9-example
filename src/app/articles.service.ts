@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,8 @@ export class ArticlesService {
     const url = this.baseUrl + `articles?tag=${tag}`;
     return this.http.get<any>(url);
   }
-  postComment(comment: string) {
+
+  postComment(text, slug) {
     const loginUrl = this.baseUrl + 'users/login';
     this.http
       .post(loginUrl, {
@@ -31,8 +32,30 @@ export class ArticlesService {
           password: this.hardcodedPass,
         },
       })
-      .subscribe(
-        (response) => console.log(response)
-      );
+      .subscribe((response) => {
+        const token = response['user']['token'];
+        const url = this.baseUrl + `/articles/${slug}/comments`;
+        this.http
+          .post(
+            url,
+            {
+              comment: { body: text },
+            },
+            {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                Authorization: 'Token ' + token,
+              }),
+            }
+          )
+          .subscribe((res) =>
+            alert(
+              'Thanks ' +
+                res['comment']['author']['username'] +
+                ', your comment was saved'
+            )
+          ),
+          (err) => console.log(err);
+      });
   }
 }

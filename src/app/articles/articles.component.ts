@@ -27,8 +27,8 @@ export class ArticlesComponent implements OnInit {
       .getArticlesByTag(tag)
       .subscribe((response) => (this.articles = response.articles.slice(0, 5)));
   }
-  commentArticle(comment: string) {
+  commentArticle({text, slug}) {
     this.service
-      .postComment(comment);
+      .postComment(text, slug);
   }
 }
