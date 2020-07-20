@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { TodoItem } from '../model/todo-item';
 
@@ -7,15 +7,10 @@ import { TodoItem } from '../model/todo-item';
   templateUrl: './todo-footer.component.html',
   styleUrls: ['./todo-footer.component.scss']
 })
-export class TodoFooterComponent implements OnInit {
+export class TodoFooterComponent {
 
   @Input() list : TodoItem[] = [];
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-  
   Completeditems(){
     return this.list.filter(each => each.isCompleted === true).length;
   }

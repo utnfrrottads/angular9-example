@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { TodoItem } from '../model/todo-item';
 
@@ -9,7 +9,7 @@ import { TodoItem } from '../model/todo-item';
 })
 
  
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
 
   @Input() list = [];
   @Output() itemRemoved = new EventEmitter<TodoItem>();
@@ -17,9 +17,6 @@ export class TodoListComponent implements OnInit {
   @Output() itemEdited = new EventEmitter<TodoItem>();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   itemRemovedClick(item : TodoItem){
     this.itemRemoved.emit(item);
