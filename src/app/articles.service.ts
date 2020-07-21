@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ArticlesService {
 
+  limit : number = 5;
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
   constructor(private http: HttpClient) { }
@@ -15,6 +16,10 @@ export class ArticlesService {
   }
   getTags() {
     const url = this.baseUrl + 'tags';
+    return this.http.get<any>(url);
+  }
+  getArticlesOfTags(tagName){
+    const url = this.baseUrl + 'articles/?limit='+this.limit+'&tag='+tagName;
     return this.http.get<any>(url);
   }
 }

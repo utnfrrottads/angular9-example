@@ -1,9 +1,31 @@
 
+<h1>Listado de articulos.</h1>
+<button (click)="loadArticles()">Cargar articulos</button>
 <div *ngFor="let article of articles">
     <h1>{{article.title}} </h1>
     <p>{{article.body}}</p>
 </div>
 
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
-<button (click)="loadTags()">Cargar Tags</button>
+
+<!-- {{tags | json}} -->
+<h1>Listado de tags.</h1>
+    <button (click)="loadTags()">Cargar Tags</button>
+    <div>
+        <ul>
+            <li *ngFor="let tag of tags">
+                <button (click)="loadArticlesOfTag(tag)">Ver articulos</button> {{ tag }}
+            </li>
+        </ul>
+    </div>
+
+<h1>Articulos filtrados:</h1>
+<div *ngFor="let article of articlesOfTag">
+    <h2>{{article.title}} </h2>
+    <p>Descripcion: {{article.description}}</p>
+    <p>Body: {{article.body}}</p>
+    <p>Creado: {{article.createdAt}}</p>
+    <p>Tags: {{article.tagList}}</p>
+    <app-comments [article]="article">        
+    </app-comments>
+</div>
+
