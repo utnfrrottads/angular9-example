@@ -1,22 +1,28 @@
-<h1 class="title"> Lista de tags </h1>
+<h1 class="title"> Nube de tags </h1>
 
-<div class="tag-grid">
-    <div 
-    class="tag-group"
-    [class.selected-tag]="tag===this.selectedTag"
-    *ngFor="let tag of tags">
-        <p>{{tag}}</p>
-        
-        <button (click)="loadArticlesByTag(tag)" class="btn btn-primary my-button">Mostrar articulos</button>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-2">
+            <div 
+            [class.selected-taggg]="tag===this.selectedTag"
+            *ngFor="let tag of tags">
+                <a href="#" (click)="loadArticlesByTag(tag)" class="my-button">{{tag}}</a>
+            </div>    
+        </nav>
+
+        <main class="col-sm-10">
+            <article
+            class="article"
+            *ngFor="let article of articles">
+                <p class="article-item">Titulo: {{article.title}}</p>
+                <p class="article-item">Descripcion: {{article.description}}</p>
+                <p class="article-item">Cuerpo: {{article.body}}</p>
+                <p class="article-item">Fecha de creacion: {{article.createdAt}}</p>
+                <p class="article-item">Etiquetas: </p>
+                <ul>
+                    <li class="article-item" *ngFor="let tag of article.tagList">{{tag}}</li>
+                </ul>
+            </article>
+        </main>
     </div>
-
-    
 </div>
-
-<button (click)="loadTags()">Actualizar tags</button>
-
-    <div>
-        <p *ngFor='let article of articles'>
-            {{article | json}}
-        </p>
-    </div>
