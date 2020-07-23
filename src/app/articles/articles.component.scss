@@ -70,3 +70,28 @@
     font-weight: bold;
     padding: 5px;
 }
+
+.ta-comment{
+    display: inline-block;
+    width: 80%;
+    height: 80px;
+    border-radius: 10px;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.btn-comment{
+    background-color: limegreen;
+    padding: 15px 5px 15px 5px;
+    width: 15%;
+    margin-left: 5px;
+    vertical-align: middle;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+    color: black;
+}
+
+.btn-comment:hover{
+    background-color: green;
+}

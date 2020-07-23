@@ -1,35 +1,5 @@
 <h1 class="title">Articulos</h1>
 
-<<<<<<< HEAD
-<div class="container-fluid">
-    <div class="row">
-        <nav class="tag-nav col-sm-2">
-            <div 
-            [class.selected-taggg]="tag===this.selectedTag"
-            *ngFor="let tag of tags">
-                <a href="#" (click)="loadArticlesByTag(tag)" class="my-button">{{tag}}</a>
-            </div>    
-        </nav>
-
-        <main class="col-sm-10">
-            <article
-            class="article"
-            *ngFor="let article of articles">
-                <p class="article-item">Titulo: {{article.title}}</p>
-                <p class="article-item">Descripcion: {{article.description}}</p>
-                <p class="article-item">Cuerpo: {{article.body}}</p>
-                <p class="article-item">Fecha de creacion: {{article.createdAt}}</p>
-                <p class="article-item">Etiquetas: </p>
-                <ul>
-                    <li class="article-item" *ngFor="let tag of article.tagList">{{tag}}</li>
-                </ul>
-                <textarea placeholder="Ingrese un comentario" required #taComment></textarea>
-                <button (click)="addCommentToArticle(article.slug,taComment.value)" class="btn btn-primary">Agregar comentario</button>
-            </article>
-        </main>
-    </div>
-</div>
-=======
 <nav class="tag-group">
     <span class="tag-group-title">Tags</span>
     <a
@@ -57,6 +27,10 @@
         <ul>
             <li class="tag-list" *ngFor="let tag of article.tagList">{{tag}}</li>
         </ul>
+        <div>
+            <textarea class="ta-comment" placeholder="Ingrese un comentario" #taComment></textarea>
+            <button (click)="addCommentToArticle(article.slug,taComment)" class="btn-comment">Comentar</button>
+        </div>
     </article>
 </main>
->>>>>>> 398bb81... mejora de estilos
+

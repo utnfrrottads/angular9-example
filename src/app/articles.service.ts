@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 export class ArticlesService {
 
   readonly baseUrl = 'https://conduit.productionready.io/api/';
-  authenticationToken = null;
 
   constructor(private http: HttpClient) { }
 
@@ -22,19 +21,21 @@ export class ArticlesService {
     return this.http.get<any>(url);
   }
 
-  addCommentToArticle(slug: string, comment:string){
+  addCommentToArticle(slug: string, comment:string, callback){
     const url = `${this.baseUrl}articles/${slug}/comments`;
-    this.authenticate();
-    const headers = {Authorization: 'Token '+this.authenticationToken}
-    return this.http.post<any>(url,{comment:{body:comment}},{headers});
+    this.authenticate(
+      ({ user: {token} }) => {
+        const headers = {Authorization: 'Token ' + token}
+        this.http.post<any>(url,{comment:{body:comment}},{headers}).subscribe(callback);
+      }
+    );
+    
   }
 
-  authenticate(){
-    if(this.authenticationToken === null) {
-      const url = `${this.baseUrl}users/login`;
-      const email = 'user123@dominio.com';
-      const password = 'mipassword';
-      this.http.post<any>(url,{user:{email:email,password:password}}).subscribe(obj => this.authenticationToken = obj.user.token);
-    }
+  authenticate(functionRequest){
+    const url = `${this.baseUrl}users/login`;
+    const email = 'user123@dominio.com';
+    const password = 'mipassword';
+    this.http.post<any>(url,{user:{email:email,password:password}}).subscribe(functionRequest);
   }
 }

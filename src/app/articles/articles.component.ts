@@ -28,7 +28,10 @@ export class ArticlesComponent implements OnInit {
     this.service.getTags().subscribe(response => this.tags = response.tags);
   }
 
-  addCommentToArticle(slug: string, comment: string){
-    this.service.addCommentToArticle(slug, comment).subscribe(rdo => console.log(rdo));
+  addCommentToArticle(slug: string, taComment){
+    this.service.addCommentToArticle(slug, taComment.value, 
+      ({comment: {id} }) => alert("Comentario realizado, ID: "+id)
+    );
+    taComment.value='';
   }
 }
