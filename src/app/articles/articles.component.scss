@@ -1,35 +1,31 @@
 .title{
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: xx-large;
+    font-size: 50px;
     font-weight: bold;
-    color: darkslategrey;
+    color: white;
     text-align: center;
+    display: block;
+    background-color: darkslategrey;
+    margin: -15px 0px 0px -15px;
+    padding: 25px;
 }
-//https://platzi.com/blog/tutorial-como-construir-un-layout-con-css-grid/
+
 .tag-group{
-    display: inline-block;
-    background-color: rgb(40, 67, 148);
-    padding: 10px;
-    font-weight: bold;
-}
-
-.tag-nav{
-    display: inline-block;
+    float: left;
     width: 20%;
-    background-color: lightgrey;
-    justify-items: center;
-    align-items: center;
+    margin-left: -10px;
+    text-align: center;
+    background-color: rgb(105, 124, 233);
 }
 
-.selected-tag{
-    width: 95% !important;
-    height: 200px;
-}
+//.tag-nav{
+//    display: inline-block;
+//}
 
 .my-button{
     display: block;
     padding: 10px;
-    background-color: rgb(62, 110, 212);
+    border-bottom: rgb(1, 1, 41) solid 2px;
     color: black;
     text-decoration: none;
 }
@@ -38,19 +34,39 @@
     background-color: rgb(24, 31, 128);
 }
 
-.article{
-    background-color: lightcoral;
-    padding: 10px;
-    margin-bottom: 5px;
-
+.selected-tag{
+    background-color: rgb(62, 110, 212);
 }
 
-.article-item{
+.article{
+    background-color: rgb(230, 230, 230);
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 30px;
+}
+
+.article-itemgh{
     display: block;
 }
 
+.tag-list{
+    display: inline-flex;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    background-color: gray;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
 .main-content{
-    margin-left: 20%;
-    display: float;
+    margin-left: 30%;
+    width: 75%;
     display: inline-block;
+    margin-left: 20px;
+}
+
+.tag-group-title{
+    font-size: x-large;
+    font-weight: bold;
+    padding: 5px;
 }

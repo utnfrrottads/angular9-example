@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { ArticlesService } from '../articles.service';
+import { Article } from '../entities/article';
 
 @Component({
   selector: 'app-articles',
@@ -20,7 +21,7 @@ export class ArticlesComponent implements OnInit {
 
   loadArticlesByTag(tag: string) {
     this.selectedTag = tag;
-    this.service.getArticlesByTag(tag).subscribe(response => this.articles = response.articles);
+    this.service.getArticlesByTag(tag).subscribe(response => this.articles = response.articles.map(art => Article.createArticle(art)));
   }
 
   loadTags() {
