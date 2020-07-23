@@ -1,9 +1,31 @@
+<h1 class="title">Articulos</h1>
 
-<div *ngFor="let article of articles">
-    <h1>{{article.title}} </h1>
-    <p>{{article.body}}</p>
-</div>
+<nav class="tag-group">
+    <span class="tag-group-title">Tags</span>
+    <a
+        *ngFor="let tag of tags" 
+        href="#" 
+        [class.selected-tag]="tag===this.selectedTag" 
+        (click)="loadArticlesByTag(tag)" 
+        class="my-button">
+            {{tag}}
+    </a>  
+</nav>
 
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
-<button (click)="loadTags()">Cargar Tags</button>
+<main class="main-content">
+    <article
+    class="article"
+    *ngFor="let article of articles">
+        <p class="article-item">Titulo: {{article.title}}</p>
+        <p class="article-item">Descripcion: {{article.description}}</p>
+        <p class="article-item">Cuerpo: {{article.body}}</p>
+        <p class="article-item">Fecha de creacion: {{article.createdAt.getDate()}}/
+            {{article.createdAt.getMonth()+1}}/{{article.createdAt.getFullYear()}}  - 
+            {{article.createdAt.getHours()}}:{{article.createdAt.getMinutes()}}
+        </p>
+        <p class="article-item">Etiquetas: </p>
+        <ul>
+            <li class="tag-list" *ngFor="let tag of article.tagList">{{tag}}</li>
+        </ul>
+    </article>
+</main>
