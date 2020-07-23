@@ -18,11 +18,16 @@ export class ArticlesComponent implements OnInit {
     this.loadTags();
   }
 
-  loadArticlesByTag(tag:string) {
+  loadArticlesByTag(tag: string) {
     this.selectedTag = tag;
     this.service.getArticlesByTag(tag).subscribe(response => this.articles = response.articles);
   }
+
   loadTags() {
     this.service.getTags().subscribe(response => this.tags = response.tags);
+  }
+
+  addCommentToArticle(slug: string, comment: string){
+    this.service.addCommentToArticle(slug, comment).subscribe(rdo => console.log(rdo));
   }
 }

@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-sm-2">
+        <nav class="tag-nav col-sm-2">
             <div 
             [class.selected-taggg]="tag===this.selectedTag"
             *ngFor="let tag of tags">
@@ -22,6 +22,8 @@
                 <ul>
                     <li class="article-item" *ngFor="let tag of article.tagList">{{tag}}</li>
                 </ul>
+                <textarea placeholder="Ingrese un comentario" required #taComment></textarea>
+                <button (click)="addCommentToArticle(article.slug,taComment.value)" class="btn btn-primary">Agregar comentario</button>
             </article>
         </main>
     </div>
