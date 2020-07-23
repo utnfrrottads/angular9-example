@@ -1,27 +1,72 @@
-# NgPeti
+<h1>Ejercicio</h1>
+Vamos usar la api de <a href="https://github.com/gothinkster/realworld">realWorld app </a>
+<ol>
+<li>
+    Usando la API de <a href="https://github.com/gothinkster/realworld/tree/master/api#endpoints">RealWorld</a> hacer una nube de tags que me permita obtener los tags del sitio y al hacer click en uno de ellos me muestre los primeros 5 articulos completos de cada TAG. Mostrando titulo, descripcion body fecha de creacion y lista de tags asociada a ese articulo.
+</li>
+</ol>
+<h1>Ejercicio 2</h1>
+<p>
+Con un usuario hardocdeado agregar un boton a un articulo del ejercicio anterior y hacer que le agregue un comentario ingresado en un textarea. tenemos que llamar el metodo login que nos va a devolver un objeto con un token. Ese token lo tenemos que agregar en un header del post para agregar el comentario con el siguiente formato</p>
+<pre>Authorization: Token [aca concatenado va el token obtenido]</pre>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+### Base endpoint
 
-## Development server
+API https://conduit.productionready.io/api/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Get Tags
 
-## Build
+`GET /api/tags`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```JSON
+{
+  "tags": [
+    "reactjs",
+    "angularjs"
+  ]
+}
+```
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### List Articles
 
-## Running end-to-end tests
+`GET /api/articles`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Returns most recent articles globally by default, provide `tag`, `author` or `favorited` query parameter to filter results
 
-## Further help
+Query Parameters:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Filter by tag:
+
+`?tag=AngularJS`
+
+
+### Get Article
+
+`GET /api/articles/:slug`
+
+### Single Article
+
+```JSON
+{
+  "article": {
+    "slug": "how-to-train-your-dragon",
+    "title": "How to train your dragon",
+    "description": "Ever wonder how?",
+    "body": "It takes a Jacobian",
+    "tagList": ["dragons", "training"],
+    "createdAt": "2016-02-18T03:22:56.637Z",
+    "updatedAt": "2016-02-18T03:48:35.824Z",
+    "favorited": false,
+    "favoritesCount": 0,
+    "author": {
+      "username": "jake",
+      "bio": "I work at statefarm",
+      "image": "https://i.stack.imgur.com/xHWG8.jpg",
+      "following": false
+    }
+  }
+}
+```
