@@ -1,0 +1,40 @@
+.card-content{
+    font-size: 1.1rem;
+}
+
+.id-task-box{
+    background-color: #7d7d7d;
+    border-radius: 50%;
+    padding: 0.3rem 0.6rem;
+    margin-right: 1vw;
+}
+
+.card-button{
+    background: none;
+    color: #7d7d7d;
+    border: none;
+    outline: none;
+    font-size: 0.6rem;
+    
+}
+
+.edit-on{
+    color: blue;
+}
+
+.completed{
+    color: #ff7991cf;
+    transition: color 0.3s;
+}
+
+
+.progress-bar-container{
+    margin: 5vh 0;
+}
+
+.progress-bar{
+    border: 1px solid #7d7d7d;
+}
+
+
+

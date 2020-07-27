@@ -6,17 +6,28 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TodoAppComponent } from './todo-app/todo-app.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { CardComponent } from './card/card.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import {MatButtonModule} from '@angular/material/button';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditableTextComponent } from './editable-text/editable-text.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoAppComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    CardComponent,
+    TodoListComponent,
+    EditableTextComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

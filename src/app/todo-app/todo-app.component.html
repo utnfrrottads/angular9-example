@@ -1,8 +1,12 @@
-<app-todo-form (add)="onTodoItemCreated($event)"></app-todo-form>
+<app-todo-form 
+    (newTaskAdded)="onNewTaskAdded()">
+</app-todo-form>
 <app-todo-list
-  [list]="list"
-  (itemRemoved)="onTodoItemRemoved($event)"
-  (itemStateChanged)="onItemStateChanged($event)"
-  >
+    [taskList]="taskList"
+    (toggleCompleted)="onToggleCompleteTask()"
+    (removedTask)="onRemovedTask()"
+    (editedTask)="onEditedTask()"
+    >
 </app-todo-list>
-<app-todo-footer [list]="list"></app-todo-footer>
+
+<div *ngIf="averageTimeToCompleteTask" class="average-time">Average time to complete a task: {{averageTimeToCompleteTask}} seconds</div>

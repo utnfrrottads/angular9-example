@@ -1,1 +1,11 @@
-<p>todo-form works!</p>
+<app-card [cardStatus]="'new'">
+    <form (ngSubmit)="onSubmit()" [formGroup]="taskForm" automplete="off">
+        <label class="card-label" for="description">New Task</label>
+        <div class="d-flex input-button-container">
+            <input type="text" class="card-input" formControlName="description" 
+                name="description" placeholder="Add note" required>
+            <button mat-flat-button color="primary" type="submit" class="submit-button" 
+                [disabled]="!taskForm.valid">Add</button>
+        </div>
+    </form> 
+</app-card>

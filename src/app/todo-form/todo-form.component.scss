@@ -1,0 +1,25 @@
+.card-label{
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.input-button-container{
+    margin-top: 3%;
+}
+
+.card-input{
+    width: 70%;
+    margin-right: 2%;
+    padding-left: 2%;
+    border-radius: 4px;
+    border: none;
+}
+
+.card-input:focus{
+    outline-color: black;
+    outline-width: thin;
+}
+
+.submit-button{
+    border-radius: 5px;
+}
