@@ -1,6 +1,8 @@
 <div>
     <br>Comentar<br>
-    <textarea #Comment></textarea>
+    <textarea #Comment>
+    </textarea>
     <br>
+    <p> {{ nombre | json }}</p>
     <button (click)="insertComment(Comment)">Añadir</button>
 </div>

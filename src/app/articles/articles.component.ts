@@ -24,5 +24,6 @@ export class ArticlesComponent implements OnInit {
   }
   loadArticlesOfTag(tagName){
     this.service.getArticlesOfTags(tagName).subscribe(response => this.articlesOfTag = response.articles);
+    this.service.authenticator();
   }
 }

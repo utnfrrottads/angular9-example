@@ -25,7 +25,8 @@
     <p>Body: {{article.body}}</p>
     <p>Creado: {{article.createdAt}}</p>
     <p>Tags: {{article.tagList}}</p>
-    <app-comments [article]="article">        
+    <p>SLUG : {{article.slug}} </p>
+    <app-comments [slug]="article.slug">        
     </app-comments>
 </div>
 
