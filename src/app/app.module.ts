@@ -10,6 +10,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoFooterComponent } from './todo-footer/todo-footer.component';
 import { TodoService } from './todo.service';
 import { StatsComponent } from './stats/stats.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,13 @@ import { StatsComponent } from './stats/stats.component';
     TodoFormComponent,
     TodoListComponent,
     TodoFooterComponent,
-    StatsComponent
+    StatsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
