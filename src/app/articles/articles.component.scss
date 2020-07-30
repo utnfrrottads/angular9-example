@@ -1,0 +1,39 @@
+.container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-dark {
+    margin: 4em 27em 0em 27em;
+}
+.btn {
+    margin-top: 2rem;
+}
+.tag-cloud {
+    margin-left: 14em;
+    background-color: rgba(128, 128, 128, 0.5);; ;
+    width: 40em;
+    padding: 1em 3em 3em 3em;
+    border-radius: 40px;
+}
+
+.article {
+    background-color: lightcyan;
+    width: 15em;
+    padding: 1em;
+    margin: 1em;
+    word-break: break-all;
+    display: inline-block;
+    border-radius: 20px;
+    border: 1px solid cadetblue;
+}
+h2 {
+    text-align: center;
+    font-family: sans-serif;
+    font-style: italic;
+    font-variant: small-caps;
+    font-stretch: expanded;
+}
+b {
+    color: lightseagreen;
+}

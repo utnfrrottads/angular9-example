@@ -1,32 +1,32 @@
-
-<h1>Listado de articulos.</h1>
-<button (click)="loadArticles()">Cargar articulos</button>
-<div *ngFor="let article of articles">
-    <h1>{{article.title}} </h1>
-    <p>{{article.body}}</p>
-</div>
-
-
-<!-- {{tags | json}} -->
-<h1>Listado de tags.</h1>
-    <button (click)="loadTags()">Cargar Tags</button>
-    <div>
-        <ul>
-            <li *ngFor="let tag of tags">
-                <button (click)="loadArticlesOfTag(tag)">Ver articulos</button> {{ tag }}
-            </li>
-        </ul>
+<div class="container">
+    <button 
+        (click)="loadTags()" 
+        type="button" 
+        class="btn btn-dark"
+    >Click to see the Tag cloud
+    </button>
+    <br><br>
+    <div class="tag-cloud">
+        <span *ngFor="let tag of tags">
+            <button 
+                (click)="loadArticlesOfTag(tag)" 
+                type="button" 
+                class="btn btn-light"
+            >{{ tag }}
+            </button>
+            &nbsp;
+        </span>
     </div>
-
-<h1>Articulos filtrados:</h1>
-<div *ngFor="let article of articlesOfTag">
-    <h2>{{article.title}} </h2>
-    <p>Descripcion: {{article.description}}</p>
-    <p>Body: {{article.body}}</p>
-    <p>Creado: {{article.createdAt}}</p>
-    <p>Tags: {{article.tagList}}</p>
-    <p>SLUG : {{article.slug}} </p>
-    <app-comments [slug]="article.slug">        
-    </app-comments>
+    <div *ngFor="let article of articlesOfTag" class="article">
+        <h2>{{article.title}} </h2>
+        <b>Descripcion:</b> {{article.description}}<br>
+        <b>Body:</b> {{article.body}}<br>
+        <b>Creado:</b> {{article.createdAt}}<br>
+        <b>Tags:</b> {{article.tagList}}<br>
+        <b>SLUG :</b> {{article.slug}} <br>
+        <br>
+        <app-comments 
+            [slug]="article.slug">        
+        </app-comments>
+    </div>
 </div>
-

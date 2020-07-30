@@ -41,8 +41,9 @@ export class ArticlesService {
             'Authorization':'Token '+this.user.token
           })
         };
-        this.http.post(url, body, httpHeaders).subscribe();
+        this.http.post(url, body, httpHeaders);
     });
   }
 }
+
 
