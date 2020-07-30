@@ -10,10 +10,11 @@ export class ArticlesComponent implements OnInit {
 
   articles:any = []
   tags: any = [];
+  articlesOfTag:any = [];
+
   constructor(private service: ArticlesService) { }
-
+  
   ngOnInit(): void {
-
   }
   loadArticles() {
     this.service.getArticles().subscribe(response => this.articles = response.articles);
@@ -21,4 +22,8 @@ export class ArticlesComponent implements OnInit {
   loadTags() {
     this.service.getTags().subscribe(response => this.tags = response.tags);
   }
+  loadArticlesOfTag(tagName){
+    this.service.getArticlesOfTags(tagName).subscribe(response => this.articlesOfTag = response.articles);
+  }
 }
+
