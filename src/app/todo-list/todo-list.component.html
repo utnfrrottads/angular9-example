@@ -1,0 +1,49 @@
+<div class="list-wrapper">
+    <ul class="d-flex flex-column-reverse todo-list">
+        <li *ngFor="let item of list">    
+            <div [ngClass]="{completed: item.isCompleted === true, uncompleted: item.isCompleted === false}">
+                <button type="button" class="remove btn btn-danger" (click)="itemRemovedClick(item)">X</button>
+                <!-- <button type="button" class="edit btn btn-info" (click)="itemEditClick(item)">Edit</button> -->
+                <button type="button" class="done btn btn-success" (click)="itemStateChangedClick(item)">Done</button>
+                {{ item.description }} <span class="atenuar">(ID {{ item.id }}: {{ getEstado(item) }})</span>
+            </div>           
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="card uncompleted" style="width: 18rem;" *ngFor="let item of list">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">ID {{ item.id }} </h6>
+      <h5 class="card-title"> {{ item.description }} </h5>
+      <a href="#" class="card-link" (click)="itemStateChangedClick(item)">Completed</a>
+      <a href="#" class="card-link" (click)="itemRemovedClick(item)">Remove</a>
+    </div>
+</div> -->
+
+
+
+
+
+    <!-- <ul class="list-group list-group-flush" *ngFor="let item of list">
+        <li class="list-group-item">
+            <h6 class="card-subtitle mb-2 text-muted ">ID {{ item.id }} </h6>
+            <h5 class="card-title">{{ item.description }}</h5>
+            <a href="#" class="card-link card-body" (click)="itemStateChangedClick(item)">Completed</a>
+            <a href="#" class="card-link card-body" (click)="itemRemovedClick(item)">Remove</a>
+        </li>
+    </ul> -->
+
+
+<!-- <input type="checkbox"> -->

@@ -1,0 +1,44 @@
+.completed {
+    background-color: #cbff7b;
+    text-decoration: line-through;
+}
+
+.uncompleted {
+    background-color: lemonchiffon;
+}
+
+li {
+    border-radius: 2em;
+    margin-bottom: 0.5em;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.btn {
+    margin-right: 10px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+    border-radius: 6em;
+}
+
+.done{
+    background-color: #77dd77;
+    border-color: #77dd77;
+}
+
+.remove{
+    background-color: #c23b22;
+    border-color:  #c23b22;
+}
+
+.edit{
+    background-color: #a2cadf;
+    border-color:  #a2cadf;
+}
+
+.atenuar{
+    color: gray;
+}

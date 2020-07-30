@@ -1,1 +1,5 @@
-<p>todo-form works!</p>
+<div class="add-items d-flex"> 
+    <input type="text" class="form-control todo-list-input" placeholder="ingresa una nueva tarea" #item> 
+    <button class="add btn btn-primary font-weight-bold todo-list-add-btn" (click)="addItem(item)">+</button> 
+</div>
+
