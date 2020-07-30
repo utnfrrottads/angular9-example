@@ -26,6 +26,8 @@ export class TodoListComponent implements OnInit {
     this.itemEdited.emit(item);
   }
   CompleteUrl(url) {
+    if (url === null || url === undefined) return '';
+
     // completa la URL para que se pueda navegar por click.
     if (!url.startsWith('http')) {
       url = '//' + url;

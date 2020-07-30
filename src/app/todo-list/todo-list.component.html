@@ -4,10 +4,16 @@
 
     <div class="task-main">
       {{task.description}}
-      <span>
-        <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
-        <button class="btn btn-primary" (click)="editTask(task)">E</button>
-        <button class="btn btn-success" (click)="completeTask(task)">V</button>
+      <span class="buttons">
+        <button class="btn btn-danger" (click)="removeItem(task.id)">
+          <i class="fa fa-ban" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-primary" (click)="editTask(task)">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-success" (click)="completeTask(task)">
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
       </span>
     </div>
 

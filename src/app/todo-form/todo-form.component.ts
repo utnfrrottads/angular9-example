@@ -63,7 +63,7 @@ export class TodoFormComponent {
 
 export function UrlValidator(control: AbstractControl) {
   // valid url and empty strings.
-  if (validURL(control.value) || control.value == '') {
+  if (validURL(control.value) || control.value == '' || control.value == undefined) {
     return null;
   }
   return { error: true };

@@ -1,5 +1,5 @@
 .completed {
-  background-color: greenyellow;
+  background-color: #4CED69
 }
 .list {
   padding: 0;
@@ -9,11 +9,15 @@
   list-style-type: none;
   font-size: 2rem;
   border-bottom: 1px solid lightgrey;
-  width: 80%;
+  width: 100%;
 }
 .task-main {
   display: flex;
   justify-content: space-between;
+  
+}
+.buttons{
+  min-width: 170px;
 }
 
 .task-url{
