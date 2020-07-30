@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {TodoItem} from '../model/todo-item';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { TodoItem } from '../model/todo-item';
 import { element } from 'protractor';
 import { TodoService } from '../todo.service';
 /** */
@@ -8,11 +8,11 @@ import { TodoService } from '../todo.service';
   templateUrl: './todo-app.component.html',
   styleUrls: ['./todo-app.component.scss'],
 })
-export class TodoAppComponent  {
+export class TodoAppComponent {
+  editingTask = undefined;
+  isEditingTask = false;
 
-  constructor(
-    private service: TodoService
-  ) {}
+  constructor(private service: TodoService) {}
 
   getList() {
     return this.service.list;
@@ -24,6 +24,14 @@ export class TodoAppComponent  {
     item.toggleCompleted();
   }
   onTodoItemCreated(task) {
-    this.service.add(task)
+    this.service.add(task);
   }
+  onItemEditing(task){
+    this.editingTask = task;
+    this.isEditingTask = true;
+  }
+  onCancelEditingTask(){
+    this.isEditingTask = false;
+  }
+
 }

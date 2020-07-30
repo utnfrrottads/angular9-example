@@ -1,5 +1,5 @@
 .completed {
-    background-color: greenyellow;
+  background-color: #4CED69
 }
 .list {
   padding: 0;
@@ -8,8 +8,27 @@
   margin: 0;
   list-style-type: none;
   font-size: 2rem;
-  border-bottom: 1px solid lightgrey;
-  width: 80%;
+  border-bottom: 1px solid rgb(172, 170, 170);
+  border-radius: 5px;
+  width: 100%;
+}
+.task-main {
+  padding: 0px 0px 0px 20px;
   display: flex;
   justify-content: space-between;
+  
+}
+.buttons{
+  min-width: 170px;
+}
+
+.task-url{
+  font-size: medium;
+  padding-left: 20px;
+}
+
+.task-list{
+  background-color: rgb(219, 219, 221);
+  padding: 0px;
+  border-radius: 5px;
 }

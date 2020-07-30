@@ -1,6 +1,6 @@
-<div
-    class="progressbar"
-    [ngStyle]="{width: completedPercentage() + '%'}"
->
-{{completedPercentage()}} %
+<div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+        [ngStyle]="{'width': completedPercentage()}">
+        {{completedPercentage()}}
+    </div>
 </div>
