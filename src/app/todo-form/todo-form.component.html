@@ -1,18 +1,22 @@
 <form class="task-main-form" [formGroup]="taskForm">
-  
-  <h5>Task</h5>
-  <input type="text" class="add-todo" formControlName="taskName" value="{{editingTaskName()}}">
 
-  <button *ngIf="!isEditingTask" class="btn btn-primary" (click)="save()" [disabled]="!taskForm.valid">Create </button>
-  
-  <!-- only on 'editing mode'-->
-  <button *ngIf="isEditingTask" class="btn btn-primary" (click)="edit()" [disabled]="!taskForm.valid">Edit </button>
-  <button *ngIf="isEditingTask" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+  <h5>Task</h5>
+  <div class="main-row">
+
+    <input type="text" class="add-todo" formControlName="taskName" value="{{taskForm.controls.taskName.value}}">
+
+    <button *ngIf="!isEditingTask" class="btn btn-primary" (click)="save()" [disabled]="!taskForm.valid">Create</button>
+
+    <!-- only on 'editing mode'-->
+    <button *ngIf="isEditingTask" class="btn btn-primary" (click)="edit()" [disabled]="!taskForm.valid">Edit </button>
+    <button *ngIf="isEditingTask" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+  </div>
+
 
   <h5>Optional:</h5>
-  <div class="optional">
+  <div class="optional-row">
     <p>URL:</p>
-    <input type="text" class="add-todo" formControlName="taskUrl" value="{{editingTaskUrl()}}">
+    <input type="text" class="add-todo" formControlName="taskUrl" value="{{taskForm.controls.taskUrl.value}}">
   </div>
 
 </form>

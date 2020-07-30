@@ -1,4 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input, ComponentFactoryResolver } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChange,
+} from '@angular/core';
 import { TodoItem } from '../model/todo-item';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { TodoService } from '../todo.service';
@@ -10,6 +17,7 @@ import { TodoService } from '../todo.service';
 })
 export class TodoFormComponent {
   @Output() add = new EventEmitter();
+
   @Input() editingTask;
   @Input() isEditingTask;
   @Output() cancelEditing = new EventEmitter();
@@ -31,9 +39,21 @@ export class TodoFormComponent {
     task.description = description.value;
     task.isCompleted = false;
     task.url = this.taskForm.controls.taskUrl.value;
-
     this.add.emit(task);
+
     this.taskForm.reset();
+  }
+
+  ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+    let isEditing = changes.isEditingTask;
+    if (isEditing !== undefined) {
+      if (isEditing.currentValue && !isEditing.previousValue) {
+        this.taskForm.patchValue({
+          taskName: this.editingTask.description,
+          taskUrl: this.editingTask.url,
+        });
+      }
+    }
   }
 
   edit() {
@@ -41,29 +61,23 @@ export class TodoFormComponent {
     this.editingTask.url = this.taskForm.controls.taskUrl.value;
 
     this.service.edit(this.editingTask);
-    this.cancelEditing.emit();
-    this.taskForm.reset();
+    this.cancelEdit()
   }
   cancelEdit() {
-    this.cancelEditing.emit();
     this.taskForm.reset();
+    this.isEditingTask = false;
+    this.cancelEditing.emit();
   }
 
-  editingTaskName() {
-    if (this.isEditingTask) {
-      return this.editingTask.description;
-    }
-  }
-  editingTaskUrl() {
-    if (this.isEditingTask) {
-      return this.editingTask.url;
-    }
-  }
 }
 
 export function UrlValidator(control: AbstractControl) {
   // valid url and empty strings.
-  if (validURL(control.value) || control.value == '' || control.value == undefined) {
+  if (
+    validURL(control.value) ||
+    control.value == '' ||
+    control.value == undefined
+  ) {
     return null;
   }
   return { error: true };

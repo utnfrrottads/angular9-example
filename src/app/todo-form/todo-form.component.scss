@@ -5,16 +5,25 @@
 }
 
 .add-todo {
-  width: 80%;
+  width: 100%;
+}
+.main-row{
+  display: flex;
+  justify-content: stretch;
 }
 
-.optional p{
+.optional-row{
+  display: flex;
+  justify-content: stretch;
+}
+
+.optional-row p{
   display: inline-block;
   padding: 0px 10px;
 }
 
-.optional .add-todo{
-  width: 73%;
+.optional-row .add-todo{
+  width: 100%;
 }
 
 input.ng-invalid{
