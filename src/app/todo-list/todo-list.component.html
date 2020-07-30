@@ -1,11 +1,20 @@
 <ul class="list">
-    <li
-      *ngFor="let task of list" [class.completed] = "task.isCompleted"
-      class="list-item">
+  <li *ngFor="let task of list" [class.completed]="task.isCompleted" class="list-item">
+
+
+    <div class="task-main">
       {{task.description}}
       <span>
         <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
+        <button class="btn btn-primary" (click)="editTask(task)">E</button>
         <button class="btn btn-success" (click)="completeTask(task)">V</button>
       </span>
-    </li>
-  </ul>
+    </div>
+
+    <div class="task-url">
+      <a href= "{{task.url}}">{{task.url}}</a>
+    </div>
+
+
+  </li>
+</ul>

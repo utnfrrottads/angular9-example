@@ -1,3 +1,26 @@
+.task-main-form {
+  background-color: rgb(70, 162, 255);
+  padding: 20px;
+  border-radius: 15px;
+}
+
 .add-todo {
-  width: 80%
+  width: 80%;
+}
+
+.optional p{
+  display: inline-block;
+  padding: 0px 10px;
+}
+
+.optional .add-todo{
+  width: 73%;
+}
+
+input.ng-invalid{
+  border: 2px solid red;
+}
+
+.btn{
+  margin: 0px 0px 0px 10px;
 }

@@ -30,6 +30,10 @@ export class TodoService {
   completedSize() {
     return  this.list.filter(item => item.isCompleted).length ;
   }
+  edit(task){
+    const index = this.list.findIndex((element) => element.id === task.id);
+    this.list[index] = task    
+  }
 
   getName() {
     return 'TodoService 123' + this.storage.getName();
