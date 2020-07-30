@@ -1,12 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ComponentFactoryResolver } from '@angular/core';
 import { TodoItem } from '../model/todo-item';
-import {
-  FormGroup,
-  FormControl,
-  Form,
-  Validators,
-  AbstractControl,
-} from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { TodoService } from '../todo.service';
 
 @Component({
@@ -22,10 +16,10 @@ export class TodoFormComponent {
 
   taskForm = new FormGroup({
     taskName: new FormControl(''),
-    taskUrl: new FormControl(''),
+    taskUrl: new FormControl('', [UrlValidator]),
   });
 
-  constructor(private service : TodoService) {}
+  constructor(private service: TodoService) {}
 
   save() {
     let description = this.taskForm.controls.taskName;
@@ -42,51 +36,48 @@ export class TodoFormComponent {
     this.taskForm.reset();
   }
 
-  edit(){
+  edit() {
     this.editingTask.description = this.taskForm.controls.taskName.value;
     this.editingTask.url = this.taskForm.controls.taskUrl.value;
 
-    this.service.edit(this.editingTask)
-    this.cancelEditing.emit()
-    this.taskForm.reset()
+    this.service.edit(this.editingTask);
+    this.cancelEditing.emit();
+    this.taskForm.reset();
   }
-  cancelEdit(){
-    this.cancelEditing.emit()
-    this.taskForm.reset()
+  cancelEdit() {
+    this.cancelEditing.emit();
+    this.taskForm.reset();
   }
 
-  editingTaskName(){
-    if(this.isEditingTask){
-      return this.editingTask.description
+  editingTaskName() {
+    if (this.isEditingTask) {
+      return this.editingTask.description;
     }
   }
-  editingTaskUrl(){
-    if(this.isEditingTask){
-      return this.editingTask.url
+  editingTaskUrl() {
+    if (this.isEditingTask) {
+      return this.editingTask.url;
     }
   }
 }
 
-/* Esto no funciona.
-
-
-export function ValidateUrl(control: AbstractControl) {
-  
-  if (control.value === '' || !validURL(control.value)) {
-    return { validUrl: true };
+export function UrlValidator(control: AbstractControl) {
+  // valid url and empty strings.
+  if (validURL(control.value) || control.value == '') {
+    return null;
   }
-  console.log("valida")
-  return null;
+  return { error: true };
 }
 
 function validURL(str) {
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-  return !!pattern.test(str);
+  var pattern = new RegExp(
+    '^(https?:\\/\\/)?' + // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
+    'i'
+  );
+  return pattern.test(str);
 }
-
-*/

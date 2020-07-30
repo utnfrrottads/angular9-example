@@ -3,9 +3,10 @@
   <h5>Task</h5>
   <input type="text" class="add-todo" formControlName="taskName" value="{{editingTaskName()}}">
 
-  <button *ngIf="!isEditingTask" class="btn btn-primary" (click)="save()">Create </button>
+  <button *ngIf="!isEditingTask" class="btn btn-primary" (click)="save()" [disabled]="!taskForm.valid">Create </button>
+  
   <!-- only on 'editing mode'-->
-  <button *ngIf="isEditingTask" class="btn btn-primary" (click)="edit()">Edit </button>
+  <button *ngIf="isEditingTask" class="btn btn-primary" (click)="edit()" [disabled]="!taskForm.valid">Edit </button>
   <button *ngIf="isEditingTask" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
 
   <h5>Optional:</h5>
