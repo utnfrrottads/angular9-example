@@ -31,4 +31,8 @@ export class ArticlesComponent implements OnInit {
       this.tags = response.tags;
     });
   }
+  
+  createNewComment(text: string, endpoint: string) {
+    this.service.postNewComment(text, endpoint); 
+  }
 }

@@ -31,8 +31,10 @@
     </div>
     <br/>
     <div class="comment">
-        <textarea rows="4" cols="60" maxlength="240" placeholder="Comment this post..."></textarea>
+        <textarea ref-textarea
+        rows="4" cols="60" maxlength="240"
+        placeholder="Comment this post..."></textarea>
     </div> 
-    <button class="commentButton">Post comment</button>   
+    <button (click)="createNewComment(textarea.value, article.slug)" class="commentButton">Post comment</button>   
     <hr/>
 </div>
