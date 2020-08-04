@@ -1,4 +1,4 @@
-<header>
+<header class="articlesHeader">
     <h1 class="title">Articles from the Arctic</h1>
     <h2 class="subtitle">Select one <b>tag</b> and cool articles will be selected just for you:</h2>
 
@@ -23,11 +23,16 @@
     <div class="myTagList">
         <div *ngFor="let myTag of article.tagList">
             <span *ngIf="!(myTag.indexOf('&zwnj;') > -1)">
-                <button class="myTagButton">
+                <button (click)="loadNArticlesForTag(myTag, 5)" class="myTagButton">
                     {{myTag}}
                 </button>
             </span>
         </div>
     </div>
+    <br/>
+    <div class="comment">
+        <textarea rows="4" cols="60" maxlength="240" placeholder="Comment this post..."></textarea>
+    </div> 
+    <button class="commentButton">Post comment</button>   
     <hr/>
 </div>
