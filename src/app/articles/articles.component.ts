@@ -8,17 +8,31 @@ import { ArticlesService } from '../articles.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  articles:any = []
+  articles: any = [];
   tags: any = [];
-  constructor(private service: ArticlesService) { }
+  constructor(private service: ArticlesService) { this.loadTags(); }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-  }
   loadArticles() {
-    this.service.getArticles().subscribe(response => this.articles = response.articles);
+    this.service.getArticles().subscribe((response) => {
+      this.articles = response.articles;
+    });
   }
+
+  loadNArticlesForTag(tag: any, quantity: number) {
+    this.service.getArticlesByTag(tag).subscribe((response) => {
+      this.articles = response.articles.slice(0, quantity);
+    });
+  }
+
   loadTags() {
-    this.service.getTags().subscribe(response => this.tags = response.tags);
+    this.service.getTags().subscribe((response) => {
+      this.tags = response.tags;
+    });
+  }
+  
+  createNewComment(text: string, endpoint: string) {
+    this.service.postNewComment(text, endpoint); 
   }
 }
