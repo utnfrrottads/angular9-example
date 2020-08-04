@@ -1,9 +1,33 @@
+<header>
+    <h1 class="title">Articles from the Arctic</h1>
+    <h2 class="subtitle">Select one <b>tag</b> and cool articles will be selected just for you:</h2>
 
-<div *ngFor="let article of articles">
-    <h1>{{article.title}} </h1>
+    <div class="tagList">
+        <div *ngFor="let tag of tags" class="tag">
+            <span *ngIf="!(tag.indexOf('&zwnj;') > -1)">
+                <button (click)="loadNArticlesForTag(tag, 5)" class="tagButton">
+                    {{tag}}
+                </button>
+            </span>
+        </div>
+    </div>
+</header>
+
+<hr/>
+<div *ngFor="let article of articles" class="article">
+    <h2>{{article.title}}</h2>
+    <h3>{{article.description}}</h3>
     <p>{{article.body}}</p>
+    <br/>
+    <p>Creation Date: <b>{{article.createdAt}}</b></p>
+    <div class="myTagList">
+        <div *ngFor="let myTag of article.tagList">
+            <span *ngIf="!(myTag.indexOf('&zwnj;') > -1)">
+                <button class="myTagButton">
+                    {{myTag}}
+                </button>
+            </span>
+        </div>
+    </div>
+    <hr/>
 </div>
-
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
-<button (click)="loadTags()">Cargar Tags</button>
