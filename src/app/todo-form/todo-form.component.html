@@ -1,0 +1,11 @@
+
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  Nombre de la tarea:
+  <input id="taskName" type="text" class="add-todo" formControlName="newTaskControl">
+  <br>
+  URL:
+  <input id="taskURL" type="text" class="add-todo" formControlName="newUrlControl">
+
+  <button id="button" type="submit" class="btn btn-primary" [disabled]="!taskForm.valid"> Create </button>
+
+</form>
