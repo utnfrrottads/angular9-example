@@ -1,8 +1,9 @@
-<app-todo-form (add)="onTodoItemCreated($event)"></app-todo-form>
+<app-todo-form (add)="onTodoItemCreated($event)" [selectedTask]="this.selectedTask"></app-todo-form>
 <app-todo-list
   [list]="getList()"
   (itemRemoved)="onTodoItemRemoved($event)"
   (itemStateChanged)="onItemStateChanged($event)"
+  (taskSelected)= "setTaskSelected($event)"
 >
 </app-todo-list>
 <app-todo-footer

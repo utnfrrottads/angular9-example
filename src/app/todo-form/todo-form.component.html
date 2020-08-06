@@ -1,10 +1,18 @@
-
-<input type="text" #taskDescription class="add-todo">
-
-<button
-  class="btn btn-primary"
-  (click)="save(taskDescription)">
-  Create
-</button>
+<form [formGroup]="taskGroup" (ngSubmit)="save()">
+  <input type="hidden" formControlName="id">
+  <input type="text" formControlName="description" class="add-todo">
+  <div>
+    <span style="color:red" *ngIf="taskGroup.controls.description.invalid && taskGroup.controls.description.touched">* No ha ingresado descripcion</span>
+  </div>
+  <input type="text" formControlName="url" class="add-todo">
+  <div>
+    <span style="color:red" *ngIf="taskGroup.controls.url.errors?.pattern && taskGroup.controls.url.touched">* No ha ingresado una URL válida</span>
+  </div>
+  <button type="submit" [disabled]="taskGroup.invalid" class="btn btn-primary">Save</button>
+</form>
+  
+{{taskGroup.controls.description.value}}
+<br>
+{{taskGroup.controls.url.value}}
 
 
