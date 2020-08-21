@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommentsService } from 'src/app/services/comments.service';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from 'src/app/services/articles.service';
+import { FormControl } from '@angular/forms';
+import { tokenReference } from '@angular/compiler';
 
 @Component({
   selector: 'app-comments',
@@ -10,10 +12,11 @@ import { ArticlesService } from 'src/app/services/articles.service';
 })
 export class CommentsComponent implements OnInit {
 
+  token: any;
   article: any;
   slug:any;
-  private sub: any;
   comments:any=[];
+  comment : any;
 
   constructor(private aService: ArticlesService, private cService: CommentsService, 
     private route: ActivatedRoute) { }
@@ -21,39 +24,47 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
     //me traigo el slug
     this.slug = this.route.snapshot.paramMap.get("slug");
-
     this.article =  this.aService.getArticleBySlug(this.slug).
     subscribe((res)=>{ 
       this.article = res.article;
-      console.log(this.article)
       this.comments = this.getComments(this.article);
+     
     });
+  }
 
-    
-    }
+  //FormControl
+  commentControl = new FormControl('');
 
- 
 
   //ABC comments
 
   //Alta
-  setComment(comment,article,usr){
-    
-
-    //this.service.setComment(comment,article,usr);
+  setComment(){
+                      //hay que validar el comentario
+        //console.log(    this.comment.value );
+  this.token = localStorage.getItem('token');
+  this.comment = {
+    "comment": {
+    "body": this.commentControl.value
+    }
   }
+  this.cService.setComment(this.comment,this.article.slug,this.token);
+  this.commentControl.patchValue("");
+  this.getComments(this.article);
+}
 
   //Baja
-  deleteComment(comment,article){}
+  deleteComment(commentId){
+    this.token = localStorage.getItem('token');
+    this.cService.deleteComment(commentId,this.article,this.token);
+    this.getComments(this.article);
+  }
 
   //Consulta
   getComments(article){
-
-    this.comments = this.cService.getComments(article)
+  this.comments = this.cService.getComments(article)
     .subscribe((response) => {
       this.comments = response.comments;
     })
-
-    
   }
 }

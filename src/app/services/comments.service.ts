@@ -14,36 +14,32 @@ export class CommentsService {
   //ABC comments
 
   //Alta
-  setComment(comment,article,usr){
-    let slug = article.slug;
-    const urlAuthentication = this.baseUrl + 'users/login';
-
-    this.http.post(urlAuthentication,usr).subscribe((response:any)=>{
-      let token = response.user.token;
-
-      let urlComment = this.baseUrl + 'articles/'+ slug +'/comments';
-
-      let httpOptions = {headers: new HttpHeaders({
+  setComment(comment,slug,token){
+    
+    let urlComment = this.baseUrl + 'articles/'+ slug +'/comments';
+    let httpOptions = {headers: new HttpHeaders({
         'Authorization': 'Token '+ token
       })}
 
-      this.http.post(urlComment, comment, httpOptions).subscribe(response=>{
-        this.response = response
-      });
-
-      return this.response;
+    this.http.post(urlComment, comment, httpOptions).subscribe(response=>{
+        this.response = response;
+        return this.response;
     });
 
-
   }
+
   //Baja
-  deleteComment(comment,article){
+  deleteComment(commentId,article,token){
     let slug = article.slug;
-    let id = comment.id;
 
-    const urlDelete = this.baseUrl + 'articles/'+ slug +'/comments/'+id;
+    const urlDelete = this.baseUrl + 'articles/'+ slug +'/comments/'+commentId;
+    let httpOptions = {headers: new HttpHeaders({
+      'Authorization': 'Token '+ token
+    })}
 
-    return this.http.delete<any>(urlDelete);
+    this.http.delete<any>(urlDelete, httpOptions).subscribe(response=>{
+      return this.response;
+    });
   }
 
   //Consulta

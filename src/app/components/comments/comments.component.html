@@ -3,15 +3,32 @@
       <h1>{{article.title}}</h1>      
       <p class="lead">{{article.description}}</p>
     </div>
-</div>
+
+    <div class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <textarea class="form-control" rows="3" cols="134" [formControl]="commentControl"></textarea>          
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" (click)="setComment()">Comentar</button>
+    </div>
+
+
 
 <div class="list-group" *ngFor= "let comment of comments">
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">List group item heading</h5>
-        <small>3 days ago</small>
-      </div>
-      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-      <small>Donec id elit non mi porta.</small>
-    </a>
+    <div class="list-group-item list-group-item-action flex-column align-items">    
+        
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{comment.author.username}}</h5>
+        <small>{{comment.createdAt}}</small>
+    </div>
+
+    <img src={{comment.author.image}}>
+
+    <p class="mb-1">{{comment.body}}</p>
+    </div>
+
+    <button class="btn btn-primary mb-2" (click)="deleteComment(comment.id)">Eliminar comentario</button>
+
+</div>
+    
+
 </div>
