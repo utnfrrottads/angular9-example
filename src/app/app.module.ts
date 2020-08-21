@@ -11,12 +11,15 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ArticlesComponent } from './components/articles/articles.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentsComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +29,7 @@ import { ArticlesComponent } from './components/articles/articles.component';
     
     HttpClientModule,
     NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

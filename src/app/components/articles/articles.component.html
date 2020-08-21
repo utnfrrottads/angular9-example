@@ -4,6 +4,10 @@
             <th>Title</th>
             <th>Description</th>
             <th>Date</th>
+            <th>Comments</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +19,10 @@
         <td>{{article.title}}</td>
         <td>{{article.description}}</td>
         <td>{{article.date}}</td>
+        <td><a  class="btn btn-warning" (click)="showArticle(article)">See Comments</a></td>
+        <td><button  class="btn btn-primary">Create</button></td>
+        <td><button class="btn btn-success">Update</button></td>
+        <td><button (click)="onDelete(article)" class="btn btn-danger">Delete</button></td>
     </tr>
     </tbody>
 </table>
@@ -24,3 +32,5 @@
     (pageChange)="page = $event">
     </pagination-controls>
 </div>
+
+<button class="btn primary green">Create</button>
