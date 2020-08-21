@@ -32,6 +32,6 @@ export class ArticlesComponent implements OnInit {
   }
 
   showArticle(article){
-    /*this.router.navigate([''])*/
+    this.router.navigate(['/article',article.slug]);
   }
 }

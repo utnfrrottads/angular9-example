@@ -10,6 +10,11 @@ export class ArticlesService {
 
   constructor(private http: HttpClient) {}
 
+  getArticleBySlug(slug){
+    let url = this.baseUrl + 'articles/'+slug;
+    return this.http.get<any>(url);
+  }
+
   getArticles() {
     let url = this.baseUrl + 'articles';
     return this.http.get<any>(url);
