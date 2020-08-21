@@ -1,34 +1,34 @@
 <div class="container">
     <div class="jumbotron mt-3">
-      <h1>{{article.title}}</h1>      
-      <p class="lead">{{article.description}}</p>
+        <h1>{{article.title}}</h1>
+        <p class="lead">{{article.description}}</p>
     </div>
 
     <div class="form-inline">
         <div class="form-group mx-sm-3 mb-2">
-            <textarea class="form-control" rows="3" cols="134" [formControl]="commentControl"></textarea>          
+            <textarea class="form-control" rows="3" cols="134" [formControl]="commentControl"></textarea>
         </div>
         <button type="submit" class="btn btn-primary mb-2" (click)="setComment()">Comentar</button>
     </div>
 
 
 
-<div class="list-group" *ngFor= "let comment of comments">
-    <div class="list-group-item list-group-item-action flex-column align-items">    
-        
-    <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{comment.author.username}}</h5>
-        <small>{{comment.createdAt}}</small>
+    <div class="list-group" *ngFor="let comment of comments">
+        <div class="list-group-item list-group-item-action flex-column align-items">
+
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{comment.author.username}}</h5>
+                <small>{{comment.createdAt}}</small>
+            </div>
+
+            <img src={{comment.author.image}}>
+
+            <p class="mb-1">{{comment.body}}</p>
+        </div>
+
+        <button class="btn btn-primary mb-2" (click)="deleteComment(comment.id)">Eliminar comentario</button>
+
     </div>
 
-    <img src={{comment.author.image}}>
-
-    <p class="mb-1">{{comment.body}}</p>
-    </div>
-
-    <button class="btn btn-primary mb-2" (click)="deleteComment(comment.id)">Eliminar comentario</button>
-
-</div>
-    
 
 </div>

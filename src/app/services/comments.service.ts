@@ -21,10 +21,7 @@ export class CommentsService {
         'Authorization': 'Token '+ token
       })}
 
-    this.http.post(urlComment, comment, httpOptions).subscribe(response=>{
-        this.response = response;
-        return this.response;
-    });
+    return this.http.post(urlComment, comment, httpOptions)
 
   }
 
@@ -37,16 +34,13 @@ export class CommentsService {
       'Authorization': 'Token '+ token
     })}
 
-    this.http.delete<any>(urlDelete, httpOptions).subscribe(response=>{
-      return this.response;
-    });
+    return this.http.delete<any>(urlDelete, httpOptions)
   }
 
   //Consulta
   getComments(article){
     let slug = article.slug;
     const urlGetComments = this.baseUrl + 'articles/'+ slug +'/comments';
-
     return this.http.get<any>(urlGetComments);
   }
 }
