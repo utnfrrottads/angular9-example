@@ -22,6 +22,7 @@ export class ArticlesComponent implements OnInit {
     this.service.getArticles().subscribe((response) => {
       this.articles = response.articles;
     })
+    
   }
 
   onDelete(article) {
