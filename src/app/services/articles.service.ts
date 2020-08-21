@@ -14,19 +14,38 @@ export class ArticlesService {
     return this.http.get<any>(url);
   }
 
-  login(user, pass) {
+  login(email, pass) {
     let url = this.baseUrl + 'users/login';
     let body = {
       user: {
-        email: user,
+        email: email,
         password: pass,
       },
     };
 
     return this.http.post(url, body, {});
   }
+
+  registration(username, email, pass) {
+    let url = this.baseUrl + '/api/users';
+    let body = {
+      user: {
+        username: username,
+        email: email,
+        password: pass,
+      },
+    };
+  }
 }
 
+/*
+"user":{
+    "username": "Jacob",
+    "email": "jake@jake.jake",
+    "password": "jakejake"
+  }
+
+*/
 /*  
     sendComment(comment, slug) {
     //login

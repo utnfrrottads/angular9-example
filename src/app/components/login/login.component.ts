@@ -11,8 +11,10 @@ import { type } from 'os';
 export class LoginComponent implements OnInit {
   constructor(private service: ArticlesService) {}
 
+  creationMode:boolean = false;
   loginForm = new FormGroup({
-    user: new FormControl(''),
+    username: new FormControl(''),
+    email: new FormControl(''),
     pass: new FormControl(''),
   });
 
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.service
-      .login(this.loginForm.value.user, this.loginForm.value.pass)
+      .login(this.loginForm.value.email, this.loginForm.value.pass)
       .subscribe(
         (res: any) => {
           let token = res.user.token;
@@ -31,5 +33,13 @@ export class LoginComponent implements OnInit {
           console.log('Error al logearse', err);
         }
       );
+  }
+
+  createAccount(){
+    console.log("CREANDO CUENTA.")
+  }
+
+  toggleCreationMode(){
+    this.creationMode = !this.creationMode;
   }
 }

@@ -2,16 +2,32 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
 
         <div class="login-card">
-            <div class="customRow">
+
+            <!-- solo se muestra si esta en modo crear-->
+            <div class="customRow" *ngIf="creationMode">
                 <div class="indicator">
-                    <p>Usuario</p>
+                    <p>Nombre de usuario</p>
                 </div>
 
                 <div class="login-input">
                     <i class="fa fa-user fa-3x" aria-hidden="true"></i>
-                    <input type="text" formControlName="user">
+                    <input type="text" formControlName="username">
                 </div>
             </div>
+
+
+            <div class="customRow">
+                <div class="indicator">
+                    <p>Email</p>
+                </div>
+
+                <div class="login-input">
+                    <i class="fa fa-user fa-3x" aria-hidden="true"></i>
+                    <input type="text" formControlName="email">
+                </div>
+            </div>
+
+
 
             <div class="customRow">
                 <div class="indicator">
@@ -23,12 +39,21 @@
                 </div>
             </div>
 
-            <div class="customRow">
+            <div class="customRow" *ngIf="!creationMode">
                 <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
                     Login
                 </button>
-                <button class="btn btn-secondary">
+                <button class="btn btn-secondary" (click)="toggleCreationMode()">
                     Crear cuenta
+                </button>
+            </div>
+
+            <div class="customRow" *ngIf="creationMode">
+                <button class="btn btn-primary" type="button" (click)="createAccount()">
+                    Crear cuenta
+                </button>
+                <button class="btn btn-secondary" (click)="toggleCreationMode()">
+                    Cancelar
                 </button>
             </div>
         </div>
