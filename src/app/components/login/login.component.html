@@ -1,0 +1,37 @@
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <div class="login-card">
+            <div class="customRow">
+                <div class="indicator">
+                    <p>Usuario</p>
+                </div>
+
+                <div class="login-input">
+                    <i class="fa fa-user fa-3x" aria-hidden="true"></i>
+                    <input type="text" formControlName="user">
+                </div>
+            </div>
+
+            <div class="customRow">
+                <div class="indicator">
+                    <p>Contraseña</p>
+                </div>
+                <div class="login-input">
+                    <i class="fa fa-unlock-alt fa-3x" aria-hidden="true"></i>
+                    <input type="password" formControlName="pass">
+                </div>
+            </div>
+
+            <div class="customRow">
+                <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
+                    Login
+                </button>
+                <button class="btn btn-secondary">
+                    Crear cuenta
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
