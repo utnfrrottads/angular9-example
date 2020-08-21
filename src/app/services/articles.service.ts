@@ -30,7 +30,7 @@ export class ArticlesService {
   }
 
   registration(username, email, pass) {
-    let url = this.baseUrl + '/api/users';
+    let url = this.baseUrl + 'users';
     let body = {
       user: {
         username: username,
@@ -38,7 +38,7 @@ export class ArticlesService {
         password: pass,
       },
     };
-    // postear
+    return this.http.post(url, body, {});
   }
 }
 
