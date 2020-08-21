@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ArticlesService } from 'src/app/services/articles.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { ArticlesService } from 'src/app/services/articles.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private service: ArticlesService) {}
+  constructor(private service: ArticlesService, private router: Router) {}
 
   creationMode: boolean = false;
 
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
         (res: any) => {
           let token = res.user.token;
           localStorage.setItem('token', token);
+          this.router.navigate(['/articles']);
         },
         (err) => {
           this.showMessage(
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
           );
         }
       );
+    
   }
 
   createAccount() {
