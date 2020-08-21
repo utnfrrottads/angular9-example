@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ArticlesComponent implements OnInit {
 
-  articles:any = [];
+  articles:Array<any> = [];
   page:number = 1;
   totalItems: string;
 
@@ -19,7 +19,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.articles = this.service.getArticles().subscribe((response) => {
+    this.service.getArticles().subscribe((response) => {
       this.articles = response.articles;
     })
   }
@@ -30,7 +30,7 @@ export class ArticlesComponent implements OnInit {
     }
   }
 
-  showArticle(article){
+  showComments(article){
     /*this.router.navigate([''])*/
   }
 }
