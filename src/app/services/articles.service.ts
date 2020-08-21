@@ -13,6 +13,9 @@ export class ArticlesService {
     let url = this.baseUrl + 'articles';
     return this.http.get<any>(url);
   }
+  deleteArticle(slug) {
+    return this.http.delete(this.baseUrl + `/${slug}`);
+  }
 
   login(email, pass) {
     let url = this.baseUrl + 'users/login';
@@ -35,6 +38,7 @@ export class ArticlesService {
         password: pass,
       },
     };
+    // postear
   }
 }
 
