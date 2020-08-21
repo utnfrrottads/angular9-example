@@ -17,9 +17,14 @@ export class ArticleFormComponent implements OnInit {
     body: new FormControl(''),
   });
 
-  constructor(private service: ArticlesService, private router : Router) {}
+  constructor(private service: ArticlesService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // si se quiere meter sin estar logeado, lo manda al Login.
+    if (localStorage.getItem('token') === null) {
+      this.router.navigate(['login']);
+    }
+  }
 
   postArticle() {
     this.article = {
@@ -29,7 +34,7 @@ export class ArticleFormComponent implements OnInit {
     };
     this.service.postArticle(this.article).subscribe(
       (res) => {
-        this.router.navigate(["articles"]);
+        this.router.navigate(['articles']);
       },
       (error) => {
         console.log(error);
