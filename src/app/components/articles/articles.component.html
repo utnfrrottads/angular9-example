@@ -1,36 +1,35 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Comments</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let article of articles | paginate: { id:'listing_pagination',
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Comments</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let article of articles | paginate: { id:'listing_pagination',
         itemsPerPage: 10,
         currentPage: page,
         totalItems: totalItems }">
 
-        <td>{{article.title}}</td>
-        <td>{{article.description}}</td>
-        <td>{{article.date}}</td>
-        <td><a  class="btn btn-warning" (click)="showArticle(article)">See Comments</a></td>
-        <td><button  class="btn btn-primary">Create</button></td>
-        <td><button class="btn btn-success">Update</button></td>
-        <td><button (click)="onDelete(article)" class="btn btn-danger">Delete</button></td>
-    </tr>
-    </tbody>
-</table>
-<div>
-    <pagination-controls id="listing_pagination" 
-    maxSize="5" directionLinks="true" 
-    (pageChange)="page = $event">
-    </pagination-controls>
-</div>
+                <td>{{article.title}}</td>
+                <td class="art-description">{{article.description}}</td>
+                <td>{{article.createdAt}}</td>
+                <td><a class="btn btn-warning" (click)="showComments(article)">See Comments</a></td>
+                <td> <button class="btn btn-success" (click)="onEdit(article)">Edit</button> </td>
+                <td><button (click)="onDelete(article)" class="btn btn-danger">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event">
+        </pagination-controls>
+    </div>
 
-<button class="btn primary green">Create</button>
+    <a class="btn btn-primary" [routerLink]="['/newArticle']">Create</a>
+</div>
