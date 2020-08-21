@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticlesService } from 'src/app/services/articles.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-articles',
@@ -11,7 +12,8 @@ export class ArticlesComponent implements OnInit {
   articles:any = [];
   page:number = 1;
   totalItems: string;
-  constructor(private service:ArticlesService) { 
+
+  constructor(private router: Router, private service:ArticlesService) { 
     
   }
 
@@ -21,4 +23,13 @@ export class ArticlesComponent implements OnInit {
     })
   }
 
+  onDelete(article) {
+    if (window.confirm("Are you sure?")) {
+      //this.service.deleteArticle(article.slug).subscribe()
+    }
+  }
+
+  showArticle(article){
+    /*this.router.navigate([''])*/
+  }
 }
