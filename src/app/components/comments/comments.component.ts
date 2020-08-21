@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentsService } from 'src/app/services/comments.service';
+import { ActivatedRoute } from '@angular/router';
+import { ArticlesService } from 'src/app/services/articles.service';
 
 @Component({
   selector: 'app-comments',
@@ -8,31 +10,29 @@ import { CommentsService } from 'src/app/services/comments.service';
 })
 export class CommentsComponent implements OnInit {
 
-  @Input() article: any;
-
+  article: any;
+  slug:any;
+  private sub: any;
   comments:any=[];
 
-  constructor(private service: CommentsService) { }
+  constructor(private aService: ArticlesService, private cService: CommentsService, 
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.getComments();
+    //me traigo el slug
+    this.slug = this.route.snapshot.paramMap.get("slug");
 
-  this.article = {
-    author: {username: "Ramill", bio: "Joker", image: "https://cdn.join.chat/app/uploads/2020/01/icon-randomphone.png", following: false},
-    body: "dsfsdf↵sdf↵s↵fsdafsdafsda↵↵dsf↵flex: 0 0 0px;daf↵af↵↵ff↵",
-    createdAt: "2020-08-21T14:30:32.305Z",
-    description: "short",
-    favorited: false,
-    favoritesCount: 2,
-    slug: "title-43qqli",
-    title: "Title",
-    updatedAt: "2020-08-21T14:30:32.305Z"
-  }
+    this.article =  this.aService.getArticleBySlug(this.slug).
+    subscribe((res)=>{ 
+      this.article = res.article;
+      console.log(this.article)
+      this.comments = this.getComments(this.article);
+    });
 
-  this.getComments(this.article);
-  
+    
+    }
 
-}
+ 
 
   //ABC comments
 
@@ -40,7 +40,7 @@ export class CommentsComponent implements OnInit {
   setComment(comment,article,usr){
     
 
-    this.service.setComment(comment,article,usr);
+    //this.service.setComment(comment,article,usr);
   }
 
   //Baja
@@ -49,12 +49,11 @@ export class CommentsComponent implements OnInit {
   //Consulta
   getComments(article){
 
-    this.comments = this.service.getComments(article)
+    this.comments = this.cService.getComments(article)
     .subscribe((response) => {
       this.comments = response.comments;
     })
 
     
-    console.log(this.comments);
   }
 }

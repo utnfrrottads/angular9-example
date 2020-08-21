@@ -6,7 +6,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ArticlesService {
   editArticle() {
-    throw new Error("Method not implemented.");
+    let httpOption = {
+      headers: new HttpHeaders({ Authorization: 'Token ' + localStorage.getItem('token') }),
+    };
+    let putUrl = this.baseUrl+`articles/${this.actualArticle.slug}`;
+    return this.http.put(putUrl,httpOption);
   }
 
   actualArticle:any = {};
@@ -25,36 +29,17 @@ export class ArticlesService {
     };
     return this.http.delete(this.baseUrl +  `articles/${slug}`,httpOption)
 }
-
-  /* 
-    sendComment(comment, slug) {
-    //login
-    let url = this.baseUrl + 'users/login';
-    let body = {
-      user: {
-        email: 'danilobassi44@gmail.com',
-        password: '123456789',
-      },
-    };
-
-    this.http.post(url, body, {}).subscribe((res: any) => {
-      let token = res.user.token;
-      let postUrl = this.baseUrl + `articles/${slug}/comments`;
-      let httpComment = {
-        comment: {
-          body: comment,
-        },
-      };
-      let httpOption = {
-        headers: new HttpHeaders({ Authorization: 'Token ' + token }),
-      };
-
-      this.http.post(postUrl, httpComment, httpOption).subscribe((res) => {
-        console.log(res);
-      });
-    });
-  }
-  */
+registration(username, email, pass) {
+  let url = this.baseUrl + 'users';
+  let body = {
+    user: {
+      username: username,
+      email: email,
+      password: pass,
+    },
+  };
+  return this.http.post(url, body, {});
+}
 
   login(user, pass) {
     let url = this.baseUrl + 'users/login';
@@ -67,10 +52,12 @@ export class ArticlesService {
 
     return this.http.post(url, body, {});
   }
-
-  postArticle(article) {
-    //login
+  getArticleBySlug(slug){
+    let url = this.baseUrl + 'articles/'+slug;
+    return this.http.get<any>(url);
+  }
   
+  postArticle(article) {
       let httpOption = {
         headers: new HttpHeaders({ Authorization: 'Token ' + localStorage.getItem('token') }),
       };
@@ -79,6 +66,7 @@ export class ArticlesService {
     };
 
 }
+
 
 
     

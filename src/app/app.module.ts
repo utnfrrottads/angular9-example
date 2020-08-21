@@ -26,12 +26,11 @@ import { ArticleFormComponent } from './components/article-form/article-form.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     HttpClientModule,
-    
     HttpClientModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

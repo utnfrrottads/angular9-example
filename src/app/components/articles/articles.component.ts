@@ -35,6 +35,6 @@ export class ArticlesComponent implements OnInit {
   }
 
   showComments(article){
-    /*this.router.navigate([''])*/
+    this.router.navigate(['/article',article.slug]);
   }
 }

@@ -2,18 +2,33 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
 
         <div class="login-card">
-            <div class="customRow">
+
+            <!-- solo se muestra si esta en modo crear-->
+            <div *ngIf="creationMode">
                 <div class="indicator">
-                    <p>Usuario</p>
+                    <p>Nombre de usuario</p>
                 </div>
 
                 <div class="login-input">
                     <i class="fa fa-user fa-3x" aria-hidden="true"></i>
-                    <input type="text" formControlName="user">
+                    <input type="text" formControlName="username">
                 </div>
             </div>
 
-            <div class="customRow">
+
+            <div>
+                <div class="indicator">
+                    <p>Email</p>
+                </div>
+
+                <div class="login-input">
+                    <i class="fa  fa-address-book fa-3x" aria-hidden="true"></i>
+                    <input type="text" formControlName="email">
+                </div>
+            </div>
+
+
+            <div>
                 <div class="indicator">
                     <p>Contraseña</p>
                 </div>
@@ -23,15 +38,43 @@
                 </div>
             </div>
 
-            <div class="customRow">
+            <!-- solo se muestra si esta en modo crear -->
+            <div *ngIf="creationMode">
+                <div class="indicator">
+                    <p>Repetir Contraseña</p>
+                </div>
+
+                <div class="login-input">
+                    <i class="fa fa-unlock-alt fa-3x" aria-hidden="true"></i>
+                    <input type="password" formControlName="repeatPass">
+                </div>
+            </div>
+
+            <!-- Buttons-->
+            <div class="customRow" *ngIf="!creationMode">
                 <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
                     Login
                 </button>
-                <button class="btn btn-secondary">
+                <button class="btn btn-secondary" (click)="toggleCreationMode()">
                     Crear cuenta
+                </button>
+            </div>
+
+            <div class="customRow" *ngIf="creationMode">
+                <button class="btn btn-primary" type="button" (click)="createAccount()">
+                    Crear cuenta
+                </button>
+                <button class="btn btn-secondary" (click)="toggleCreationMode()">
+                    Cancelar
                 </button>
             </div>
         </div>
 
     </form>
+
+
+    <div class="alert" [ngClass]="messageClass" role="alert" *ngIf="messageShow">
+        {{messageText}}
+    </div>
+
 </div>
