@@ -50,6 +50,7 @@ export class CommentsService {
   getComments(article){
     let slug = article.slug;
     const urlGetComments = this.baseUrl + 'articles/'+ slug +'/comments';
+
     return this.http.get<any>(urlGetComments);
   }
 }
