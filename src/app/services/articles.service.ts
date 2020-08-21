@@ -1,39 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticlesService {
+  editArticle() {
+    let httpOption = {
+      headers: new HttpHeaders({
+        Authorization: 'Token ' + localStorage.getItem('token'),
+      }),
+    };
+    let putUrl = this.baseUrl + `articles/${this.actualArticle.slug}`;
+    return this.http.put(putUrl, httpOption);
+  }
+  actualArticle: any = {};
+
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
   constructor(private http: HttpClient) {}
-
-  getArticleBySlug(slug){
-    let url = this.baseUrl + 'articles/'+slug;
-    return this.http.get<any>(url);
-  }
 
   getArticles() {
     let url = this.baseUrl + 'articles';
     return this.http.get<any>(url);
   }
+
   deleteArticle(slug) {
-    return this.http.delete(this.baseUrl + `/${slug}`);
-  }
-
-  login(email, pass) {
-    let url = this.baseUrl + 'users/login';
-    let body = {
-      user: {
-        email: email,
-        password: pass,
-      },
+    let httpOption = {
+      headers: new HttpHeaders({
+        Authorization: 'Token ' + localStorage.getItem('token'),
+      }),
     };
-
-    return this.http.post(url, body, {});
+    return this.http.delete(this.baseUrl + `articles/${slug}`, httpOption);
   }
-
   registration(username, email, pass) {
     let url = this.baseUrl + 'users';
     let body = {
@@ -45,42 +44,30 @@ export class ArticlesService {
     };
     return this.http.post(url, body, {});
   }
-}
 
-/*
-"user":{
-    "username": "Jacob",
-    "email": "jake@jake.jake",
-    "password": "jakejake"
-  }
-
-*/
-/*  
-    sendComment(comment, slug) {
-    //login
+  login(user, pass) {
     let url = this.baseUrl + 'users/login';
     let body = {
       user: {
-        email: 'danilobassi44@gmail.com',
-        password: '123456789',
+        email: user,
+        password: pass,
       },
     };
 
-    this.http.post(url, body, {}).subscribe((res: any) => {
-      let token = res.user.token;
-      let postUrl = this.baseUrl + `articles/${slug}/comments`;
-      let httpComment = {
-        comment: {
-          body: comment,
-        },
-      };
-      let httpOption = {
-        headers: new HttpHeaders({ Authorization: 'Token ' + token }),
-      };
-
-      this.http.post(postUrl, httpComment, httpOption).subscribe((res) => {
-        console.log(res);
-      });
-    });
+    return this.http.post(url, body, {});
   }
-*/
+  getArticleBySlug(slug) {
+    let url = this.baseUrl + 'articles/' + slug;
+    return this.http.get<any>(url);
+  }
+
+  postArticle(article) {
+    let httpOption = {
+      headers: new HttpHeaders({
+        Authorization: 'Token ' + localStorage.getItem('token'),
+      }),
+    };
+    let postUrl = this.baseUrl + 'articles';
+    return this.http.post(postUrl, article, httpOption);
+  }
+}

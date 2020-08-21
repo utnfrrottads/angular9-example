@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ArticlesComponent implements OnInit {
 
-  articles:any = [];
+  articles:Array<any> = [];
   page:number = 1;
   totalItems: string;
 
@@ -19,19 +19,24 @@ export class ArticlesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.articles = this.service.getArticles().subscribe((response) => {
+    this.service.getArticles().subscribe((response) => {
       this.articles = response.articles;
-    })
+    });
+
+    
     
   }
-
+  onEdit(article){
+    this.service.actualArticle = article;
+    //this.router.navigate
+  }
   onDelete(article) {
     if (window.confirm("Are you sure?")) {
-      //this.service.deleteArticle(article.slug).subscribe()
+      this.service.deleteArticle(article.slug).subscribe() //Al token del localstorage.getItem('token')
     }
   }
 
-  showArticle(article){
+  showComments(article){
     this.router.navigate(['/article',article.slug]);
   }
 }

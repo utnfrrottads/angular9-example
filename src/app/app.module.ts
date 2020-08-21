@@ -13,13 +13,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { ArticleFormComponent } from './components/article-form/article-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentsComponent,
     ArticlesComponent,
-    LoginComponent
+    LoginComponent,
+    ArticleFormComponent
   ],
   imports: [
     BrowserModule,
