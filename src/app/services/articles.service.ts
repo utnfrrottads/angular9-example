@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticlesService {
+  editArticle() {
+    throw new Error("Method not implemented.");
+  }
 
+  actualArticle:any = {};
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
   constructor(private http: HttpClient) {}
@@ -16,7 +20,10 @@ export class ArticlesService {
   }
 
   deleteArticle(slug) {
-    return this.http.delete(this.baseUrl +  `/${slug}`)
+    let httpOption = {
+      headers: new HttpHeaders({ Authorization: 'Token ' + localStorage.getItem('token') }),
+    };
+    return this.http.delete(this.baseUrl +  `articles/${slug}`,httpOption)
 }
 
   /* 
@@ -60,34 +67,20 @@ export class ArticlesService {
 
     return this.http.post(url, body, {});
   }
-}
 
-/*  
-    sendComment(comment, slug) {
+  postArticle(article) {
     //login
-    let url = this.baseUrl + 'users/login';
-    let body = {
-      user: {
-        email: 'danilobassi44@gmail.com',
-        password: '123456789',
-      },
+  
+      let httpOption = {
+        headers: new HttpHeaders({ Authorization: 'Token ' + localStorage.getItem('token') }),
+      };
+      let postUrl = this.baseUrl+'articles';
+      return this.http.post(postUrl, article, httpOption);
     };
 
-    this.http.post(url, body, {}).subscribe((res: any) => {
-      let token = res.user.token;
-      let postUrl = this.baseUrl + `articles/${slug}/comments`;
-      let httpComment = {
-        comment: {
-          body: comment,
-        },
-      };
-      let httpOption = {
-        headers: new HttpHeaders({ Authorization: 'Token ' + token }),
-      };
+}
 
-      this.http.post(postUrl, httpComment, httpOption).subscribe((res) => {
-        console.log(res);
-      });
-    });
-  }
-*/
+
+    
+  
+

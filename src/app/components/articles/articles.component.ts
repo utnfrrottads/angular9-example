@@ -24,10 +24,13 @@ export class ArticlesComponent implements OnInit {
     })
     
   }
-
+  onEdit(article){
+    this.service.actualArticle = article;
+    //this.router.navigate
+  }
   onDelete(article) {
     if (window.confirm("Are you sure?")) {
-      //this.service.deleteArticle(article.slug).subscribe()
+      this.service.deleteArticle(article.slug).subscribe() //Al token del localstorage.getItem('token')
     }
   }
 
