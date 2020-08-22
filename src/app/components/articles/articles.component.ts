@@ -27,9 +27,13 @@ export class ArticlesComponent implements OnInit {
     
   }
   onEdit(article){
+//  if (article.author.username === localStorage.getItem('author')) {
     this.service.actualArticle = article;
-    //this.router.navigate
+    this.router.navigate(['/editArticle',article.slug]);
+    //}
+        // y sino, me tiene que tirar un alert diciendo que no es el propietario
   }
+
   onDelete(article) {
     if (window.confirm("Are you sure?")) {
       this.service.deleteArticle(article.slug).subscribe() //Al token del localstorage.getItem('token')

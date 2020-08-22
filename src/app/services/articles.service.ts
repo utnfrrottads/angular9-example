@@ -5,17 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ArticlesService {
-  editArticle() {
-    let httpOption = {
-      headers: new HttpHeaders({
-        Authorization: 'Token ' + localStorage.getItem('token'),
-      }),
-    };
-    let putUrl = this.baseUrl + `articles/${this.actualArticle.slug}`;
-    return this.http.put(putUrl, httpOption);
-  }
   actualArticle: any = {};
-
+  
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
   constructor(private http: HttpClient) {}
@@ -69,5 +60,17 @@ export class ArticlesService {
     };
     let postUrl = this.baseUrl + 'articles';
     return this.http.post(postUrl, article, httpOption);
+  }
+
+  editArticle(article) {
+    console.log(article);
+    let httpOption = {
+      headers: new HttpHeaders({
+        Authorization: 'Token ' + localStorage.getItem('token'),
+      }),
+    };
+    let putUrl = this.baseUrl + 'articles/'+ article.slug;
+
+    return this.http.put(putUrl, article, httpOption);
   }
 }

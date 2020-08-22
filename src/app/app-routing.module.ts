@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'article/:slug', component: CommentsComponent },
+  { path: 'editArticle/:slug', component: ArticleFormComponent },
   { path: 'newArticle', component: ArticleFormComponent},
   { path: '**', redirectTo: 'login' },
 ];
