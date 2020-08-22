@@ -25,15 +25,20 @@ export class LoginComponent implements OnInit {
     repeatPass: new FormControl(''),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // si se quiere meter sin estar logeado, lo manda al Login.
+    if (localStorage.getItem('token') === null) {
+      this.router.navigate(['login']);
+    }
+  }
 
   login() {
     this.service
       .login(this.loginForm.value.email, this.loginForm.value.pass)
       .subscribe(
         (res: any) => {
-          let token = res.user.token;
-          localStorage.setItem('token', token);
+          localStorage.setItem('token', res.user.token);
+          localStorage.setItem('username', res.user.username);
           this.router.navigate(['/articles']);
         },
         (err) => {

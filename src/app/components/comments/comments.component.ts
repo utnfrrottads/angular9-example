@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentsService } from 'src/app/services/comments.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { FormControl } from '@angular/forms';
-import { tokenReference } from '@angular/compiler';
 
 @Component({
   selector: 'app-comments',
@@ -20,10 +19,16 @@ export class CommentsComponent implements OnInit {
   constructor(
     private aService: ArticlesService,
     private cService: CommentsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    // si se quiere meter sin estar logeado, lo manda al Login.
+    if (localStorage.getItem('token') === null) {
+      this.router.navigate(['login']);
+    }
+
     //me traigo el slug
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.article = this.aService
