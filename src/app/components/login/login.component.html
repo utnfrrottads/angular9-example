@@ -61,7 +61,7 @@
             </div>
 
             <div class="customRow" *ngIf="creationMode">
-                <button class="btn btn-primary" type="button" (click)="createAccount()">
+                <button class="btn btn-primary" type="button" (click)="createAccount()" [disabled]="!loginForm.valid">
                     Crear cuenta
                 </button>
                 <button class="btn btn-secondary" (click)="toggleCreationMode()">

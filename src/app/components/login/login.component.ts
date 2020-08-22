@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticlesService } from 'src/app/services/articles.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
     username: new FormControl(''),
-    email: new FormControl(''),
-    pass: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    pass: new FormControl('', [Validators.required, Validators.minLength(8)]),
     repeatPass: new FormControl(''),
   });
 
@@ -42,7 +43,6 @@ export class LoginComponent implements OnInit {
           );
         }
       );
-    
   }
 
   createAccount() {
@@ -67,19 +67,11 @@ export class LoginComponent implements OnInit {
             this.messageShow = true;
           },
           (err) => {
-            if (err.error.errors.username[0] === 'has already been taken') {
-              this.showMessage(
-                'Nombre de usuario no disponible.',
-                'alert-danger'
-              );
-            } else if (err.error.errors.email[0] === 'has already been taken') {
-              this.showMessage(
-                'Este email ya se encuentra asociado en otra cuenta.',
-                'alert-danger'
-              );
-            } else {
-              this.showMessage('Error', 'alert-danger');
-            }
+            let errores = stringify(err.error.errors).split('&');
+            let errores_space = errores.map((e) =>
+              e.replace(new RegExp('%20', 'g'), ' ')
+            );
+            this.showMessage(errores_space, 'alert-danger');
           }
         );
     } else {

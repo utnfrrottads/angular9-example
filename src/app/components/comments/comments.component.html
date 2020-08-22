@@ -17,13 +17,15 @@
         <div class="list-group-item list-group-item-action flex-column align-items">
 
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{comment.author.username}}</h5>
+                <h5>{{comment.author.username}}</h5>
                 <small>{{comment.createdAt}}</small>
             </div>
 
-            <img src={{comment.author.image}}>
+            <div class="comment-main">
+                <img class="comment-poster-img" src={{comment.author.image}}>
+                <p class="comment-text">{{comment.body}}</p>
+            </div>
 
-            <p class="mb-1">{{comment.body}}</p>
         </div>
 
         <button class="btn btn-primary mb-2" (click)="deleteComment(comment.id)">Eliminar comentario</button>

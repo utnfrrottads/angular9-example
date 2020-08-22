@@ -17,12 +17,13 @@
         currentPage: page,
         totalItems: totalItems }">
 
-                <td>{{article.title}}</td>
-                <td class="art-description">{{article.description}}</td>
-                <td>{{article.createdAt}}</td>
-                <td><a class="btn btn-warning" (click)="showComments(article)">See Comments</a></td>
-                <td> <button class="btn btn-success" (click)="onEdit(article)">Edit</button> </td>
-                <td><button (click)="onDelete(article)" class="btn btn-danger">Delete</button></td>
+                <td class="art-td">{{article.title}}</td>
+                <td class="art-td">{{article.description}}</td>
+                <td class="art-td">{{article.body}}</td>
+                <td class="art-td-btn-large"><button class="btn btn-warning" (click)="showComments(article)">Ver
+                        comentarios</button></td>
+                <td class="art-td"> <button class="btn btn-success" (click)="onEdit(article)">Editar</button> </td>
+                <td class="art-td"><button (click)="onDelete(article)" class="btn btn-danger">Eliminar</button></td>
             </tr>
         </tbody>
     </table>

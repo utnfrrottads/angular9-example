@@ -30,7 +30,7 @@ export class ArticleFormComponent implements OnInit {
     this.article = {
       title: this.articleForm.controls.title.value,
       body: this.articleForm.controls.body.value,
-      description: this.articleForm.controls.body.value,
+      description: this.articleForm.controls.description.value,
     };
     this.service.postArticle(this.article).subscribe(
       (res) => {

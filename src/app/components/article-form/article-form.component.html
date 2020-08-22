@@ -1,17 +1,18 @@
 <div class="container">
   <form [formGroup]="articleForm" (ngSubmit)="postArticle()">
     <div class="form-group">
-      <input class="form-control" formControlName="title" placeholder="Article Title">
+      <label for="description">Artículo</label>
+      <input class="form-control" formControlName="title" placeholder="Nombre del articulo">
     </div>
 
     <div class="form-group">
-      <label for="description">What is your Article about?</label>
-      <input class="form-control" formControlName="description" placeholder="What is your Article about?">
+      <label for="description">¿De que se trata el artículo?</label>
+      <input class="form-control" formControlName="description" placeholder="Descripción">
     </div>
 
     <div class="form-group">
-      <textarea class="form-control" id="body" formControlName="body"
-        placeholder="Write your article (in markdowns)"></textarea>
+      <textarea class="form-control big-text" id="body" formControlName="body"
+        placeholder="¡Escribe tu artículo!"></textarea>
     </div>
 
     <div>
