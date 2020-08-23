@@ -3,13 +3,16 @@
 }
 .list {
   padding: 0;
+  margin-top: 20px;
 }
 .list-item {
   margin: 0;
   list-style-type: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-bottom: 1px solid lightgrey;
-  width: 80%;
+  //width: 80%;
   display: flex;
   justify-content: space-between;
+  padding: 0px 30px 0px 30px;
+  border-radius: 5px;
 }

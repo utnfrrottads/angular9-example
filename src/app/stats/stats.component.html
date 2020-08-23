@@ -1,6 +1,8 @@
-<div
-    class="progressbar"
-    [ngStyle]="{width: completedPercentage() + '%'}"
->
-{{completedPercentage()}} %
+<div class="progressbar-background">
+    <div
+        class="progressbar"
+        [ngStyle]="{width: completedPercentage() + '%'}"
+    >
+    <span class="progressbar-percentage">{{completedPercentage()}}%</span>
+    </div>
 </div>

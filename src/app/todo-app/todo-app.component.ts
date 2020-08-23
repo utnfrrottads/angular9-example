@@ -10,6 +10,8 @@ import { TodoService } from '../todo.service';
 })
 export class TodoAppComponent  {
 
+  taskToEdit:TodoItem = null;
+
   constructor(
     private service: TodoService
   ) {}
@@ -17,13 +19,26 @@ export class TodoAppComponent  {
   getList() {
     return this.service.list;
   }
+
   onTodoItemRemoved(id) {
     this.service.remove(id);
   }
-  onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+
+  onItemStateChanged(task:TodoItem) {
+    task.toggleCompleted();
   }
-  onTodoItemCreated(task) {
-    this.service.add(task)
+
+  onItemCreated(task:TodoItem) {
+    this.service.add(task);
   }
+
+  onItemUpdating(task:TodoItem) {
+    this.taskToEdit = Object.assign({},task);
+  }
+
+  onItemUpdated(task:TodoItem){
+    this.service.update(task);
+    this.taskToEdit = null;
+  }
+
 }
