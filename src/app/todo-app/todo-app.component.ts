@@ -10,7 +10,7 @@ import { TodoService } from '../todo.service';
 })
 export class TodoAppComponent  {
 
-  taskToEdit:any = "";
+  taskToEdit:TodoItem = null;
 
   constructor(
     private service: TodoService
@@ -33,13 +33,12 @@ export class TodoAppComponent  {
   }
 
   onItemUpdating(task:TodoItem) {
-    this.taskToEdit = task;
+    this.taskToEdit = Object.assign({},task);
   }
 
-  onItemUpdated(taskDescription){
-    this.taskToEdit.description = taskDescription;
-    this.taskToEdit = '';
-    //this.service.update(this.taskToEdit);  //en caso de implementar persistencia
+  onItemUpdated(task:TodoItem){
+    this.service.update(task);
+    this.taskToEdit = null;
   }
 
 }

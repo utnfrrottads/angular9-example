@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, Input, OnChanges} from '@angular/core';
 import { TodoItem } from '../model/todo-item';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,32 +10,41 @@ import { Subscription } from 'rxjs';
 })
 export class TodoFormComponent implements OnChanges {
 
-  taskDescriptionControl = new FormControl('');
+  taskControl = new FormGroup({
+    description: new FormControl('',Validators.required), //mismo nombre que atributos de TodoItem
+    url: new FormControl('',[
+      Validators.required,
+      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')
+    ])
+  });
+
   saveButtonText='Create';
   descriptionChangesSubscription:Subscription = null;
+
   @Output() add = new EventEmitter();
   @Output() update = new EventEmitter();
-  @Input() descriptionToEdit;
+  @Input() taskToEdit;
 
   ngOnChanges(){
-    if(!this.descriptionToEdit){
+    if(!this.taskToEdit){
       this.saveButtonText = 'Create';
     }
     else{
       this.saveButtonText = 'Update';
-      this.descriptionChangesSubscription = this.taskDescriptionControl.valueChanges.subscribe(
-        value => this.descriptionToEdit = value
+      this.descriptionChangesSubscription = this.taskControl.valueChanges.subscribe(
+        value => this.taskToEdit = Object.assign(this.taskToEdit, value)
         );
-      this.taskDescriptionControl.setValue(this.descriptionToEdit)
+
+      this.taskControl.patchValue({description: this.taskToEdit.description, url: this.taskToEdit.url})
     }
   }
 
   save(){
-    if(!this.taskDescriptionControl.value || this.taskDescriptionControl.value === '') {
+    if(!this.taskControl.value || this.taskControl.untouched) {
       return;
     }
 
-    if(!this.descriptionToEdit){
+    if(!this.taskToEdit){
       this.addTask();
     }
     else{
@@ -45,16 +54,16 @@ export class TodoFormComponent implements OnChanges {
 
   addTask(){
     let task = new TodoItem();
-    task.description = this.taskDescriptionControl.value;
+    task = Object.assign(task,this.taskControl.value);
     task.isCompleted = false;
     this.add.emit(task);
-    this.taskDescriptionControl.reset();
+    this.taskControl.reset();
   }
 
   updateTask(){
     this.descriptionChangesSubscription.unsubscribe();
-    this.taskDescriptionControl.reset();
-    this.update.emit(this.descriptionToEdit);
+    this.taskControl.reset();
+    this.update.emit(this.taskToEdit);
   }
 }
 

@@ -1,5 +1,5 @@
 <app-todo-form
-  [descriptionToEdit]="taskToEdit.description"
+  [taskToEdit]="taskToEdit"
   (add)="onItemCreated($event)"
   (update)="onItemUpdated($event)"
   >

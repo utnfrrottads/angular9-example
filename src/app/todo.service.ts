@@ -26,7 +26,9 @@ export class TodoService {
 
   update(task:TodoItem) {
     const index = this.list.findIndex(element => element.id === task.id);
-    this.list[index].description=task.description;
+    const t = this.list[index];
+    t.description = task.description;
+    t.url = task.url;
   }
 
   incompletedSize() {

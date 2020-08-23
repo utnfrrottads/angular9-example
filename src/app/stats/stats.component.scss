@@ -1,6 +1,20 @@
 .progressbar {
-    background-color: green;
+    background-color: rgb(1, 228, 1);
+    transition: width 0.4s;
+    height: inherit;
+    border-radius: inherit;
+    
+}
+
+.progressbar-background{
     height: 50px;
     font-size: x-large;
-    transition: width 0.3s;
+    border-radius: 30px;
+    background-color: lightgrey;
+}
+
+.progressbar-percentage{
+    position: relative;
+    left: 500px;
+    font-weight: bold;
 }
