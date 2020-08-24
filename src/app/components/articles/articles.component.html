@@ -22,8 +22,8 @@
                 <td class="art-td">{{article.body}}</td>
                 <td class="art-td-btn-large"><button class="btn btn-warning" (click)="showComments(article)">Ver
                         comentarios</button></td>
-                <td class="art-td"> <button class="btn btn-success" (click)="onEdit(article)">Editar</button> </td>
-                <td class="art-td"><button (click)="onDelete(article)" class="btn btn-danger">Eliminar</button></td>
+                <td *ngIf="canEdit(article)" class="art-td"> <button class="btn btn-success" (click)="onEdit(article)">Editar</button> </td>
+                <td *ngIf="canEdit(article)" class="art-td"><button (click)="onDelete(article)" class="btn btn-danger">Eliminar</button></td>
             </tr>
         </tbody>
     </table>

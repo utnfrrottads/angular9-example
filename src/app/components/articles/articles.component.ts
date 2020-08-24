@@ -15,7 +15,7 @@ export class ArticlesComponent implements OnInit {
   constructor(private router: Router, private service: ArticlesService) {}
 
   ngOnInit(): void {
-    // si se quiere meter sin estar logeado, lo manda al Login.
+   
     if (localStorage.getItem('token') === null) {
       this.router.navigate(['login']);
     }
@@ -34,11 +34,17 @@ export class ArticlesComponent implements OnInit {
 
   onDelete(article) {
     if (window.confirm('Are you sure?')) {
-      this.service.deleteArticle(article.slug).subscribe(); //Al token del localstorage.getItem('token')
+      this.service.deleteArticle(article.slug).subscribe(); 
     }
   }
 
   showComments(article) {
     this.router.navigate(['/article', article.slug]);
+  }
+
+  canEdit(article){
+    if (article.author.username === localStorage.getItem('username')) 
+      return true;
+        return false;
   }
 }
