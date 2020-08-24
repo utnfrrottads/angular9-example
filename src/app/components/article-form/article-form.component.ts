@@ -16,10 +16,14 @@ export class ArticleFormComponent implements OnInit {
     body: new FormControl('', [Validators.required]), 
   });
 
-  slug:any;
-  editionMode:boolean = false;
+  slug: any;
+  editionMode: boolean = false;
 
-  constructor(private service: ArticlesService, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private service: ArticlesService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // si se quiere meter sin estar logeado, lo manda al Login.
@@ -28,18 +32,18 @@ export class ArticleFormComponent implements OnInit {
     }
 
     //si trajo un article slug, significa que estoy editando:
-    if (this.route.snapshot.paramMap.get('slug') !== null){
-    this.slug = this.route.snapshot.paramMap.get('slug');
+    if (this.route.snapshot.paramMap.get('slug') !== null) {
+      this.slug = this.route.snapshot.paramMap.get('slug');
 
-    this.service
-      .getArticleBySlug(this.slug)
-      .subscribe((res) => {
+      this.service.getArticleBySlug(this.slug).subscribe((res) => {
         this.article = res.article;
         //lleno los campos del form
 
         this.articleForm.controls.title.patchValue(this.article.title);
         this.articleForm.controls.body.patchValue(this.article.body);
-        this.articleForm.controls.description.patchValue(this.article.description);
+        this.articleForm.controls.description.patchValue(
+          this.article.description
+        );
         this.articleForm.controls.slug.patchValue(this.article.slug);
       });
       this.toggleEditionMode();
@@ -50,10 +54,8 @@ export class ArticleFormComponent implements OnInit {
     this.editionMode = !this.editionMode;
   }
 
-
   postArticle() {
-    if (!this.editionMode){
-
+    if (!this.editionMode) {
       this.article = {
         title: this.articleForm.controls.title.value,
         body: this.articleForm.controls.body.value,
@@ -68,9 +70,7 @@ export class ArticleFormComponent implements OnInit {
           console.log(error);
         }
       );
-    }
-
-    if (this.editionMode){
+    } else {
       this.article = {
         title: this.articleForm.controls.title.value,
         body: this.articleForm.controls.body.value,
@@ -80,9 +80,7 @@ export class ArticleFormComponent implements OnInit {
 
       this.service.editArticle(this.article).subscribe(
         (res) => {
-          //hago el console.log para ver si se cargó el articulo
-          console.log(res)
-          //this.router.navigate(['articles']);
+          this.router.navigate(['articles']);
         },
         (error) => {
           console.log(error);

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommentsService } from 'src/app/services/comments.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from 'src/app/services/articles.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-comments',
@@ -40,12 +40,13 @@ export class CommentsComponent implements OnInit {
   }
 
   //FormControl
-  commentControl = new FormControl('');
+  commentControl = new FormControl('',[Validators.required]);
 
   //ABC comments
 
   //Alta
   setComment() {
+    if (this.commentControl.value !== null){
     this.token = localStorage.getItem('token');
     this.comment = {
       comment: {
@@ -59,6 +60,7 @@ export class CommentsComponent implements OnInit {
         this.commentControl.patchValue('');
         this.getComments(this.article);
       });
+    }
   }
 
   //Baja
@@ -76,5 +78,11 @@ export class CommentsComponent implements OnInit {
     this.cService.getComments(article).subscribe((response) => {
       this.comments = response.comments;
     });
+  }
+
+  canEdit(comment){
+    if (comment.author.username === localStorage.getItem('username')) 
+      return true;
+        return false;
   }
 }

@@ -7,7 +7,7 @@
                 <th>Descripcion</th>
                 <th>Cuerpo</th>
                 <th>Comentarios</th>
-   
+
             </tr>
         </thead>
         <tbody>
@@ -25,12 +25,14 @@
                             comentarios</button>
                     </div>
                     <div>
-                        <button *ngIf="canEdit(article)" class="btn btn-success art-td-btn-large" (click)="onEdit(article)">Editar</button>
-                    </div>   
+                        <button *ngIf="canEdit(article)" class="btn btn-success art-td-btn-large"
+                            (click)="onEdit(article)">Editar</button>
+                    </div>
                     <div>
-                        <button *ngIf="canEdit(article)" (click)="onDelete(article)" class="btn btn-danger art-td-btn-large">Eliminar</button>
-                    </div>                          
-                    </td>
+                        <button *ngIf="canEdit(article)" (click)="onDelete(article)"
+                            class="btn btn-danger art-td-btn-large">Eliminar</button>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>

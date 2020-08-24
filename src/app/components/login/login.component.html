@@ -8,11 +8,12 @@
                 <div class="indicator">
                     <p>Nombre de usuario</p>
                 </div>
-
                 <div class="login-input">
                     <i class="fa fa-user fa-3x" aria-hidden="true"></i>
                     <input type="text" formControlName="username">
                 </div>
+                <em *ngIf="this.loginForm.controls.username.touched && this.loginForm.controls.username.invalid">* Debe
+                    tener como minimo 1 caracter</em>
             </div>
 
 
@@ -25,6 +26,8 @@
                     <i class="fa  fa-address-book fa-3x" aria-hidden="true"></i>
                     <input type="text" formControlName="email">
                 </div>
+                <em *ngIf="this.loginForm.controls.email.touched && this.loginForm.controls.email.invalid">* Formato
+                    incorrecto. Ej: ejemplo@gmail.com</em>
             </div>
 
 
@@ -36,7 +39,8 @@
                     <i class="fa fa-unlock-alt fa-3x" aria-hidden="true"></i>
                     <input type="password" formControlName="pass">
                 </div>
-                <em style="color:aliceblue; font-size:30px;" *ngIf="this.loginForm.controls.pass.touched && this.loginForm.controls.pass.invalid">Pone la pw wacho</em>
+                <em *ngIf="this.loginForm.controls.pass.touched && this.loginForm.controls.pass.invalid">* Debe tener
+                    minimo 8 letras</em>
             </div>
 
             <!-- solo se muestra si esta en modo crear -->
