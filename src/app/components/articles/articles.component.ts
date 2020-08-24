@@ -15,11 +15,10 @@ export class ArticlesComponent implements OnInit {
   constructor(private router: Router, private service: ArticlesService) {}
 
   ngOnInit(): void {
-   
     if (localStorage.getItem('token') === null) {
       this.router.navigate(['login']);
     }
-    
+
     this.service.getArticles().subscribe((response) => {
       this.articles = response.articles;
       console.log(this.articles);
@@ -35,7 +34,7 @@ export class ArticlesComponent implements OnInit {
 
   onDelete(article) {
     if (window.confirm('Are you sure?')) {
-      this.service.deleteArticle(article.slug).subscribe(); 
+      this.service.deleteArticle(article.slug).subscribe();
     }
   }
 
@@ -43,9 +42,9 @@ export class ArticlesComponent implements OnInit {
     this.router.navigate(['/article', article.slug]);
   }
 
-  canEdit(article){
-    if (article.author.username === localStorage.getItem('username')) 
+  canEdit(article) {
+    if (article.author.username === localStorage.getItem('username'))
       return true;
-        return false;
+    return false;
   }
 }
