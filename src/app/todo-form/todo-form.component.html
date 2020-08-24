@@ -1,10 +1,6 @@
-
-<input type="text" #taskDescription class="add-todo">
-
-<button
-  class="btn btn-primary"
-  (click)="save(taskDescription)">
-  Create
-</button>
-
-
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="description" class="add-todo" />
+  <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">
+    Create
+  </button>
+</form>
