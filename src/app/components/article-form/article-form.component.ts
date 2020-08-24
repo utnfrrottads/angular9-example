@@ -10,10 +10,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ArticleFormComponent implements OnInit {
   article: any;
-  articleForm = new FormGroup({   
+  articleForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    body: new FormControl('', [Validators.required]), 
+    body: new FormControl('', [Validators.required]),
   });
 
   slug: any;
@@ -39,12 +39,12 @@ export class ArticleFormComponent implements OnInit {
         this.article = res.article;
         //lleno los campos del form
 
-        this.articleForm.controls.title.patchValue(this.article.title);
-        this.articleForm.controls.body.patchValue(this.article.body);
-        this.articleForm.controls.description.patchValue(
-          this.article.description
-        );
-        this.articleForm.controls.slug.patchValue(this.article.slug);
+        this.articleForm.patchValue({
+          title: this.article.title,
+          body: this.article.body,
+          description: this.article.description,
+        });
+        this.slug = this.article.slug;
       });
       this.toggleEditionMode();
     }
@@ -75,7 +75,7 @@ export class ArticleFormComponent implements OnInit {
         title: this.articleForm.controls.title.value,
         body: this.articleForm.controls.body.value,
         description: this.articleForm.controls.description.value,
-        slug: this.articleForm.controls.slug.value,
+        slug: this.slug,
       };
 
       this.service.editArticle(this.article).subscribe(
