@@ -59,7 +59,8 @@ export class CommentsComponent implements OnInit {
       .subscribe((res) => {
         this.commentControl.patchValue('');
         this.getComments(this.article);
-      });
+      });    
+      
     }
   }
 

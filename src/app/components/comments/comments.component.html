@@ -5,13 +5,13 @@
     </div>
 
     <div class="form-inline; display: inline">
-        <div class="form-group mx-sm-3 ancho">
-            <textarea class="form-control mb-2" rows="3" cols="134" [formControl]="commentControl"></textarea>
-        <button type="submit" class="btn btn-primary mb-2" (click)="setComment()">Comentar</button>
-          </div>
-
-        <em *ngIf="commentControl.touched && commentControl.invalid">Tenes que escribir un comentario</em>
-
+        <div class="form-group mx-sm-3">
+            <textarea class="form-control mb-2" rows="3" cols="134" [formControl]="commentControl"
+            placeholder="Ingrese su comentario aquí"></textarea>
+            
+            <button type="submit" class="btn btn-primary mb-2" (click)="setComment()" [disabled]="!commentControl.valid">Comentar</button>
+          
+        </div>
     </div>
 
 
