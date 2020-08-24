@@ -1,5 +1,6 @@
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
   <input type="text" formControlName="description" class="add-todo" />
+  <input type="text" formControlName="url" class="add-todo" />
   <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">
     Create
   </button>

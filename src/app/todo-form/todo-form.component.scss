@@ -1,3 +1,11 @@
 .add-todo {
-  width: 80%
+  width: 80%;
+}
+
+input.ng-valid {
+  border: 3px solid green;
+}
+
+input.ng-invalid {
+  border: 3px solid red;
 }
