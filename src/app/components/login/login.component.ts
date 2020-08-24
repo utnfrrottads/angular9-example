@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   messageClass: string = '';
 
   loginForm = new FormGroup({
-    username: new FormControl(''),
+    username: new FormControl('', Validators.minLength(1)),
     email: new FormControl('', [Validators.required, Validators.email]),
     pass: new FormControl('', [Validators.required, Validators.minLength(8)]),
     repeatPass: new FormControl(''),
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         },
         (err) => {
           this.showMessage(
-            'Error al logearse. Intente denuevo.',
+            'Error al logearse. Intente de nuevo.',
             'alert-danger'
           );
         }

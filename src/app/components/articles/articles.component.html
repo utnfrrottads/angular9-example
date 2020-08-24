@@ -7,8 +7,7 @@
                 <th>Descripcion</th>
                 <th>Cuerpo</th>
                 <th>Comentarios</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
+
             </tr>
         </thead>
         <tbody>
@@ -20,10 +19,20 @@
                 <td class="art-td">{{article.title}}</td>
                 <td class="art-td">{{article.description}}</td>
                 <td class="art-td">{{article.body}}</td>
-                <td class="art-td-btn-large"><button class="btn btn-warning" (click)="showComments(article)">Ver
-                        comentarios</button></td>
-                <td *ngIf="canEdit(article)" class="art-td"> <button class="btn btn-success" (click)="onEdit(article)">Editar</button> </td>
-                <td *ngIf="canEdit(article)" class="art-td"><button (click)="onDelete(article)" class="btn btn-danger">Eliminar</button></td>
+                <td class="art-td-btn-large">
+                    <div>
+                        <button class="btn btn-warning art-td-btn-large" (click)="showComments(article)">Ver
+                            comentarios</button>
+                    </div>
+                    <div>
+                        <button *ngIf="canEdit(article)" class="btn btn-success art-td-btn-large"
+                            (click)="onEdit(article)">Editar</button>
+                    </div>
+                    <div>
+                        <button *ngIf="canEdit(article)" (click)="onDelete(article)"
+                            class="btn btn-danger art-td-btn-large">Eliminar</button>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
