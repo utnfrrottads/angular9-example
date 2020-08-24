@@ -66,9 +66,7 @@ export class ArticleFormComponent implements OnInit {
         (res) => {
           this.router.navigate(['articles']);
         },
-        (error) => {
-          console.log(error);
-        }
+        (error) => {}
       );
     } else {
       this.article = {
@@ -82,9 +80,7 @@ export class ArticleFormComponent implements OnInit {
         (res) => {
           this.router.navigate(['articles']);
         },
-        (error) => {
-          console.log(error);
-        }
+        (error) => {}
       );
     }
   }

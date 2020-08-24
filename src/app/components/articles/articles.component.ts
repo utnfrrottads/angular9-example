@@ -24,18 +24,15 @@ export class ArticlesComponent implements OnInit {
     });
   }
   onEdit(article) {
-    //  if (article.author.username === localStorage.getItem('author')) {
     this.service.actualArticle = article;
     this.router.navigate(['/editArticle', article.slug]);
-    //}
-    // y sino, me tiene que tirar un alert diciendo que no es el propietario
   }
 
   onDelete(article) {
-    if (window.confirm('Are you sure?')) {
+    if (window.confirm('¿Estas seguro?')) {
       this.service.deleteArticle(article.slug).subscribe();
-      let index = this.articles.findIndex(e => article.slug === e.slug );
-      this.articles.splice(index,1);
+      let index = this.articles.findIndex((e) => article.slug === e.slug);
+      this.articles.splice(index, 1);
     }
   }
 
