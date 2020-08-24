@@ -34,6 +34,8 @@ export class ArticlesComponent implements OnInit {
   onDelete(article) {
     if (window.confirm('Are you sure?')) {
       this.service.deleteArticle(article.slug).subscribe();
+      let index = this.articles.findIndex(e => article.slug === e.slug );
+      this.articles.splice(index,1);
     }
   }
 
