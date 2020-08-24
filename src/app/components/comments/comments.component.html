@@ -1,14 +1,15 @@
 <div class="container">
     <div class="jumbotron mt-3">
         <h1>{{article.title}}</h1>
-        <p class="lead">{{article.description}}</p>
+        <h2 class="lead">{{article.description}}</h2>
+        <p> {{article.body}}</p>
     </div>
 
     <div class="form-inline; display: inline">
         <div class="form-group mx-sm-3 ancho">
             <textarea class="form-control mb-2" rows="3" cols="134" [formControl]="commentControl"></textarea>
-        <button type="submit" class="btn btn-primary mb-2" (click)="setComment()">Comentar</button>
-          </div>
+            <button type="submit" class="btn btn-primary mb-2" (click)="setComment()">Comentar</button>
+        </div>
 
         <em *ngIf="commentControl.touched && commentControl.invalid">Tenes que escribir un comentario</em>
 
@@ -24,13 +25,16 @@
             </div>
 
             <div class="comment-main">
-                <img class="comment-poster-img" src={{comment.author.image}}>
+                <div class="image-container">
+                    <img class="comment-poster-img" src={{comment.author.image}}>
+                </div>
+
                 <p class="comment-text">{{comment.body}}</p>
             </div>
-
         </div>
 
-        <button *ngIf="canEdit(comment)" class="btn btn-primary" (click)="deleteComment(comment.id)">Eliminar comentario</button>
+        <button *ngIf="canEdit(comment)" class="btn btn-primary" (click)="deleteComment(comment.id)">Eliminar
+            comentario</button>
 
     </div>
 

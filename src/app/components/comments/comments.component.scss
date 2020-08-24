@@ -1,11 +1,25 @@
-.comment-main{
-    display: flex;
-    justify-content: left
+.comment-main {
+  display: flex;
+  justify-content: left;
+  background-color: #e9ecef;
+
+  border-radius: 5px;
 }
-.comment-text{
-    padding: 0 0 0 10px
+.comment-text {
+  padding: 0 0 0 10px;
 }
 
-.comment-poster-img{
-    max-height: 128px;
+.comment-poster-img {
+  max-height: 128px;
+  max-width: 128px;
+}
+.image-container {
+  height: 128px;
+  width: 128px;
+  display: flex;
+  justify-content: center;
+}
+
+.list-group-item{
+    padding-bottom: 0px;
 }
