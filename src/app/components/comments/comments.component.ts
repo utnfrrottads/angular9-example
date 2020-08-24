@@ -15,6 +15,7 @@ export class CommentsComponent implements OnInit {
   slug: any;
   comments: any = [];
   comment: any;
+  commentControl = new FormControl('', [Validators.required]);
 
   constructor(
     private aService: ArticlesService,
@@ -29,7 +30,7 @@ export class CommentsComponent implements OnInit {
       this.router.navigate(['login']);
     }
 
-    //me traigo el slug
+    // me traigo el slug
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.article = this.aService
       .getArticleBySlug(this.slug)
@@ -39,32 +40,24 @@ export class CommentsComponent implements OnInit {
       });
   }
 
-  //FormControl
-  commentControl = new FormControl('',[Validators.required]);
-
-  //ABC comments
-
-  //Alta
   setComment() {
-    if (this.commentControl.value !== null){
-    this.token = localStorage.getItem('token');
-    this.comment = {
-      comment: {
-        body: this.commentControl.value,
-      },
-    };
+    if (this.commentControl.value !== null) {
+      this.token = localStorage.getItem('token');
+      this.comment = {
+        comment: {
+          body: this.commentControl.value,
+        },
+      };
 
-    this.cService
-      .setComment(this.comment, this.article.slug, this.token)
-      .subscribe((res) => {
-        this.commentControl.patchValue('');
-        this.getComments(this.article);
-      });    
-      
+      this.cService
+        .setComment(this.comment, this.article.slug, this.token)
+        .subscribe((res) => {
+          this.commentControl.patchValue('');
+          this.getComments(this.article);
+        });
     }
   }
 
-  //Baja
   deleteComment(commentId) {
     this.token = localStorage.getItem('token');
     this.cService
@@ -74,16 +67,17 @@ export class CommentsComponent implements OnInit {
       });
   }
 
-  //Consulta
   getComments(article) {
     this.cService.getComments(article).subscribe((response) => {
       this.comments = response.comments;
     });
   }
 
-  canEdit(comment){
-    if (comment.author.username === localStorage.getItem('username')) 
+  canEdit(comment) {
+    if (comment.author.username === localStorage.getItem('username')) {
       return true;
-        return false;
+    }
+
+    return false;
   }
 }

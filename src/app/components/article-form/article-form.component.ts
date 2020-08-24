@@ -17,7 +17,7 @@ export class ArticleFormComponent implements OnInit {
   });
 
   slug: any;
-  editionMode: boolean = false;
+  editionMode = false;
 
   constructor(
     private service: ArticlesService,
@@ -31,13 +31,13 @@ export class ArticleFormComponent implements OnInit {
       this.router.navigate(['login']);
     }
 
-    //si trajo un article slug, significa que estoy editando:
+    // si trajo un article slug, significa que estoy editando:
     if (this.route.snapshot.paramMap.get('slug') !== null) {
       this.slug = this.route.snapshot.paramMap.get('slug');
 
       this.service.getArticleBySlug(this.slug).subscribe((res) => {
         this.article = res.article;
-        //lleno los campos del form
+        // lleno los campos del form
 
         this.articleForm.patchValue({
           title: this.article.title,

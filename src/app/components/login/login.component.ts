@@ -12,11 +12,11 @@ import { stringify } from 'querystring';
 export class LoginComponent implements OnInit {
   constructor(private service: ArticlesService, private router: Router) {}
 
-  creationMode: boolean = false;
+  creationMode = false;
 
-  messageShow: boolean = false;
-  messageText: string = '';
-  messageClass: string = '';
+  messageShow = false;
+  messageText = '';
+  messageClass = '';
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.minLength(1)),
@@ -72,11 +72,11 @@ export class LoginComponent implements OnInit {
             this.messageShow = true;
           },
           (err) => {
-            let errores = stringify(err.error.errors).split('&');
-            let errores_space = errores.map((e) =>
+            const errores = stringify(err.error.errors).split('&');
+            const erroresSpace = errores.map((e) =>
               e.replace(new RegExp('%20', 'g'), ' ')
             );
-            this.showMessage(errores_space, 'alert-danger');
+            this.showMessage(erroresSpace, 'alert-danger');
           }
         );
     } else {

@@ -6,30 +6,30 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ArticlesService {
   actualArticle: any = {};
-  
+
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
   constructor(private http: HttpClient) {}
 
   getArticles() {
-    let url = this.baseUrl + 'articles';
+    const url = this.baseUrl + 'articles';
     return this.http.get<any>(url);
   }
 
   deleteArticle(slug) {
-    let httpOption = {
+    const httpOption = {
       headers: new HttpHeaders({
         Authorization: 'Token ' + localStorage.getItem('token'),
       }),
     };
     return this.http.delete(this.baseUrl + `articles/${slug}`, httpOption);
   }
-  registration(username, email, pass) {
-    let url = this.baseUrl + 'users';
-    let body = {
+  registration(usernameParam, emailParam, pass) {
+    const url = this.baseUrl + 'users';
+    const body = {
       user: {
-        username: username,
-        email: email,
+        username: usernameParam,
+        email: emailParam,
         password: pass,
       },
     };
@@ -37,8 +37,8 @@ export class ArticlesService {
   }
 
   login(user, pass) {
-    let url = this.baseUrl + 'users/login';
-    let body = {
+    const url = this.baseUrl + 'users/login';
+    const body = {
       user: {
         email: user,
         password: pass,
@@ -48,28 +48,28 @@ export class ArticlesService {
     return this.http.post(url, body, {});
   }
   getArticleBySlug(slug) {
-    let url = this.baseUrl + 'articles/' + slug;
+    const url = this.baseUrl + 'articles/' + slug;
     return this.http.get<any>(url);
   }
 
   postArticle(article) {
-    let httpOption = {
+    const httpOption = {
       headers: new HttpHeaders({
         Authorization: 'Token ' + localStorage.getItem('token'),
       }),
     };
-    let postUrl = this.baseUrl + 'articles';
+    const postUrl = this.baseUrl + 'articles';
     return this.http.post(postUrl, article, httpOption);
   }
 
   editArticle(article) {
     console.log(article);
-    let httpOption = {
+    const httpOption = {
       headers: new HttpHeaders({
         Authorization: 'Token ' + localStorage.getItem('token'),
       }),
     };
-    let putUrl = this.baseUrl + 'articles/'+ article.slug;
+    const putUrl = this.baseUrl + 'articles/' + article.slug;
 
     return this.http.put(putUrl, article, httpOption);
   }

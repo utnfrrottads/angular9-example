@@ -10,12 +10,9 @@ export class CommentsService {
   constructor(private http: HttpClient) {}
   response: any;
 
-  //ABC comments
-
-  //Alta
   setComment(comment, slug, token) {
-    let urlComment = this.baseUrl + 'articles/' + slug + '/comments';
-    let httpOptions = {
+    const urlComment = this.baseUrl + 'articles/' + slug + '/comments';
+    const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Token ' + token,
       }),
@@ -24,13 +21,12 @@ export class CommentsService {
     return this.http.post(urlComment, comment, httpOptions);
   }
 
-  //Baja
   deleteComment(commentId, article, token) {
-    let slug = article.slug;
+    const slug = article.slug;
 
     const urlDelete =
       this.baseUrl + 'articles/' + slug + '/comments/' + commentId;
-    let httpOptions = {
+    const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Token ' + token,
       }),
@@ -39,9 +35,8 @@ export class CommentsService {
     return this.http.delete<any>(urlDelete, httpOptions);
   }
 
-  //Consulta
   getComments(article) {
-    let slug = article.slug;
+    const slug = article.slug;
     const urlGetComments = this.baseUrl + 'articles/' + slug + '/comments';
     return this.http.get<any>(urlGetComments);
   }

@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ArticlesComponent implements OnInit {
   articles: Array<any> = [];
-  page: number = 1;
+  page = 1;
   totalItems: string;
 
   constructor(private router: Router, private service: ArticlesService) {}
@@ -31,7 +31,7 @@ export class ArticlesComponent implements OnInit {
   onDelete(article) {
     if (window.confirm('¿Estas seguro?')) {
       this.service.deleteArticle(article.slug).subscribe();
-      let index = this.articles.findIndex((e) => article.slug === e.slug);
+      const index = this.articles.findIndex((e) => article.slug === e.slug);
       this.articles.splice(index, 1);
     }
   }
@@ -41,8 +41,9 @@ export class ArticlesComponent implements OnInit {
   }
 
   canEdit(article) {
-    if (article.author.username === localStorage.getItem('username'))
+    if (article.author.username === localStorage.getItem('username')) {
       return true;
+    }
     return false;
   }
 }
