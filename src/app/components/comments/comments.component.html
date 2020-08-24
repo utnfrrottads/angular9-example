@@ -3,16 +3,14 @@
         <h1>{{article.title}}</h1>
         <h2 class="lead">{{article.description}}</h2>
         <p> {{article.body}}</p>
+        <small class="date-right">{{article.createdAt}}</small>
     </div>
 
     <div class="form-inline; display: inline">
 
         <div class="form-group mx-sm-3">
-            <textarea class="form-control mb-2" rows="3" cols="134" [formControl]="commentControl"
-            placeholder="Ingrese su comentario aquí"></textarea>
-            
-            <button type="submit" class="btn btn-primary mb-2" (click)="setComment()" [disabled]="!commentControl.valid">Comentar</button>
-          
+            <textarea class="form-control mb-2" rows="3" cols="134" [formControl]="commentControl"  placeholder="Ingrese su comentario aquí"></textarea>
+            <button type="submit" class="btn btn-primary mb-2" (click)="setComment()" [disabled]="!commentControl.valid">Comentar</button>        
         </div>
 
     </div>
