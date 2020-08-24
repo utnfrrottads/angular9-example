@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -10,12 +10,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ArticleFormComponent implements OnInit {
   article: any;
-  articleForm = new FormGroup({
-    tags: new FormControl(''),
-    title: new FormControl(''),
-    description: new FormControl(''),
-    body: new FormControl(''),
-    slug: new FormControl(''),
+  articleForm = new FormGroup({   
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    body: new FormControl('', [Validators.required]), 
   });
 
   slug: any;
