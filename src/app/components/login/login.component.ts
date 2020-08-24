@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         },
         (err) => {
           this.showMessage(
-            'Error al logearse. Intente denuevo.',
+            'Error al logearse. Intente de nuevo.',
             'alert-danger'
           );
         }

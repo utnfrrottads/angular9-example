@@ -36,6 +36,7 @@
                     <i class="fa fa-unlock-alt fa-3x" aria-hidden="true"></i>
                     <input type="password" formControlName="pass">
                 </div>
+                <em style="color:aliceblue; font-size:30px;" *ngIf="this.loginForm.controls.pass.touched && this.loginForm.controls.pass.invalid">Pone la pw wacho</em>
             </div>
 
             <!-- solo se muestra si esta en modo crear -->
