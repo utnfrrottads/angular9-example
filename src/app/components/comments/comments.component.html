@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="jumbotron mt-3">
+        <h1>{{article.title}}</h1>
+        <h2 class="lead">{{article.description}}</h2>
+        <p> {{article.body}}</p>
+        <small class="date-right">{{article.createdAt}}</small>
+    </div>
+
+    <div class="comment-area">
+        <div class="form-group mx-sm-3">
+
+            <textarea class="form-control mb-2 txt-area" rows="3" cols="134" [formControl]="commentControl"
+                placeholder="Ingrese su comentario aquí" ></textarea>
+
+            <button type="submit" class="btn btn-primary mb-2 btn-comentar" (click)="setComment()"
+                [disabled]="!commentControl.valid">Comentar</button>
+        </div>
+    </div>
+
+
+    <div class="list-group mb-2" *ngFor="let comment of comments">
+        <div class="list-group-item list-group-item-action flex-column align-items">
+
+            <div class="d-flex w-100 justify-content-between">
+                <h5>{{comment.author.username}}</h5>
+                <small>{{comment.createdAt}}</small>
+            </div>
+
+            <div class="comment-main">
+                <div class="image-container">
+                    <img class="comment-poster-img" src={{comment.author.image}}>
+                </div>
+
+                <p class="comment-text">{{comment.body}}</p>
+            </div>
+        </div>
+
+        <button *ngIf="canEdit(comment)" class="btn btn-primary" (click)="deleteComment(comment.id)">Eliminar
+            comentario</button>
+
+    </div>
+
+
+</div>

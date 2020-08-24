@@ -1,0 +1,42 @@
+.comment-main {
+  display: flex;
+  justify-content: left;
+  background-color: #e9ecef;
+
+  border-radius: 5px;
+}
+.comment-text {
+  padding: 0 0 0 10px;
+}
+
+.comment-poster-img {
+  max-height: 128px;
+  max-width: 128px;
+  border-radius: 5px;
+}
+.image-container {
+  height: 128px;
+  width: 128px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.list-group-item{
+    padding-bottom: 0px;
+}
+
+
+.date-right{
+  float: right;
+}
+
+.comment-area{
+    height: 150px;
+}
+.btn-comentar{
+    float: right;
+}
+.txt-area{
+    resize: none;
+}

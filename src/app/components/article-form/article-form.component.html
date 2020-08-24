@@ -1,0 +1,40 @@
+<div class="container">
+  <form [formGroup]="articleForm" (ngSubmit)="postArticle()">
+    <div class="form-group">
+      <label for="description">Artículo</label>
+      <input class="form-control" formControlName="title" placeholder="Título del Artículo">
+    </div>
+    <div class="error">
+      <em  *ngIf="this.articleForm.controls.title.touched && this.articleForm.controls.title.invalid">* Ingrese título</em>
+    </div>
+
+    <div class="form-group">
+      <label for="description">¿De que se trata el artículo?</label>
+      <input class="form-control" formControlName="description" placeholder="Descripción">
+    </div>
+    <div class="error">
+      <em  *ngIf="this.articleForm.controls.description.touched && this.articleForm.controls.description.invalid">* Ingrese descripción</em>
+    </div>
+    
+
+    <div class="form-group">
+      <textarea class="form-control big-text" id="body" formControlName="body"
+        placeholder="¡Escribe tu artículo!"></textarea>
+    </div>
+    <div class="error">
+      <em *ngIf="this.articleForm.controls.body.touched && this.articleForm.controls.body.invalid">* Desarrolle el artículo</em>
+    </div>
+
+    <!-- solo se muestra si estoy creando un nuevo articulo -->
+    <div  *ngIf="!editionMode">
+      <button type="submit" [disabled]="this.articleForm.invalid" class="btn btn-success">Subir artículo</button>
+    </div>
+
+    <!-- solo se muestra si estoy editando un articulo -->
+    <div  *ngIf="editionMode">
+      <button type="submit" [disabled]="this.articleForm.invalid" class="btn btn-success">Editar artículo</button>
+    </div>
+
+
+  </form>
+</div>
