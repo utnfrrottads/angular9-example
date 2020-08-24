@@ -22,7 +22,6 @@ export class ArticlesComponent implements OnInit {
     
     this.service.getArticles().subscribe((response) => {
       this.articles = response.articles;
-      console.log(this.articles);
     });
   }
   onEdit(article) {
@@ -35,7 +34,9 @@ export class ArticlesComponent implements OnInit {
 
   onDelete(article) {
     if (window.confirm('Are you sure?')) {
-      this.service.deleteArticle(article.slug).subscribe(); 
+      this.service.deleteArticle(article.slug).subscribe();
+      let index = this.articles.findIndex(e => article.slug === e.slug );
+      this.articles.splice(index,1);
     }
   }
 
