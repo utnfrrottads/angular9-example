@@ -1,32 +1,43 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Form, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl,
+  ValidatorFn,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'Todo';
   profileForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(10),
+    ]),
     lastName: new FormControl('', [Validators.required, StartsWithAValidator]),
-  })
-    constructor () {
-      this.profileForm.valueChanges.subscribe(value => console.log(value));
-    }
+  });
+  constructor() {
+    this.profileForm.valueChanges.subscribe((value) => console.log(value));
+  }
 
   onSubmit() {
     console.log(this.profileForm.value);
   }
   initialize() {
-    this.profileForm.reset()
-  }  
+    this.profileForm.reset();
+  }
 }
 
-export function StartsWithAValidator(control: AbstractControl) {
+export const StartsWithAValidator = (): ValidatorFn => (
+  control: AbstractControl
+): { [key: string]: any } | null => {
   if (!control.value.startsWith('A')) {
-    return { startsWithA: true };
+    return { startsWithA: false };
   }
   return null;
-}
+};
