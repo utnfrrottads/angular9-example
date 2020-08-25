@@ -13,6 +13,7 @@ import { CommentFormComponent } from './comment-form/comment-form.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
