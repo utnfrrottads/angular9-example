@@ -14,6 +14,8 @@ import { ArticleFormComponent } from './article-form/article-form.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+<<<<<<< HEAD
     ReactiveFormsModule
+=======
+    HttpClientModule
+>>>>>>> 158c94a568601dbc0be93977922514c4c4f7887f
   ],
   providers: [],
   bootstrap: [AppComponent]
