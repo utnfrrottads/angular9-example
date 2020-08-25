@@ -4,8 +4,9 @@
     [class.completed]="task.isCompleted"
     class="list-item"
   >
-    {{ task.description }} {{ task.url }}
+    {{ task.description }} {{ task.url }} {{task.id}}
     <span>
+      <button class="btn btn-primary" (click)="editItem(task)">E</button>
       <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
       <button class="btn btn-success" (click)="completeTask(task)">V</button>
     </span>

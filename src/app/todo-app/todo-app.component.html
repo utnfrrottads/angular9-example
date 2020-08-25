@@ -1,12 +1,14 @@
-<app-todo-form (add)="onTodoItemCreated($event)"></app-todo-form>
+<app-todo-form
+  [itemToEdit]="itemToEdit"
+  (add)="onTodoItemCreated($event)"
+  (update)="onTodoItemUpdated($event)"
+></app-todo-form>
 <app-todo-list
   [list]="getList()"
   (itemRemoved)="onTodoItemRemoved($event)"
   (itemStateChanged)="onItemStateChanged($event)"
+  (itemEdit)="onItemEdit($event)"
 >
 </app-todo-list>
-<app-todo-footer
-  [list]="getList()"
->
-</app-todo-footer>
+<app-todo-footer [list]="getList()"> </app-todo-footer>
 <app-stats></app-stats>
