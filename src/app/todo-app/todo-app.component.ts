@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TodoItem } from '../model/todo-item';
-import { element } from 'protractor';
 import { TodoService } from '../todo.service';
 /** */
 @Component({
