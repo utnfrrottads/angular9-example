@@ -4,17 +4,16 @@ import { TodoService } from '../todo.service';
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.component.html',
-  styleUrls: ['./stats.component.scss']
+  styleUrls: ['./stats.component.scss'],
 })
-export class StatsComponent implements OnInit {
+export class StatsComponent {
+  constructor(private service: TodoService) {}
 
-  constructor(
-    private service: TodoService
-  ) { }
-
-  ngOnInit(): void {
-  }
   completedPercentage() {
-    return Math.round(this.service.completedSize() /  this.service.list.length * 100) || 0
+    return (
+      Math.round(
+        (this.service.completedSize() / this.service.list.length) * 100
+      ) || 0
+    );
   }
 }
