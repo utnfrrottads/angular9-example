@@ -4,7 +4,7 @@
   (update)="onTodoItemUpdated($event)"
 ></app-todo-form>
 <app-todo-list
-  [list]="getList()"
+  [dataSource]="getDataSource()"
   (itemRemoved)="onTodoItemRemoved($event)"
   (itemStateChanged)="onItemStateChanged($event)"
   (itemEdit)="onItemEdit($event)"

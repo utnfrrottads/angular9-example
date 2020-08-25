@@ -8,10 +8,12 @@ import { TodoAppComponent } from './todo-app/todo-app.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoFooterComponent } from './todo-footer/todo-footer.component';
-import { TodoService } from './todo.service';
 import { StatsComponent } from './stats/stats.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,12 @@ import { MatSliderModule } from '@angular/material/slider';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatSliderModule
+    MatTableModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

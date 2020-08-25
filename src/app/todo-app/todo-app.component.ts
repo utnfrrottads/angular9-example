@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TodoItem } from '../model/todo-item';
 import { TodoService } from '../todo.service';
+import { MatTableDataSource } from '@angular/material/table';
 /** */
 @Component({
   selector: 'app-todo',
@@ -13,6 +14,9 @@ export class TodoAppComponent {
 
   getList() {
     return this.service.list;
+  }
+  getDataSource() {
+    return new MatTableDataSource<TodoItem>(this.service.list);
   }
   onTodoItemRemoved(id) {
     this.service.remove(id);
