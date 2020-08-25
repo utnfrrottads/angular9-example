@@ -2,10 +2,10 @@
   width: 80%;
 }
 
-input.ng-valid {
+input.ng-valid.ng-touched {
   border: 3px solid green;
 }
 
-input.ng-invalid {
+input.ng-invalid.ng-touched {
   border: 3px solid red;
 }

@@ -16,11 +16,8 @@ export class TodoService {
   }
 
   update(task: TodoItem) {
-    console.log(task);
     const index = this.list.findIndex((element) => element.id === task.id);
-    console.log(index);
     this.list.splice(index, 1, task);
-    console.log(this.list);
   }
 
   remove(id) {

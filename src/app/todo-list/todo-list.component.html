@@ -4,7 +4,7 @@
     [class.completed]="task.isCompleted"
     class="list-item"
   >
-    {{ task.description }} {{ task.url }} {{task.id}}
+    {{ task.description }} - {{ task.url }}
     <span>
       <button class="btn btn-primary" (click)="editItem(task)">E</button>
       <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
