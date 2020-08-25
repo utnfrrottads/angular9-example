@@ -1,1 +1,8 @@
-<p>articles-list works!</p>
+<ul>
+    <li
+        *ngFor='let article of articles'
+        >
+        {{article.slug}} //// {{article.title}} //// {{article.description}} //// 
+        <button (click)="goToArticlePage(article)">More</button>
+    </li>
+</ul>

@@ -1,1 +1,8 @@
-<p>home-page works!</p>
+<button (click)="getMyArticles()">My articles</button>
+<button (click)="getAllArticles()">Global feed</button>
+
+<app-articles-list
+    [articles]="articles"
+>
+
+</app-articles-list>
