@@ -1,4 +1,10 @@
-<form>
-    <input>
-    <button>Create article</button>
+<form
+    [ formGroup]="articleForm"
+    (ngSubmit)="saveArticle()"
+    >
+    <input type="text" formControlName="slug">
+    <input type="text" formControlName="title">
+    <input type="text" formControlName="description">
+
+    <button type="submit">Create article</button>
 </form>

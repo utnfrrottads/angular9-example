@@ -7,9 +7,22 @@
 }
 
 .bg-navbar-custom{
-  background-color: #1393fc;
+  background-color: #8c00ff;
 }
 
 .footer-copyright{
   background-color: rgb(32, 31, 31);
+}
+
+.fill-screen{
+  height:100%;
+}
+
+.nav-link{
+  color:lightgray !important;
+  font-weight: bold;
+}
+
+.nav-link:hover{
+  color: white !important;
 }

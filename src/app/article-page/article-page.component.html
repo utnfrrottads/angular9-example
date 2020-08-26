@@ -1,1 +1,18 @@
-<p>article-page works!</p>
+<div class="center-page">
+    <div class="article-group">
+        <label class="article-item">Slug: {{article.slug}}</label>
+        <label class="article-item">Title: {{article.title}}</label>
+        <label class="article-item">Description: {{article.description}}</label>
+        <label class="article-item">Body: {{article.body}}</label>
+        <label class="article-item">Author: {{article.author.username}}</label>
+    </div>
+
+    <div class="comments-section">
+        <app-comment-form>
+
+        </app-comment-form>
+        <app-comments-list [article]="article">
+
+        </app-comments-list>
+    </div>
+</div>
