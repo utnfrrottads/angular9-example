@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  signupForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+    email: new FormControl('')
+  })
+
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
+  }
+
+  register(){
+    let user = this.signupForm.value;
+    this.http.registerUser(user);
   }
 
 }

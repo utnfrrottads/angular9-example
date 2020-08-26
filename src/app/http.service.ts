@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MultipleArticles } from './model/article';
 import { Author } from './model/author';
+import { SingleUser, User } from './model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,15 @@ export class HttpService {
     const email = 'user123@dominio.com';
     const password = 'mipassword';
     this.http.post<any>(url,{user:{email:email,password:password}}).subscribe(functionRequest);
+  }
+
+  getCurrentUser(){
+    const url = this.baseUrl + 'user';
+    this.http.get<SingleUser>(url);
+  }
+
+  registerUser(user: User){
+    const url = `${this.baseUrl}users`;
+    this.http.post<SingleUser>(url,{user}).subscribe(user => console.log(user));
   }
 }
