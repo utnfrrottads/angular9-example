@@ -1,6 +1,1 @@
-<div
-    class="progressbar"
-    [ngStyle]="{width: completedPercentage() + '%'}"
->
-{{completedPercentage()}} %
-</div>
+<mat-progress-bar mode="determinate" [value]="completedPercentage()"></mat-progress-bar>

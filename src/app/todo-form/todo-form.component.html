@@ -1,10 +1,28 @@
-
-<input type="text" #taskDescription class="add-todo">
-
-<button
-  class="btn btn-primary"
-  (click)="save(taskDescription)">
-  Create
-</button>
-
-
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-field">
+    <mat-label>Description</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="description"
+      [errorStateMatcher]="errorMatcher"
+    />
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Url</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="url"
+      [errorStateMatcher]="errorMatcher"
+    />
+  </mat-form-field>
+  <button
+    mat-raised-button
+    type="submit"
+    [disabled]="!taskForm.valid"
+    id="btn-submit"
+  >
+    {{ editMode == true ? "Edit" : "Create" }}
+  </button>
+</form>

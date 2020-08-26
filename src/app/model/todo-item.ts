@@ -1,7 +1,8 @@
 export class TodoItem {
   id: number;
   description: string;
-  isCompleted: boolean = false;
+  url: string;
+  isCompleted = false;
 
   toggleCompleted() {
     this.isCompleted = !this.isCompleted;

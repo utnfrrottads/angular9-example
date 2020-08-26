@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from './local-storage.service';
+import { TodoItem } from './model/todo-item';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodoService {
-  
   list = [];
   lastItemId = 0;
 
-  constructor(private storage: LocalStorageService) { }
-  
   add(task) {
     const id = this.lastItemId;
     task.id = id;
     this.list.push(task);
     this.lastItemId += 10;
+  }
+
+  update(task: TodoItem) {
+    const index = this.list.findIndex((element) => element.id === task.id);
+    this.list.splice(index, 1, task);
   }
 
   remove(id) {
@@ -24,14 +26,9 @@ export class TodoService {
   }
 
   incompletedSize() {
-    return this.list.filter(item => !item.isCompleted).length;
-
+    return this.list.filter((item) => !item.isCompleted).length;
   }
   completedSize() {
-    return  this.list.filter(item => item.isCompleted).length ;
-  }
-
-  getName() {
-    return 'TodoService 123' + this.storage.getName();
+    return this.list.filter((item) => item.isCompleted).length;
   }
 }

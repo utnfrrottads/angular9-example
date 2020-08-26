@@ -1,11 +1,32 @@
-<ul class="list">
-    <li
-      *ngFor="let task of list" [class.completed] = "task.isCompleted"
-      class="list-item">
-      {{task.description}}
-      <span>
-        <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
-        <button class="btn btn-success" (click)="completeTask(task)">V</button>
-      </span>
-    </li>
-  </ul>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="isCompleted">
+    <mat-header-cell *matHeaderCellDef>Completed</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <mat-checkbox
+        [checked]="task.isCompleted"
+        (change)="completeTask(task)"
+      ></mat-checkbox>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+    <mat-cell *matCellDef="let task">{{ task.description }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="url">
+    <mat-header-cell *matHeaderCellDef>Url</mat-header-cell>
+    <mat-cell *matCellDef="let task">{{ task.url }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <button mat-raised-button color="primary" (click)="editItem(task)">
+        <mat-icon aria-hidden="false" aria-label="Edit">edit</mat-icon>
+      </button>
+      <button mat-raised-button color="warn" (click)="removeItem(task.id)">
+        <mat-icon aria-hidden="false" aria-label="Delete">delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+</mat-table>
