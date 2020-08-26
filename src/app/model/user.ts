@@ -1,3 +1,7 @@
+export interface SingleUser{
+    user: User;
+}
+
 export interface User {
     email: string;
     token: string;
