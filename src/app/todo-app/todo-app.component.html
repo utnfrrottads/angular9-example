@@ -4,11 +4,12 @@
   (update)="onTodoItemUpdated($event)"
 ></app-todo-form>
 <app-todo-list
-  [list]="getList()"
+  [dataSource]="getDataSource()"
   (itemRemoved)="onTodoItemRemoved($event)"
   (itemStateChanged)="onItemStateChanged($event)"
   (itemEdit)="onItemEdit($event)"
 >
 </app-todo-list>
-<app-todo-footer [list]="getList()"> </app-todo-footer>
 <app-stats></app-stats>
+<app-todo-footer [list]="getList()"> </app-todo-footer>
+

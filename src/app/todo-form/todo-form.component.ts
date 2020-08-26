@@ -8,6 +8,7 @@ import {
 import { TodoItem } from '../model/todo-item';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as customValidators from '../custom-validators';
+import { CustomErrorStateMatcher } from '../custom-error-matcher';
 
 @Component({
   selector: 'app-todo-form',
@@ -18,6 +19,8 @@ export class TodoFormComponent implements OnChanges {
   @Input() itemToEdit: TodoItem = null;
   @Output() add = new EventEmitter<TodoItem>();
   @Output() update = new EventEmitter<TodoItem>();
+
+  errorMatcher = new CustomErrorStateMatcher()
 
   editMode = false;
   taskForm = new FormGroup({

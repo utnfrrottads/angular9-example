@@ -1,11 +1,11 @@
-.add-todo {
+.form-field {
   width: 80%;
 }
 
-input.ng-valid.ng-touched {
-  border: 3px solid green;
+form {
+  margin-bottom: 0.5em;
 }
 
-input.ng-invalid.ng-touched {
-  border: 3px solid red;
+#btn-submit {
+  margin-left: 1em;
 }
