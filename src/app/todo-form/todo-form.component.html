@@ -1,5 +1,5 @@
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-  <mat-form-field class="form-todo">
+  <mat-form-field class="form-field">
     <mat-label>Description</mat-label>
     <input
       matInput
@@ -8,7 +8,7 @@
       [errorStateMatcher]="errorMatcher"
     />
   </mat-form-field>
-  <mat-form-field class="form-todo">
+  <mat-form-field class="form-field">
     <mat-label>Url</mat-label>
     <input
       matInput
