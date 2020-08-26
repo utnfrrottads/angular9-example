@@ -1,5 +1,9 @@
 import { Author } from './author'
 
+export interface MultipleComments{
+    comments: Comment[];
+}
+
 export interface Comment {
     id: number;
     createdAt: Date;
