@@ -1,0 +1,24 @@
+.center-page{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.article-group{
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px lightgray;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding:20px
+}
+
+.article-item{
+    display: block;
+}
+
+.comments-section{
+    width: 80%;
+    float: right;
+    background-color: gray;
+    border-radius: 5px;
+}
