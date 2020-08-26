@@ -1,1 +1,10 @@
-<p>comments-list works!</p>
+Previous Comments:
+<ul>
+    <li
+        *ngFor="let comment of comments"
+        class="comment-group"
+        >
+        <label class="comment-item">Body: {{comment.body}}</label>
+        <label class="comment-item">Author: {{comment.author.username}}</label>
+    </li>
+</ul>

@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+<<<<<<< HEAD:src/app/http.service.ts
 import { MultipleArticles } from './model/article';
 import { Author } from './model/author';
 import { SingleUser, User } from './model/user';
+=======
+import { MultipleArticles, Article } from '../model/article';
+import { Author } from '../model/author';
+import { MultipleComments } from '../model/comment';
+>>>>>>> article-page:src/app/services/http.service.ts
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +50,11 @@ export class HttpService {
       }
     );
     
+  }
+
+  getAllCommentsByArticle(article: Article){
+    const url = `${this.baseUrl}articles/${article.slug}/comments`;
+    return this.http.get<MultipleComments>(url);
   }
 
   authenticate(functionRequest){
