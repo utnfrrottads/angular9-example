@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD:src/app/http.service.ts
-import { MultipleArticles } from './model/article';
-import { Author } from './model/author';
-import { SingleUser, User } from './model/user';
-=======
 import { MultipleArticles, Article } from '../model/article';
 import { Author } from '../model/author';
 import { MultipleComments } from '../model/comment';
->>>>>>> article-page:src/app/services/http.service.ts
+import { SingleUser, User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +14,9 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  getAllArticles(){
-    const url = `${this.baseUrl}articles?limit=100`;
+  getAllArticles(page: number, limit:number){
+    const offset = (page - 1) * limit;
+    const url = `${this.baseUrl}articles?limit=${limit}&offset=${offset}`;
     return this.http.get<MultipleArticles>(url);
   }
 
@@ -31,7 +27,7 @@ export class HttpService {
   }
 
   getArticlesByTag(tag:string) {
-    const limit = 5;
+    const limit = 20;
     const url = `${this.baseUrl}articles?tag=${tag}&limit=${limit}`;
     return this.http.get<any>(url);
   }
