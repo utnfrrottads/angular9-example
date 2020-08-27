@@ -1,8 +1,24 @@
-<ul>
+<ul class="articles-container">
     <li
         *ngFor='let article of articles'
+        class="article-group"
         >
-        {{article.slug}} //// {{article.title}} //// {{article.description}} //// 
-        <button (click)="goToArticlePage(article)">More</button>
+            <div class="image-container">
+                <img src={{article.author.image}} class="author-image">
+            </div>
+            <div class="">
+                <div>
+                    <span class="article-title">{{article.title}}</span>
+                </div>
+                <div>
+                    <span class="article-creation-date">{{article.createdAt | date:'medium'}}</span>
+                </div>
+            
+                <div class="article-description">
+                    {{article.description}}
+                </div>
+
+                <a href="javascript:void(0)" (click)="goToArticlePage(article)" class="link-more">More</a>
+            </div>
     </li>
 </ul>
