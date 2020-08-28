@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpService } from '../services/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -9,17 +11,22 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class SigninComponent implements OnInit {
 
   signinForm = new FormGroup({
-    password: new FormControl(''),
-    email: new FormControl('')
+    password: new FormControl('', [Validators.required]),
+    email: new FormControl('',[Validators.required, Validators.email])
   })
 
-  constructor() { }
+  constructor(
+    private http: HttpService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
 
   logIn(){
-    
+    this.router.navigate(['home']);
+    console.log(this.signinForm.value);
+    this.http.logIn(this.signinForm.value);
   }
 
 }

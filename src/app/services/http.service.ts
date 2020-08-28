@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD:src/app/http.service.ts
-import { MultipleArticles } from './model/article';
-import { Author } from './model/author';
-import { SingleUser, User } from './model/user';
-=======
+import { SingleUser, User } from '../model/user';
 import { MultipleArticles, Article } from '../model/article';
 import { Author } from '../model/author';
 import { MultipleComments } from '../model/comment';
->>>>>>> article-page:src/app/services/http.service.ts
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +13,7 @@ export class HttpService {
 
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private storage: LocalStorageService) { }
 
   getAllArticles(){
     const url = `${this.baseUrl}articles?limit=100`;
@@ -72,5 +68,14 @@ export class HttpService {
   registerUser(user: User){
     const url = `${this.baseUrl}users`;
     this.http.post<SingleUser>(url,{user}).subscribe(user => console.log(user));
+  }
+
+  logIn(user: User){
+    const url = `${this.baseUrl}users/login`;
+    this.http.post<SingleUser>(url,{user}).subscribe(response => this.storage.saveLogIn(response.user));
+  }
+
+  logOut(){
+    this.storage.logOut();
   }
 }
