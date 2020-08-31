@@ -1,0 +1,48 @@
+<div class="card container">
+    <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+        <div>
+            <div>
+                <p>Email</p>
+            </div>
+            <div class="login-input">
+                <input type="text" formControlName="email">
+            </div>
+            <em class="error"*ngIf="this.signupForm.controls.email.touched && this.signupForm.controls.email.invalid">* Formato
+                incorrecto.</em>
+        </div>
+
+        <div> 
+            <div>
+                <p>Nombre de usuario</p>
+            </div>
+            <input type="text" formControlName="username">
+            <em class="error"*ngIf="this.signupForm.controls.username.touched && this.signupForm.controls.username.invalid">* Debe
+                tener como minimo 1 caracter</em>
+        </div>
+        <div>
+            <div>
+                <p>Contraseña</p>
+            </div>
+            <input type="password" formControlName="pass">
+            <em class="error"*ngIf="this.signupForm.controls.pass.touched && this.signupForm.controls.pass.invalid">* Debe tener
+                minimo 8 letras</em>
+        </div>
+        <div>
+            <div class="indicator">
+                <p>Repetir Contraseña</p>
+            </div>
+            <input type="password" formControlName="repeatPass">
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit" (click)="signUp()" [disabled]="!signupForm.valid">
+                Crear cuenta
+            </button>
+            <button class="btn btn-secondary" (click)="goToSignIn()">
+                Cancelar
+            </button>
+        </div>
+    </form>
+    <div class="alert" [ngClass]="messageClass" role="alert" *ngIf="messageShow">
+        {{messageText}}
+    </div>
+</div>

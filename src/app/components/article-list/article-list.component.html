@@ -1,0 +1,40 @@
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><button class="page-link" (click)="previousPage()">{{this.page - 1}}</button></li>
+          <li class="page-item active"><a class="page-link">{{this.page}}</a></li>
+          <li class="page-item"><button class="page-link" (click)="nextPage()">{{this.page + 1}}</button></li>
+        </ul>
+        <a class="btn btn-primary" [routerLink]="['/newArticle']">Crear articulo</a>
+    </nav>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Cuerpo</th>
+                <th>Comentarios</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let article of articles">
+                <td>{{article.title}}</td>
+                <td>{{article.description}}</td>
+                <td>{{article.body}}</td>
+                <td>
+                    <div>
+                        <button class="btn btn-light" (click)="showComments(article)">Comentarios</button>
+                    </div>
+                    <div>
+                        <button *ngIf="canEdit(article)" class="btn btn-success"
+                            (click)="onEdit(article)">Editar</button>
+                    </div>
+                    <div>
+                        <button *ngIf="canEdit(article)" (click)="onDelete(article)"
+                            class="btn btn-danger">Eliminar</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
