@@ -12,26 +12,27 @@ export class UsersService {
   constructor(private http: HttpClient,
     private localStorageService: LocalStorageService) { }
 
-  signIn(email: string, password: string){
-    const url = this.baseUrl + 'users/login';
-    let body = JSON.stringify({
-      "user":{
-        "email": email.toString(),
-        "password": password.toString()
+  signUp(user: string, email: string, password: string) {
+    const url = this.baseUrl + 'users';
+    const body = {
+      user: {
+        username: user,
+        email: email,
+        password: password,
       }
-    });
-    return this.http.post<any>(url,body);
+    };
+    return this.http.post(url, body, {});
   }
 
-  signUp(username: string, email: string, password: string){
-    const url = this.baseUrl + 'users';
-    let body = JSON.stringify({
-      "user":{
-        "username": username.toString(),
-        "email": email.toString(),
-        "password": password.toString()
-      }
-    });
-    return this.http.post<any>(url,body);
+  signIn(user: string, password: string) {
+    const url = this.baseUrl + 'users/login';
+    const body = {
+      user: {
+        email: user,
+        password: password,
+      },
+    };
+
+    return this.http.post(url, body, {});
   }
 }
