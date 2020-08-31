@@ -3,14 +3,24 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LocalStorageService {
-
-  readonly baseUrl = 'http://localhost:3000/api/';
+  readonly baseUrl = 'https://conduit.productionready.io/api/';
   localStorage = window.localStorage;
-
-  constructor() { }
 
   getBaseUrl(){
     return this.baseUrl;
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
+  }
+
+  setToken(token){
+    localStorage.setItem('token', token);
+  }
+
+  setUserName(userName){
+    localStorage.setItem('username', userName);  
   }
 }
