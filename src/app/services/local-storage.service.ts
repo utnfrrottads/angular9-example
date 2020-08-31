@@ -21,6 +21,6 @@ export class LocalStorageService {
   }
 
   setUserName(userName){
-    localStorage.setItem('username', userName);  
+    localStorage.setItem('username', userName);
   }
 }

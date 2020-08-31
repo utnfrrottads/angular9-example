@@ -11,11 +11,12 @@ export class ArticlesService {
   actualArticle: any = {};
   readonly baseUrl = this.localStorageService.getBaseUrl();
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private localStorageService: LocalStorageService) {}
 
   getArticles(page) {
-    const url = this.baseUrl + 'articles?limit=10&offset=' + stringify(page*10);
+    const url = this.baseUrl + 'articles?limit=10&offset=' + stringify((page - 1) * 10);
     return this.http.get<any>(url);
   }
 
@@ -25,7 +26,7 @@ export class ArticlesService {
         Authorization: 'Token ' + this.localStorageService.getToken(),
       }),
     };
-    const url = this.baseUrl + `articles/${slug}`
+    const url = this.baseUrl + `articles/${slug}`;
     return this.http.delete(url, httpOptions);
   }
 

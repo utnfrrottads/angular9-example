@@ -15,7 +15,8 @@ export class UserSignupComponent {
   messageText = '';
   messageClass = '';
 
-  constructor(private userService: UsersService,
+  constructor(
+    private userService: UsersService,
     private router: Router) {}
 
   signupForm = new FormGroup({

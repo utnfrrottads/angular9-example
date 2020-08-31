@@ -16,7 +16,8 @@ export class UserComponent implements OnInit {
   messageText = '';
   messageClass = '';
 
-  constructor(private userService: UsersService,
+  constructor(
+    private userService: UsersService,
     private router: Router,
     private localStorageService: LocalStorageService) {
   }

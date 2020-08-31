@@ -71,14 +71,13 @@ export class ArticleFormComponent implements OnInit {
           body: this.articleForm.controls.body.value,
           description: this.articleForm.controls.description.value,
           slug: this.slug,
-      };
-
-      this.service.editArticle(this.article).subscribe(
+        };
+        this.service.editArticle(this.article).subscribe(
         (res) => {
           this.router.navigate(['articles']);
         },
         (error) => {}
-      );
+        );
+      }
     }
-  }
 }

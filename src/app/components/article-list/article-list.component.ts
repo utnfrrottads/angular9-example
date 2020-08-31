@@ -13,7 +13,7 @@ export class ArticleListComponent implements OnInit {
   totalItems: string;
 
   constructor(private router: Router, private articleService: ArticlesService) {}
- 
+
   ngOnInit(): void {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(['login']);
@@ -23,7 +23,7 @@ export class ArticleListComponent implements OnInit {
       this.articles = response.articles;
     });
   }
-  
+
   onEdit(article) {
     this.articleService.actualArticle = article;
     this.router.navigate(['/editArticle', article.slug]);

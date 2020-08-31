@@ -9,8 +9,9 @@ export class CommentsService {
 
   response: any;
   readonly baseUrl = this.service.getBaseUrl();
-  
-  constructor(private http: HttpClient,
+
+  constructor(
+    private http: HttpClient,
     private service: LocalStorageService) { }
 
   getComments(slug) {

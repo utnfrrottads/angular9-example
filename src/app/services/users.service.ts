@@ -9,7 +9,8 @@ export class UsersService {
 
  readonly baseUrl = this.localStorageService.getBaseUrl();
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private localStorageService: LocalStorageService) { }
 
   signUp(user: string, email: string, password: string) {
@@ -17,8 +18,8 @@ export class UsersService {
     const body = {
       user: {
         username: user,
-        email: email,
-        password: password,
+        email,
+        password,
       }
     };
     return this.http.post(url, body, {});
@@ -29,7 +30,7 @@ export class UsersService {
     const body = {
       user: {
         email: user,
-        password: password,
+        password,
       },
     };
 
