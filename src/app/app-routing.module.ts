@@ -9,6 +9,7 @@ import { ArticlePageComponent } from './article-page/article-page.component';
 
 
 const routes: Routes = [
+  {path:'', component: HomePageComponent},
   {path:'home', component: HomePageComponent},
   {path:'login', component: SigninComponent},
   {path:'register', component: SignupComponent},
