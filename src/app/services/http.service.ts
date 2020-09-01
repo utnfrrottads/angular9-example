@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MultipleArticles, Article } from '../model/article';
+import { MultipleArticles, Article, SingleArticle } from '../model/article';
 import { Author } from '../model/author';
 import { MultipleComments } from '../model/comment';
 import { SingleUser, User } from '../model/user';
@@ -30,6 +30,21 @@ export class HttpService {
     const limit = 20;
     const url = `${this.baseUrl}articles?tag=${tag}&limit=${limit}`;
     return this.http.get<any>(url);
+  }
+
+  createArticle(article: Article){
+    const url = `${this.baseUrl}articles`;
+    const token = storage.getAtuthentication();
+    const headers = {Authorization: 'Token ' + token}
+    return this.http.post<SingleArticle>(url, {article}, {headers});
+  }
+
+  updateArticle(article: Article){
+
+  }
+
+  deleteArticle(article: Article){
+
   }
   
   getAllTags() {

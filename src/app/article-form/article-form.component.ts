@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-article-form',
@@ -9,7 +10,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class ArticleFormComponent implements OnInit {
 
   articleForm = new FormGroup({
-    slug: new FormControl(''),
     title: new FormControl(''),
     description: new FormControl(''),
     body: new FormControl(''),
@@ -17,12 +17,12 @@ export class ArticleFormComponent implements OnInit {
   });
   @Input() article;
 
-  constructor() { }
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
   }
 
   saveArticle(){
-
+    this.http.createArticle(this.articleForm.value);
   }
 }
