@@ -1,5 +1,5 @@
 <div class="center-form">
-<form [formGroup]="signupForm" (ngSubmit)="register()" class=""> 
+<form [formGroup]="signupForm" (ngSubmit)="register()"> 
     <div class="form-group">
         <label for="username">Username:</label>
         <input class="form-control" formControlName="username" id="username" placeholder="username"> 
@@ -12,11 +12,11 @@
    
     <div class="form-group">
         <label for="email">E-Mail:</label>
-        <input class="form-control" type="email" formControlName="email" id="email" placeholder="example@dominio.com"> 
+        <input class="form-control" type="email" formControlName="email" id="email" placeholder="example@domain.com"> 
     </div>
     
-    <button type="submit" class="btn btn-primary">
-    Registrarme    
+    <button type="submit" [disabled]="signupForm.invalid" class="btn btn-primary">
+    Sign up    
     </button>
 </form>
 </div>
