@@ -6,6 +6,7 @@ import { Author } from '../model/author';
 import { MultipleComments } from '../model/comment';
 import { LocalStorageService } from './local-storage.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +16,9 @@ export class HttpService {
 
   constructor(private http: HttpClient, private storage: LocalStorageService) { }
 
-  getAllArticles(){
-    const url = `${this.baseUrl}articles?limit=100`;
+  getAllArticles(page: number, limit:number){
+    const offset = (page - 1) * limit;
+    const url = `${this.baseUrl}articles?limit=${limit}&offset=${offset}`;
     return this.http.get<MultipleArticles>(url);
   }
 
@@ -27,7 +29,7 @@ export class HttpService {
   }
 
   getArticlesByTag(tag:string) {
-    const limit = 5;
+    const limit = 20;
     const url = `${this.baseUrl}articles?tag=${tag}&limit=${limit}`;
     return this.http.get<any>(url);
   }
