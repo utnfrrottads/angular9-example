@@ -72,7 +72,9 @@ export class HttpService {
 
   logIn(user: User){
     const url = `${this.baseUrl}users/login`;
-    this.http.post<SingleUser>(url,{user}).subscribe(response => this.storage.saveLogIn(response.user));
+    let observable = this.http.post<SingleUser>(url,{user});
+    observable.subscribe(response => this.storage.saveLogIn(response.user));
+    return observable;
   }
 
   logOut(){

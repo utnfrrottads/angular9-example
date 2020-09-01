@@ -20,6 +20,6 @@ export class LocalStorageService {
   }
 
   logOut(){
-    this.storage.set(this.appID + 'current-user', null)
+    this.storage.remove(this.appID + 'current-user');
   }
 }

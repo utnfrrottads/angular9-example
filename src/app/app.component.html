@@ -14,6 +14,9 @@
         <li *ngIf="token!==undefined" class="nav-item">
           <a class="nav-link" href="javascript:void(0)" routerLink="editor">New Article</a>
         </li>
+        <li *ngIf="token!==undefined" class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" (click)="logOut()">Log Out</a>
+        </li>
         <li *ngIf="token===undefined" class="nav-item">
           <a class="nav-link" href="javascript:void(0)" routerLink="register">Sign Up</a>
         </li>
@@ -30,7 +33,7 @@
 
 
 <div class="fill-screen">
-<router-outlet></router-outlet>
+<router-outlet (loggingIn)="onLoggingIn($event)"></router-outlet>
 </div>
 
 
