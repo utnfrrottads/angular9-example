@@ -14,7 +14,9 @@ export class HttpService {
 
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
-  constructor(private http: HttpClient, private storage: LocalStorageService) { }
+  constructor(
+    private http: HttpClient,
+    private storage: LocalStorageService) { }
 
   getAllArticles(page: number, limit:number){
     const offset = (page - 1) * limit;
@@ -36,7 +38,7 @@ export class HttpService {
 
   createArticle(article: Article){
     const url = `${this.baseUrl}articles`;
-    const token = storage.getAtuthentication();
+    const token = this.storage.getAuthentication();
     const headers = {Authorization: 'Token ' + token}
     return this.http.post<SingleArticle>(url, {article}, {headers});
   }

@@ -23,6 +23,14 @@ export class ArticleFormComponent implements OnInit {
   }
 
   saveArticle(){
-    this.http.createArticle(this.articleForm.value);
+    this.createArticle();
+  }
+
+  createArticle(){
+    this.http.createArticle(this.articleForm.value).subscribe(response => {
+      if(response.errors !== undefined){
+        alert('Error al enviar articulo')
+      }
+    });
   }
 }
