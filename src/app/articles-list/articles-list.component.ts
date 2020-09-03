@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MultipleArticles, Article } from '../model/article';
 import { Router } from '@angular/router';
 import { ArticleService } from '../services/article.service';
+import { User } from '../model/user';
+import { faEdit,faTrash } from '@fortawesome/free-solid-svg-icons';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-articles-list',
@@ -10,20 +13,35 @@ import { ArticleService } from '../services/article.service';
 })
 export class ArticlesListComponent implements OnInit {
 
+  updateIcon = faEdit;
+  deleteIcon = faTrash;
+  currentUser: User;
   @Input() articles: Article[];
 
   constructor(
     private router: Router,
-    private articleService: ArticleService
-    ) { }
+    private articleService: ArticleService,
+    private http: HttpService
+    ) { 
+      this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
+    }
 
   ngOnInit(): void {
-
+    
   }
 
   goToArticlePage(article: Article){
     this.articleService.setArticle(article);
     this.router.navigate(['article']);
+  }
+
+  updateArticle(article: Article){
+    this.articleService.setArticle(article);
+    this.router.navigate(['editor/update']);
+  }
+
+  deleteArticle(article: Article){
+    this.http.deleteArticle(article);
   }
 
 }
