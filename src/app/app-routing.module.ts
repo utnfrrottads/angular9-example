@@ -13,6 +13,8 @@ const routes: Routes = [
   {path:'home', component: HomePageComponent},
   {path:'login', component: SigninComponent},
   {path:'register', component: SignupComponent},
+  {path:'editor/:update', component: ArticleFormComponent},
+  {path:'editor/:create', component: ArticleFormComponent},
   {path:'editor', component: ArticleFormComponent},
   {path:'article', component: ArticlePageComponent},
   {path:'**', component: ErrorPageComponent}
