@@ -1,16 +1,30 @@
 <div class="center-page">
     <div class="article-group">
-        <label class="article-item">Slug: {{article.slug}}</label>
-        <label class="article-item">Title: {{article.title}}</label>
-        <label class="article-item">Description: {{article.description}}</label>
-        <label class="article-item">Body: {{article.body}}</label>
-        <label class="article-item">Author: {{article.author.username}}</label>
+        <div class="article-header">
+            <div class="author-image">
+                <img src="{{article.author.image}}">
+            </div>
+            <div class="header-text">
+                <label class="article-title">{{article.title}}</label>
+                <label class="article-subtitle">Created at {{article.createdAt | date: "medium"}} by {{article.author.username}}</label>
+                <label class="article-description">{{article.description}}</label>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p class="article-body">{{article.body}}</p>
+        </div>
+
+        <div class="update-delete-section" *ngIf="article.author.username === currentUser.username">
+            <button class="btn btn-update" (click)="updateArticle()">Edit</button>
+            <button class="btn btn-delete" (click)="deleteArticle()">Delete</button>
+        </div>
     </div>
 
     <div class="comments-section">
-        <app-comment-form>
+        <!-- <app-comment-form>
 
-        </app-comment-form>
+        </app-comment-form> -->
         <app-comments-list [article]="article">
 
         </app-comments-list>
