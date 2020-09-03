@@ -38,7 +38,16 @@ export class HomePageComponent implements OnInit {
   }
 
   getMyArticles(page: number){
-    this.articles=[]; //test
-    //this.http.getMyArticles(page).subscribe(response => this.articles = response.articles );
+    this.http.getMyArticles(page, this.pageLimit, 
+      response => {
+        this.articles = response.articles;
+        const pagesCount = (Math.ceil(response.articlesCount / this.pageLimit));
+        
+        this.pages = [];
+        for(let i=0; i < pagesCount; i++){
+          this.pages.push(i+1);
+        }
+      });
   }
+  
 }
