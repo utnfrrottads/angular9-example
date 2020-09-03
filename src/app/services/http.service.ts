@@ -5,6 +5,8 @@ import { SingleUser, User } from '../model/user';
 import { Author } from '../model/author';
 import { MultipleComments } from '../model/comment';
 import { LocalStorageService } from './local-storage.service';
+import { Observable } from 'rxjs';
+import { BaseInterface } from '../model/base-interface';
 
 
 @Injectable({
@@ -24,10 +26,16 @@ export class HttpService {
     return this.http.get<MultipleArticles>(url);
   }
 
-  getMyArticles(){
-    let author: Author; // request current user
-    const url = `${this.baseUrl}articles?${author.username}`;
-    return this.http.get<MultipleArticles>(url);
+  getMyArticles(page: number, limit:number, callback){
+    const offset = (page - 1) * limit;
+    let myArticles: Article[];
+
+    this.getCurrentUser().subscribe( ({user}) => {
+      const url = `${this.baseUrl}articles?author=${user.username}&limit=${limit}&offset=${offset}`;
+      this.http.get<MultipleArticles>(url).subscribe(callback);
+    });
+    
+    return myArticles;
   }
 
   getArticlesByTag(tag:string) {
@@ -44,11 +52,17 @@ export class HttpService {
   }
 
   updateArticle(article: Article){
-
+    const url = `${this.baseUrl}articles/${article.slug}`;
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token};
+    return this.http.put<SingleArticle>(url, {article}, {headers});
   }
 
   deleteArticle(article: Article){
-
+    const url = `${this.baseUrl}articles/${article.slug}`;
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token};
+    return this.http.delete<BaseInterface>(url, {headers});
   }
   
   getAllTags() {
@@ -81,7 +95,9 @@ export class HttpService {
 
   getCurrentUser(){
     const url = this.baseUrl + 'user';
-    this.http.get<SingleUser>(url);
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token};
+    return this.http.get<SingleUser>(url, {headers});
   }
 
   registerUser(user: User){
