@@ -28,6 +28,7 @@ export class SigninComponent implements OnInit {
     this.http.logIn(this.signinForm.value).subscribe( 
       response => this.loggingIn.emit(response.user.token)
     );
+    this.router.navigate(['home']);
   }
 
 }

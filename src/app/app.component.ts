@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
 import { LocalStorageService } from './services/local-storage.service';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnChanges {
+export class AppComponent implements OnInit, DoCheck {
   title = 'ng-peti';
   token = '';
 
@@ -16,17 +16,17 @@ export class AppComponent implements OnChanges {
     private router: Router
     ){}
 
-  ngOnChanges(){
+  ngOnInit(){
     this.token = this.storage.getAuthentication();
+  }
+
+  ngDoCheck(){
+    this.token = this.storage.getAuthentication();  //has delay in updating header, but update it without refresh page (routing)
   }
 
   logOut(){
     this.storage.logOut();
     this.token = undefined;
     this.router.navigate(['login']);
-  }
-
-  onLoggingIn(token){
-    this.token = token;
   }
 }

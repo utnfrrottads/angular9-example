@@ -15,10 +15,18 @@
                 </div>
             
                 <div class="article-description">
-                    {{article.description}}
+                    <p>{{article.description}}</p>
                 </div>
 
                 <a href="javascript:void(0)" (click)="goToArticlePage(article)" class="link-more">More</a>
+                <div class="update-delete-section" *ngIf="article.author.username === currentUser.username">
+                    <div (click)="updateArticle(article)" class="update">
+                        <fa-icon [icon]="updateIcon" title="Edit"></fa-icon>
+                    </div>
+                    <div (click)="deleteArticle(article)" class="delete">
+                        <fa-icon [icon]="deleteIcon" title="Delete"></fa-icon>
+                    </div>
+                </div>
             </div>
     </li>
 </ul>

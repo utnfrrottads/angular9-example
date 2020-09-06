@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MultipleArticles, Article, SingleArticle } from '../model/article';
 import { SingleUser, User } from '../model/user';
-import { MultipleArticles, Article } from '../model/article';
 import { Author } from '../model/author';
 import { MultipleComments } from '../model/comment';
 import { LocalStorageService } from './local-storage.service';
+import { Observable } from 'rxjs';
+import { BaseInterface } from '../model/base-interface';
 
 
 @Injectable({
@@ -14,7 +16,9 @@ export class HttpService {
 
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
-  constructor(private http: HttpClient, private storage: LocalStorageService) { }
+  constructor(
+    private http: HttpClient,
+    private storage: LocalStorageService) { }
 
   getAllArticles(page: number, limit:number){
     const offset = (page - 1) * limit;
@@ -22,16 +26,48 @@ export class HttpService {
     return this.http.get<MultipleArticles>(url);
   }
 
-  getMyArticles(){
-    let author: Author; // request current user
-    const url = `${this.baseUrl}articles?${author.username}`;
-    return this.http.get<MultipleArticles>(url);
+  getMyArticles(page: number, limit:number, callback){
+    const offset = (page - 1) * limit;
+    let myArticles: Article[];
+
+    this.getCurrentUser().subscribe( ({user}) => {
+      const url = `${this.baseUrl}articles?author=${user.username}&limit=${limit}&offset=${offset}`;
+      this.http.get<MultipleArticles>(url).subscribe(callback);
+    });
+    
+    return myArticles;
   }
 
   getArticlesByTag(tag:string) {
     const limit = 20;
     const url = `${this.baseUrl}articles?tag=${tag}&limit=${limit}`;
     return this.http.get<any>(url);
+  }
+
+  createArticle(article: Article){
+    const url = `${this.baseUrl}articles`;
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token}
+    return this.http.post<SingleArticle>(url, {article}, {headers});
+  }
+
+  updateArticle(article: Article){
+    const url = `${this.baseUrl}articles/${article.slug}`;
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token};
+    return this.http.put<SingleArticle>(url, {article}, {headers});
+  }
+
+  deleteArticle(article: Article){
+    const url = `${this.baseUrl}articles/${article.slug}`;
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token};
+    this.http.delete<BaseInterface>(url, {headers}).subscribe(
+      response => {
+        if(response.errors !== undefined){
+          alert('Error when deleting article');
+        }
+      });
   }
   
   getAllTags() {
@@ -64,7 +100,9 @@ export class HttpService {
 
   getCurrentUser(){
     const url = this.baseUrl + 'user';
-    this.http.get<SingleUser>(url);
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token};
+    return this.http.get<SingleUser>(url, {headers});
   }
 
   registerUser(user: User){
