@@ -1,29 +1,31 @@
 <div class="center-form">
-<form
-    [formGroup]="articleForm"
-    (ngSubmit)="saveArticle()"
-    class=""
-    >
-    <div class="form-group">
-        <label for="title">Title:</label>
-        <input class="form-control" formControlName="title" id="title" placeholder="Title">
-    </div>
-    
-    <div class="form-group">
-        <label for="description">Description:</label>
-        <input class="form-control" formControlName="description" id="description" placeholder="Description">
-    </div>
+    <h1 class="section-title">Article</h1>
+    <form
+        [formGroup]="articleForm"
+        (ngSubmit)="saveArticle()"
+        class=""
+        >
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input class="form-control" formControlName="title" id="title" placeholder="Title">
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input class="form-control" formControlName="description" id="description" placeholder="Description">
+        </div>
 
-    <div class="form-group">
-        <label for="body">Body:</label>
-        <input class="form-control" formControlName="body" id="body" placeholder="Body">
-    </div>
+        <div class="form-group">
+            <label for="body">Body:</label>
+            <textarea class="form-control article-body" formControlName="body" id="body" placeholder="Body">
+            </textarea>
+        </div>
 
-    <div class="form-group">
-        <label for="tag-list">Tag list:</label>
-        <input class="form-control" formControlName="tagList" id="tag-list" placeholder="Tag list">
-    </div>
+        <div class="form-group">
+            <label for="tag-list">Tag list:</label>
+            <input class="form-control" formControlName="tagList" id="tag-list" placeholder="Tag list">
+        </div>
 
-    <button type="submit" class="btn btn-primary">Create article</button>
-</form>
+        <button type="submit" class="btn btn-primary">Save article</button>
+    </form>
 </div>

@@ -1,10 +1,22 @@
 .center-form{
-    width: 30%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 2px;
     border: solid 1px gray;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.445);
     background-color: white;
+}
+
+.section-title{
+    font-size: xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.article-body{
+    min-height: 150px;
 }
