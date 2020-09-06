@@ -42,6 +42,7 @@ export class ArticlesListComponent implements OnInit {
 
   deleteArticle(article: Article){
     this.http.deleteArticle(article);
+    this.router.navigate(['home/myArticles/1'])
   }
 
 }
