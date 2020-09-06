@@ -62,7 +62,12 @@ export class HttpService {
     const url = `${this.baseUrl}articles/${article.slug}`;
     const token = this.storage.getAuthentication();
     const headers = {Authorization: 'Token ' + token};
-    return this.http.delete<BaseInterface>(url, {headers});
+    this.http.delete<BaseInterface>(url, {headers}).subscribe(
+      response => {
+        if(response.errors !== undefined){
+          alert('Error when deleting article');
+        }
+      });
   }
   
   getAllTags() {
