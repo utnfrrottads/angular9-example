@@ -10,6 +10,7 @@ export class TodoListComponent implements OnInit {
   @Input() list: any[];
   @Output() itemRemoved = new EventEmitter();
   @Output() itemStateChanged = new EventEmitter();
+  @Output() taskSelected = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -23,4 +24,7 @@ export class TodoListComponent implements OnInit {
 
   }
 
+  editTask(task){
+    this.taskSelected.emit(task);
+  }
 }

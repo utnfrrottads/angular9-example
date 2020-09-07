@@ -1,10 +1,28 @@
-
-<input type="text" #taskDescription class="add-todo">
-
-<button
-  class="btn btn-primary"
-  (click)="save(taskDescription)">
-  Create
-</button>
-
-
+<div class="formGroup input-group mb-3">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <input type="hidden" formControlName="id">
+    <label>
+      Task:
+      <input type="text" formControlName="description" class="input-group-text"
+      [ngClass]="taskForm.controls.description.invalid && taskForm.controls.description.touched? 'notValid' : ''"
+      [ngClass]="!taskForm.controls.description.invalid && taskForm.controls.description.touched? 'valid' : ''"
+      >
+    </label>
+    <label>
+      URL:
+      <input type="text" formControlName="url" class="input-group-text"
+      [ngClass]="taskForm.controls.url.invalid && taskForm.controls.url.touched? 'notValid' : ''"
+      [ngClass]="!taskForm.controls.url.invalid && taskForm.controls.url.touched? 'valid' : ''"
+      >
+    </label>
+    <label>
+      Mail:
+      <input type="text" formControlName="mail" class="input-group-text"
+      [ngClass]="taskForm.controls.mail.invalid && taskForm.controls.mail.touched? 'notValid' : ''"
+      [ngClass]="!taskForm.controls.mail.invalid && taskForm.controls.mail.touched? 'valid' : ''"
+      >
+    </label>
+    <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">Submit</button>
+    <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
+  </form>
+</div>
