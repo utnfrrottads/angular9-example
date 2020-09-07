@@ -7,7 +7,7 @@ import { LocalStorageService } from './local-storage.service';
 export class TodoService {
   
   list = [];
-  lastItemId = 0;
+  lastItemId = 1;
 
   constructor(private storage: LocalStorageService) { }
   
@@ -15,7 +15,7 @@ export class TodoService {
     const id = this.lastItemId;
     task.id = id;
     this.list.push(task);
-    this.lastItemId += 10;
+    this.lastItemId += 1;
   }
 
   remove(id) {
@@ -23,15 +23,16 @@ export class TodoService {
     this.list.splice(index, 1);
   }
 
-  incompletedSize() {
+  uncompletedSize() {
     return this.list.filter(item => !item.isCompleted).length;
 
   }
+
   completedSize() {
-    return  this.list.filter(item => item.isCompleted).length ;
+    return  this.list.filter(item => item.isCompleted).length;
   }
 
   getName() {
-    return 'TodoService 123' + this.storage.getName();
+    return 'ToDoService' + this.storage.getName();
   }
 }

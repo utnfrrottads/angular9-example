@@ -1,30 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Todo List example</a>
+  <a class="navbar-brand" href="#">To-Do List Example</a>
 </nav>
 <div class="container">
   <app-todo></app-todo>
-</div>
-
-<br>
-<br>
-<div>
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <label>
-    First Name:
-    <input type="text" formControlName="firstName">
-  </label>
-  <label>
-    Last Name:
-    <input type="text" formControlName="lastName">
-  </label>
-  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-  <button type="button" (click)="initialize()" >Reset</button>
-</form>
-<div>
-  <div>
-    Valido {{profileForm.valid}}
-
-  </div>
-  Touched {{profileForm.touched}}
-</div>
 </div>
