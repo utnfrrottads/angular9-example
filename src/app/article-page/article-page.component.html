@@ -8,11 +8,15 @@
     </div>
 
     <div class="comments-section">
-        <app-comment-form>
-
+        <app-comment-form 
+            (commentSent)="updateComments()" 
+            [article]="article"
+            >
         </app-comment-form>
-        <app-comments-list [article]="article">
-
+        <app-comments-list 
+            [comments]="comments"
+            [article]="article"
+            >
         </app-comments-list>
     </div>
 </div>

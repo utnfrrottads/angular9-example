@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Comment } from '../model/comment';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-comments-list',
@@ -9,13 +10,18 @@ import { Comment } from '../model/comment';
 })
 export class CommentsListComponent implements OnInit {
 
-  comments: Comment[] = [];
+  currentUser: User;
+  @Input() comments;
   @Input() article;
 
   constructor(private http: HttpService) { }
 
   ngOnInit(): void {
-    this.http.getAllCommentsByArticle(this.article).subscribe(response => this.comments = response.comments);
+    this.http.getCurrentUser().subscribe( response => this.currentUser = response.user);
+  }
+
+  deleteComment(comment: Comment){
+    this.http.deleteComment(this.article, comment);
   }
 
 }
