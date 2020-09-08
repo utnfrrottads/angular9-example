@@ -1,6 +1,7 @@
 import { Author } from './author'
+import { BaseInterface } from './base-interface';
 
-export interface MultipleComments{
+export interface MultipleComments extends BaseInterface{
     comments: Comment[];
 }
 

@@ -45,7 +45,7 @@
     background-color: rgb(205, 48, 253);
 }
 
-.btn-article:focus{
+.btn-article-active{
     border-bottom: solid 3px rgb(144, 20, 245);
 }
 
@@ -62,7 +62,8 @@
 .page{
     background-color: rgb(255, 104, 247);
     padding: 5px;
-    border-radius: 20px;
+    border-radius: 50%;
     display: inline-block;
     margin: 2px;
+    width: 40px;
 }

@@ -1,7 +1,11 @@
 <div class="center-page">
     <main class="articles-section">
-        <button (click)="getMyArticles(1)" class="btn btn-article">My articles</button>
-        <button (click)="getAllArticles(1)" class="btn btn-article">Global feed</button>
+        <button (click)="getMyArticles(1)" class="btn btn-article" 
+            [class.btn-article-active]="articlesMode === 'myArticles'">My articles
+        </button>
+        <button (click)="getAllArticles(1)" class="btn btn-article"
+            [class.btn-article-active]="articlesMode === 'all'">Global feed
+        </button>
         <button (click)="getAllTags()" class="btn btn-article">Update tags</button>
 
         <app-articles-list
@@ -25,9 +29,9 @@
     <ul class="paginator">
         <button *ngFor="let page of pages"
             class="page"
-            (click)="getAllArticles(page)"
+            (click)="changePage(page)"
             >
             {{page}}
-    </button>
+        </button>
     </ul>
 </div>

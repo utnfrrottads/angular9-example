@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageServiceModule} from 'ngx-webstorage-service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { StorageServiceModule} from 'ngx-webstorage-service';
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StorageServiceModule
+    StorageServiceModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

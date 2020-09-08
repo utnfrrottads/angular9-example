@@ -3,6 +3,8 @@ import { ArticleService } from '../services/article.service';
 import { Article } from '../model/article';
 import { HttpService } from '../services/http.service';
 import { Comment } from '../model/comment';
+import { User } from '../model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-page',
@@ -13,10 +15,12 @@ export class ArticlePageComponent implements OnInit {
 
   article: Article;
   comments: Comment[];
+  currentUser: User;
 
   constructor(
     private articleService: ArticleService,
-    private http: HttpService
+    private http: HttpService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -28,6 +32,15 @@ export class ArticlePageComponent implements OnInit {
     this.http.getAllCommentsByArticle(this.article).subscribe(
       response => this.comments = response.comments
     );
+    this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
+  }
+
+  updateArticle(){
+    this.router.navigate(['editor/update']);
+  }
+
+  deleteArticle(){
+    this.http.deleteArticle(this.article);
   }
 
 }

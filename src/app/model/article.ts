@@ -1,10 +1,11 @@
 import { Author } from './author';
+import { BaseInterface } from './base-interface';
 
-export interface SingleArticle {
+export interface SingleArticle extends BaseInterface {
     article: Article;
 }
 
-export interface MultipleArticles {
+export interface MultipleArticles extends BaseInterface {
     articles: Article[];
     articlesCount: number;
 }
