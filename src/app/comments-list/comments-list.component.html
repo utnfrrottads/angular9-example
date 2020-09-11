@@ -8,7 +8,7 @@ Previous Comments:
         <label class="comment-item">Author: {{comment.author.username}}</label>
         <button class="btn btn-danger" 
             *ngIf="comment.author.username === currentUser.username"
-            (click)="deleComment(comment)">
+            (click)="deleteComment(comment)">
             Delete
         </button>
     </li>

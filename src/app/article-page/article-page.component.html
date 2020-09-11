@@ -27,7 +27,8 @@
             [article]="article"
             >
         </app-comment-form>
-        <app-comments-list 
+        <app-comments-list
+            (commentDeleted)="updateComments()"
             [comments]="comments"
             [article]="article"
             >

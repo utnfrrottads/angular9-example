@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Comment } from '../model/comment';
 import { User } from '../model/user';
@@ -13,6 +13,7 @@ export class CommentsListComponent implements OnInit {
   currentUser: User;
   @Input() comments;
   @Input() article;
+  @Output() commentDeleted = new EventEmitter();
 
   constructor(private http: HttpService) { }
 
@@ -21,7 +22,7 @@ export class CommentsListComponent implements OnInit {
   }
 
   deleteComment(comment: Comment){
-    this.http.deleteComment(this.article, comment);
+    this.http.deleteComment(this.article, comment).subscribe( () => this.commentDeleted.emit() );
   }
 
 }

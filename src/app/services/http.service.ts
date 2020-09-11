@@ -86,11 +86,14 @@ export class HttpService {
     const url = `${this.baseUrl}articles/${article.slug}/comments/${comment.id}`;
     const token = this.storage.getAuthentication();
     const headers = {Authorization: 'Token ' + token};
-    this.http.delete<BaseInterface>(url, {headers}).subscribe( response => {
+    let observable = this.http.delete<BaseInterface>(url, {headers});
+    observable.subscribe( response => {
       if(response.errors !== undefined){
         alert('Error when deleting comment');
       }
     });
+
+    return observable;
   }
 
   getAllCommentsByArticle(article: Article){
