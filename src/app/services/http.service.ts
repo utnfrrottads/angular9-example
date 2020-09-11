@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { MultipleArticles, Article, SingleArticle } from '../model/article';
 import { SingleUser, User } from '../model/user';
 import { Author } from '../model/author';
-import { MultipleComments } from '../model/comment';
+import { MultipleComments, Comment } from '../model/comment';
 import { LocalStorageService } from './local-storage.service';
 import { Observable } from 'rxjs';
 import { BaseInterface } from '../model/base-interface';
@@ -75,27 +75,30 @@ export class HttpService {
     return this.http.get<any>(url);
   }
 
-  addCommentToArticle(slug: string, comment:string, callback){
-    const url = `${this.baseUrl}articles/${slug}/comments`;
-    this.authenticate(
-      ({ user: {token} }) => {
-        const headers = {Authorization: 'Token ' + token}
-        this.http.post<any>(url,{comment:{body:comment}},{headers}).subscribe(callback);
+  addCommentToArticle(article: Article, comment: Comment){
+    const url = `${this.baseUrl}articles/${article.slug}/comments`;
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token};
+    return this.http.post<any>(url, {comment}, {headers});
+  }
+
+  deleteComment(article: Article, comment: Comment){
+    const url = `${this.baseUrl}articles/${article.slug}/comments/${comment.id}`;
+    const token = this.storage.getAuthentication();
+    const headers = {Authorization: 'Token ' + token};
+    let observable = this.http.delete<BaseInterface>(url, {headers});
+    observable.subscribe( response => {
+      if(response.errors !== undefined){
+        alert('Error when deleting comment');
       }
-    );
-    
+    });
+
+    return observable;
   }
 
   getAllCommentsByArticle(article: Article){
     const url = `${this.baseUrl}articles/${article.slug}/comments`;
     return this.http.get<MultipleComments>(url);
-  }
-
-  authenticate(functionRequest){
-    const url = `${this.baseUrl}users/login`;
-    const email = 'user123@dominio.com';
-    const password = 'mipassword';
-    this.http.post<any>(url,{user:{email:email,password:password}}).subscribe(functionRequest);
   }
 
   getCurrentUser(){

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../model/article';
 import { HttpService } from '../services/http.service';
+import { Comment } from '../model/comment';
 import { User } from '../model/user';
 import { Router } from '@angular/router';
 
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class ArticlePageComponent implements OnInit {
 
   article: Article;
+  comments: Comment[];
   currentUser: User;
 
   constructor(
@@ -23,6 +25,13 @@ export class ArticlePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.article = this.articleService.getArticle();
+    this.updateComments();
+  }
+
+  updateComments(){
+    this.http.getAllCommentsByArticle(this.article).subscribe(
+      response => this.comments = response.comments
+    );
     this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
   }
 

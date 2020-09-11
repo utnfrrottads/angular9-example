@@ -1,4 +1,11 @@
-<form>
-    <input placeholder="Write your comment">
-    <button>Comment</button>
-</form>
+<div class="center-form">
+    <form [formGroup]="commentForm" (ngSubmit)="sendComment()" class="form-inline"> 
+        <div class="form-group">
+            <input class="form-control" formControlName="body" id="body" placeholder="Write your comment">
+        </div>
+        <button type="submit" [disabled]="commentForm.invalid" class="btn btn-primary">
+            Comment 
+        </button>
+        
+    </form>
+</div>
