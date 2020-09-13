@@ -101,7 +101,7 @@ export class ArticleFormComponent implements OnInit {
       }
       else{
         alert('Article successfully updated');
-        this.router.navigate(['home/myArticle/1']);
+        this.router.navigate(['home/myArticles/1']);
       }
     });
   }
