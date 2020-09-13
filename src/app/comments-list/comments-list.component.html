@@ -1,15 +1,26 @@
-Previous Comments:
-<ul>
+<ul class="comments-container">
     <li
         *ngFor="let comment of comments"
         class="comment-group"
         >
-        <label class="comment-item">Body: {{comment.body}}</label>
-        <label class="comment-item">Author: {{comment.author.username}}</label>
-        <button class="btn btn-danger" 
-            *ngIf="comment.author.username === currentUser.username"
-            (click)="deleteComment(comment)">
-            Delete
-        </button>
+        <div class="image-container">
+            <img src={{comment.author.image}} class="author-image">
+        </div>
+        <div class="">
+            <div>
+                <span class="comment-author">{{comment.author.username}}</span>
+                <span class="comment-creation-date">{{comment.createdAt | date:'medium'}}</span>
+            </div>
+        
+            <div class="comment-body">
+                <p>{{comment.body}}</p>
+            </div>
+
+            <div class="update-delete-section" *ngIf="belongsToAuthor(comment.author)">
+                <div (click)="deleteComment(comment)" class="delete">
+                    <fa-icon [icon]="deleteIcon" title="Delete"></fa-icon>
+                </div>
+            </div>
+        </div>
     </li>
 </ul>
