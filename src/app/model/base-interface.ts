@@ -4,4 +4,7 @@ export interface BaseInterface {
 
 interface Errors{
     body: string[];
+    username: string[];
+    password: string[];
+    email: string[];
 }

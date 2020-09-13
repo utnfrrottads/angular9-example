@@ -23,4 +23,12 @@ export class LocalStorageService {
   logOut(){
     this.storage.remove(this.appID + this.currentUserID);
   }
+  
+  set(key, value){
+    this.storage.set(this.appID + key, value)
+  }
+
+  get(key){
+    return this.storage.get(this.appID + key);
+  }
 }

@@ -20,3 +20,28 @@
 .article-body{
     min-height: 150px;
 }
+
+.selected-tag{
+    background-color: gray;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.deselect-tag{
+    color: white;
+}
+
+.deselect-tag:hover{
+    color: tomato;
+    text-decoration: none;
+}
+
+.tag-form{
+    width: 30%;
+    display: inline-block;
+    margin-right: 20px;
+}

@@ -23,6 +23,11 @@
     margin-right: 15px;
 }
 
+.author-image img{
+    max-width: 150px;
+    max-height: 150px;
+}
+
 .header-text{
     margin-left: 15px;
 }
@@ -34,6 +39,7 @@
     color: white;
     display: block;
     margin: 0px;
+    margin-bottom: 5px;
 }
 
 .article-subtitle{
@@ -91,6 +97,8 @@
 .comments-section{
     width: 80%;
     float: right;
-    background-color: gray;
+    background-color: rgb(240, 240, 240);
     border-radius: 5px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }

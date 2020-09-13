@@ -3,7 +3,7 @@
         *ngFor='let article of articles'
         class="article-group"
         >
-            <div class="image-container">
+            <div class="align-left">
                 <img src={{article.author.image}} class="author-image">
             </div>
             <div class="">
@@ -19,7 +19,7 @@
                 </div>
 
                 <a href="javascript:void(0)" (click)="goToArticlePage(article)" class="link-more">More</a>
-                <div class="update-delete-section" *ngIf="article.author.username === currentUser.username">
+                <div class="update-delete-section" *ngIf="belongsToAuthor(article.author)">
                     <div (click)="updateArticle(article)" class="update">
                         <fa-icon [icon]="updateIcon" title="Edit"></fa-icon>
                     </div>
@@ -29,4 +29,5 @@
                 </div>
             </div>
     </li>
+    <li *ngIf="articles.length === 0" class="no-articles"> There are no articles yet</li>
 </ul>

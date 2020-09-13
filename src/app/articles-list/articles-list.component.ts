@@ -5,6 +5,8 @@ import { ArticleService } from '../services/article.service';
 import { User } from '../model/user';
 import { faEdit,faTrash } from '@fortawesome/free-solid-svg-icons';
 import { HttpService } from '../services/http.service';
+import { Author } from '../model/author';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-articles-list',
@@ -21,13 +23,14 @@ export class ArticlesListComponent implements OnInit {
   constructor(
     private router: Router,
     private articleService: ArticleService,
-    private http: HttpService
-    ) { 
-      this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
-    }
+    private http: HttpService,
+    private storage: LocalStorageService
+  ) { }
 
   ngOnInit(): void {
-    
+    if(this.storage.getAuthentication()){
+      this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
+    }
   }
 
   goToArticlePage(article: Article){
@@ -43,6 +46,15 @@ export class ArticlesListComponent implements OnInit {
   deleteArticle(article: Article){
     this.http.deleteArticle(article);
     this.router.navigate(['home/myArticles/1'])
+  }
+
+  belongsToAuthor(author: Author){
+    if(this.currentUser !== undefined && author.username === this.currentUser.username){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
 }
