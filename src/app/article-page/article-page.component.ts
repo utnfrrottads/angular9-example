@@ -1,10 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../model/article';
 import { HttpService } from '../services/http.service';
 import { Comment } from '../model/comment';
 import { User } from '../model/user';
 import { Router } from '@angular/router';
+import { Author } from '../model/author';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-article-page',
@@ -20,7 +22,8 @@ export class ArticlePageComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private http: HttpService,
-    private router: Router
+    private router: Router,
+    private storage: LocalStorageService
     ) { }
 
   ngOnInit(): void {
@@ -32,7 +35,9 @@ export class ArticlePageComponent implements OnInit {
     this.http.getAllCommentsByArticle(this.article).subscribe(
       response => this.comments = response.comments
     );
-    this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
+    if(this.storage.getAuthentication()){
+      this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
+    }
   }
 
   updateArticle(){
@@ -43,4 +48,12 @@ export class ArticlePageComponent implements OnInit {
     this.http.deleteArticle(this.article);
   }
 
+  belongsToAuthor(author: Author){
+    if(this.currentUser !== undefined && author.username === this.currentUser.username){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

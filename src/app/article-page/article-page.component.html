@@ -15,7 +15,7 @@
             <p class="article-body">{{article.body}}</p>
         </div>
 
-        <div class="update-delete-section" *ngIf="article.author.username === currentUser.username">
+        <div class="update-delete-section" *ngIf="belongsToAuthor(article.author)">
             <button class="btn btn-update" (click)="updateArticle()">Edit</button>
             <button class="btn btn-delete" (click)="deleteArticle()">Delete</button>
         </div>
