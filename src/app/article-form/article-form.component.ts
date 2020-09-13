@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../model/article';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-article-form',
@@ -12,12 +14,25 @@ import { Article } from '../model/article';
 })
 export class ArticleFormComponent implements OnInit {
 
+  tags: string[] = [];
+  filteredTags: Observable<string[]>;
+  selectedTags: string[] = [];
+
+  notEmptySelectedTags = (control: AbstractControl) => {
+    if(this.selectedTags.length === 0){
+      return {EmptySelectedTags: true};
+    }
+    return null;
+  };
+
   articleForm = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    body: new FormControl(''),
+    title: new FormControl('',[Validators.required]),
+    description: new FormControl('',[Validators.required]),
+    body: new FormControl('',[Validators.required]),
     tagList: new FormControl('')
-  });
+  },
+  [this.notEmptySelectedTags]
+  );
 
   mode: string;
   article: Article;
@@ -27,10 +42,13 @@ export class ArticleFormComponent implements OnInit {
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private router: Router
-    ) { }
+  ) { }
+
+
 
   ngOnInit(): void {
     this.route.params.subscribe( params => this.mode = params.mode);
+    this.autocompleteTags();
     
     switch(this.mode){
       case 'update':
@@ -38,6 +56,7 @@ export class ArticleFormComponent implements OnInit {
         this.article = this.articleService.getArticle();
         if(this.article !== undefined){
           this.articleForm.patchValue(this.article);
+          this.selectedTags = this.article.tagList;
         }
         break;
       case 'create':
@@ -58,7 +77,10 @@ export class ArticleFormComponent implements OnInit {
   }
 
   createArticle(){
-    this.http.createArticle(this.articleForm.value).subscribe(response => {
+    let article: Article = this.articleForm.value;
+    article.tagList = this.selectedTags;
+
+    this.http.createArticle(article).subscribe(response => {
       if(response.errors !== undefined){
         alert('Error when creating article');
       }
@@ -71,6 +93,8 @@ export class ArticleFormComponent implements OnInit {
 
   updateArticle(){
     Object.assign(this.article, this.articleForm.value);
+    this.article.tagList = this.selectedTags;
+
     this.http.updateArticle(this.article).subscribe( response => {
       if(response.errors !== undefined){
         alert('Error when updating article');
@@ -81,4 +105,33 @@ export class ArticleFormComponent implements OnInit {
       }
     });
   }
+
+
+  private autocompleteTags(){
+    this.http.getAllTags().subscribe( response => this.tags = response.tags);
+
+    this.filteredTags = this.articleForm.get('tagList').valueChanges.pipe(
+      startWith(''),
+      map(value => this.filter(value))
+    );
+  }
+
+  private filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.tags.filter(tag => 
+      tag.toLowerCase().indexOf(filterValue) === 0  &&  this.selectedTags.indexOf(tag) === -1
+    );
+  }
+
+  selectTag(tag: string){
+    this.selectedTags.push(tag);
+    this.articleForm.patchValue({tagList: ''});
+  }
+
+  deselectTag(tag: string){
+    const index = this.selectedTags.indexOf(tag);
+    this.selectedTags.splice(index, 1);
+  }
+
 }

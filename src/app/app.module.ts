@@ -16,7 +16,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageServiceModule} from 'ngx-webstorage-service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -30,7 +33,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     CommentsListComponent,
     CommentFormComponent,
     ArticleFormComponent,
-    ArticlePageComponent
+    ArticlePageComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     ReactiveFormsModule,
     HttpClientModule,
     StorageServiceModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
