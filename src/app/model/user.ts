@@ -1,4 +1,6 @@
-export interface SingleUser{
+import { BaseInterface } from './base-interface';
+
+export interface SingleUser extends BaseInterface{
     user: User;
 }
 

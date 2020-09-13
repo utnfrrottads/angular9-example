@@ -110,7 +110,13 @@ export class HttpService {
 
   registerUser(user: User){
     const url = `${this.baseUrl}users`;
-    this.http.post<SingleUser>(url,{user}).subscribe(user => console.log(user));
+    let observable = this.http.post<SingleUser>(url,{user});
+    observable.subscribe(response => {
+        if(response.errors === undefined){
+          this.storage.saveLogIn(response.user);
+        }
+    });
+    return observable;
   }
 
   logIn(user: User){
