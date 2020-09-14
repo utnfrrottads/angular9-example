@@ -35,7 +35,7 @@ export class ArticlePageComponent implements OnInit {
     this.http.getAllCommentsByArticle(this.article).subscribe(
       response => this.comments = response.comments
     );
-    if(this.storage.getAuthentication()){
+    if (this.storage.getAuthentication()){
       this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
     }
   }
@@ -49,7 +49,7 @@ export class ArticlePageComponent implements OnInit {
   }
 
   belongsToAuthor(author: Author){
-    if(this.currentUser !== undefined && author.username === this.currentUser.username){
+    if (this.currentUser !== undefined && author.username === this.currentUser.username){
       return true;
     }
     else{

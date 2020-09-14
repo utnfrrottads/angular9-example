@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from '../services/article.service';
@@ -18,20 +18,13 @@ export class ArticleFormComponent implements OnInit {
   filteredTags: Observable<string[]>;
   selectedTags: string[] = [];
 
-  notEmptySelectedTags = (control: AbstractControl) => {
-    if(this.selectedTags.length === 0){
-      return {EmptySelectedTags: true};
-    }
-    return null;
-  };
-
   articleForm = new FormGroup({
-    title: new FormControl('',[Validators.required]),
-    description: new FormControl('',[Validators.required]),
-    body: new FormControl('',[Validators.required]),
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    body: new FormControl('', [Validators.required]),
     tagList: new FormControl('')
   },
-  [this.notEmptySelectedTags]
+  [this.notEmptySelectedTags()]
   );
 
   mode: string;
@@ -44,17 +37,24 @@ export class ArticleFormComponent implements OnInit {
     private router: Router
   ) { }
 
-
+  notEmptySelectedTags(){
+    return (control: AbstractControl) => {
+      if (this.selectedTags.length === 0){
+        return {EmptySelectedTags: true};
+      }
+      return null;
+    };
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe( params => this.mode = params.mode);
     this.autocompleteTags();
-    
-    switch(this.mode){
+
+    switch (this.mode){
       case 'update':
         this.articleForm.get('tagList').disable();
         this.article = this.articleService.getArticle();
-        if(this.article !== undefined){
+        if (this.article !== undefined){
           this.articleForm.patchValue(this.article);
           this.selectedTags = this.article.tagList;
         }
@@ -68,20 +68,22 @@ export class ArticleFormComponent implements OnInit {
   }
 
   saveArticle(){
-    switch(this.mode){
-      case 'update': this.updateArticle();
+    switch (this.mode){
+      case 'update':
+        this.updateArticle();
         break;
-      case 'create': this.createArticle();
+      case 'create':
+        this.createArticle();
         break;
     }
   }
 
   createArticle(){
-    let article: Article = this.articleForm.value;
+    const article: Article = this.articleForm.value;
     article.tagList = this.selectedTags;
 
     this.http.createArticle(article).subscribe(response => {
-      if(response.errors !== undefined){
+      if (response.errors !== undefined){
         alert('Error when creating article');
       }
       else{
@@ -96,7 +98,7 @@ export class ArticleFormComponent implements OnInit {
     this.article.tagList = this.selectedTags;
 
     this.http.updateArticle(this.article).subscribe( response => {
-      if(response.errors !== undefined){
+      if (response.errors !== undefined){
         alert('Error when updating article');
       }
       else{
@@ -119,7 +121,7 @@ export class ArticleFormComponent implements OnInit {
   private filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.tags.filter(tag => 
+    return this.tags.filter(tag =>
       tag.toLowerCase().indexOf(filterValue) === 0  &&  this.selectedTags.indexOf(tag) === -1
     );
   }

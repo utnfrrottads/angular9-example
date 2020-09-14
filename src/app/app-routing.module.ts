@@ -9,13 +9,13 @@ import { ArticlePageComponent } from './article-page/article-page.component';
 
 
 const routes: Routes = [
-  {path:'', component: HomePageComponent},
-  {path:'home/:articlesMode/:page', component: HomePageComponent},
-  {path:'login', component: SigninComponent},
-  {path:'register', component: SignupComponent},
-  {path:'editor/:mode', component: ArticleFormComponent},
-  {path:'article', component: ArticlePageComponent},
-  {path:'**', component: ErrorPageComponent}
+  {path: '', component: HomePageComponent},
+  {path: 'home/:articlesMode/:page', component: HomePageComponent},
+  {path: 'login', component: SigninComponent},
+  {path: 'register', component: SignupComponent},
+  {path: 'editor/:mode', component: ArticleFormComponent},
+  {path: 'article', component: ArticlePageComponent},
+  {path: '**', component: ErrorPageComponent}
 ];
 
 @NgModule({

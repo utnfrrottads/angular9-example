@@ -33,8 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     CommentsListComponent,
     CommentFormComponent,
     ArticleFormComponent,
-    ArticlePageComponent,
-    
+    ArticlePageComponent
   ],
   imports: [
     BrowserModule,

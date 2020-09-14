@@ -1,4 +1,4 @@
-import { Author } from './author'
+import { Author } from './author';
 import { BaseInterface } from './base-interface';
 
 export interface MultipleComments extends BaseInterface{

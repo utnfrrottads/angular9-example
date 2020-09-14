@@ -13,8 +13,8 @@ export class SigninComponent implements OnInit {
   @Output() loggingIn = new EventEmitter();
   signinForm = new FormGroup({
     password: new FormControl('', [Validators.required]),
-    email: new FormControl('',[Validators.required, Validators.email])
-  })
+    email: new FormControl('', [Validators.required, Validators.email])
+  });
 
   constructor(
     private http: HttpService,
@@ -25,7 +25,7 @@ export class SigninComponent implements OnInit {
   }
 
   logIn(){
-    this.http.logIn(this.signinForm.value).subscribe( 
+    this.http.logIn(this.signinForm.value).subscribe(
       response => this.loggingIn.emit(response.user.token)
     );
     this.router.navigate(['home/all/1']);

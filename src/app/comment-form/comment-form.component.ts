@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 export class CommentFormComponent implements OnInit {
 
   commentForm = new FormGroup({
-    body: new FormControl('',[Validators.required, Validators.maxLength(500)])
-  })
+    body: new FormControl('', [Validators.required, Validators.maxLength(500)])
+  });
 
   @Input() article;
   @Output() commentSent = new EventEmitter();
@@ -25,17 +25,17 @@ export class CommentFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   sendComment(){
-    if(!this.storage.getAuthentication()){
+    if (!this.storage.getAuthentication()){
       alert('You need to log in');
       this.router.navigate(['login']);
     }
     else{
       this.http.addCommentToArticle(this.article, this.commentForm.value).subscribe( response => {
-        if(response.errors !== undefined){
+        if (response.errors !== undefined){
           alert('Error when commenting');
         }
         else{
@@ -44,6 +44,6 @@ export class CommentFormComponent implements OnInit {
       });
       this.commentForm.reset();
     }
-    
+
   }
 }
