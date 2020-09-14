@@ -1,0 +1,37 @@
+<div class="center-page">
+    <main class="articles-section">
+        <button (click)="getMyArticles(1)" class="btn btn-article" 
+            [class.btn-article-active]="articlesMode === 'myArticles'">My articles
+        </button>
+        <button (click)="getAllArticles(1)" class="btn btn-article"
+            [class.btn-article-active]="articlesMode === 'all'">Global feed
+        </button>
+        <button (click)="getAllTags()" class="btn btn-article">Update tags</button>
+
+        <app-articles-list
+            [articles]="articles"
+        >
+
+        </app-articles-list>
+    </main>
+
+    <aside class="tags-section">
+        <ul class="tags-container">
+            <li
+                *ngFor="let tag of tags"
+                class="tag"
+                >
+                {{tag}}
+            </li>
+        </ul>
+    </aside>
+
+    <ul class="paginator">
+        <button *ngFor="let page of pages"
+            class="page"
+            (click)="changePage(page)"
+            >
+            {{page}}
+        </button>
+    </ul>
+</div>

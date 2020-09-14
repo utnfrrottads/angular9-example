@@ -1,0 +1,27 @@
+<ul class="comments-container">
+    <li
+        *ngFor="let comment of comments"
+        class="comment-group"
+        >
+        <div class="image-container">
+            <img src={{comment.author.image}} class="author-image">
+        </div>
+        <div class="">
+            <div>
+                <span class="comment-author">{{comment.author.username}}</span>
+                <span class="comment-creation-date">{{comment.createdAt | date:'medium'}}</span>
+            </div>
+        
+            <div class="comment-body">
+                <p>{{comment.body}}</p>
+            </div>
+
+            <div class="update-delete-section" *ngIf="belongsToAuthor(comment.author)">
+                <div (click)="deleteComment(comment)" class="delete">
+                    <fa-icon [icon]="deleteIcon" title="Delete"></fa-icon>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li *ngIf="comments.length === 0" class="no-comments">Be the first to comment</li>
+</ul>

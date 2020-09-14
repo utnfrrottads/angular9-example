@@ -1,0 +1,43 @@
+<div class="center-form">
+    <h1 class="section-title">Article</h1>
+    <form
+        [formGroup]="articleForm"
+        (ngSubmit)="saveArticle()"
+        class=""
+        >
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input class="form-control" formControlName="title" id="title" placeholder="Title">
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input class="form-control" formControlName="description" id="description" placeholder="Description">
+        </div>
+
+        <div class="form-group">
+            <label for="body">Body:</label>
+            <textarea class="form-control article-body" formControlName="body" id="body" placeholder="Body">
+            </textarea>
+        </div>
+
+        <div class="form-group position-relative">
+            <label for="tag-list">Tag:</label>
+            <div>
+                <input class="form-control tag-form" formControlName="tagList" [matAutocomplete]="auto" id="tag-list" placeholder="Enter a tag">
+                <span class="selected-tag" *ngFor="let selectedTag of selectedTags">
+                    {{selectedTag}} 
+                    <a (click)=deselectTag(selectedTag) *ngIf="mode === 'create'" class="deselect-tag"href="javascript:void(0)" >x</a>
+                </span>
+            </div>
+            
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let tag of filteredTags | async" [value]="tag" (click)="selectTag(tag)">
+                  {{tag}}
+               </mat-option>
+            </mat-autocomplete>
+        </div>
+
+        <button type="submit" [disabled]="articleForm.invalid" class="btn btn-primary">Save article</button>
+    </form>
+</div>

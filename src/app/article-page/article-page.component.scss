@@ -1,0 +1,104 @@
+.center-page{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.article-group{
+    background-color: white;
+    border: solid 1px lightgray;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.article-header{
+    background-color: rgb(54, 54, 54);
+    padding: 10px;
+    overflow: hidden;
+}
+
+.author-image{
+    float: left;
+    margin-right: 15px;
+}
+
+.author-image img{
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.header-text{
+    margin-left: 15px;
+}
+
+.article-title{
+    font-size: xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    display: block;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.article-subtitle{
+    color: lightgray;
+    font-size: small;
+    display: block;
+    margin: 0px;
+}
+
+.article-description{
+    color: white;
+    font-family: cursive;
+    font-size: large;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.article-content{
+    padding: 15px;
+    clear: both;
+}
+
+.article-body{
+    word-wrap: break-word;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.update-delete-section{
+    float: right;
+}
+
+.btn-update{
+    padding: 5px 15px;
+    background-color: rgb(121, 65, 253);
+    margin: 5px;
+    color:black;
+}
+
+.btn-update:hover{
+    background-color: rgb(151, 107, 255);
+}
+
+.btn-delete{
+    padding: 5px 10px;
+    background-color: rgb(199, 75, 133);
+    margin: 5px;
+    color:black;
+}
+
+.btn-delete:hover{
+    background-color: rgb(189, 105, 144);
+}
+
+.comments-section{
+    width: 80%;
+    float: right;
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}

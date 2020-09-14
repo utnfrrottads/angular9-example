@@ -1,0 +1,37 @@
+<div class="center-page">
+    <div class="article-group">
+        <div class="article-header">
+            <div class="author-image">
+                <img src="{{article.author.image}}">
+            </div>
+            <div class="header-text">
+                <label class="article-title">{{article.title}}</label>
+                <label class="article-subtitle">Created at {{article.createdAt | date: "medium"}} by {{article.author.username}}</label>
+                <label class="article-description">{{article.description}}</label>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p class="article-body">{{article.body}}</p>
+        </div>
+
+        <div class="update-delete-section" *ngIf="belongsToAuthor(article.author)">
+            <button class="btn btn-update" (click)="updateArticle()">Edit</button>
+            <button class="btn btn-delete" (click)="deleteArticle()">Delete</button>
+        </div>
+    </div>
+
+    <div class="comments-section">
+        <app-comment-form 
+            (commentSent)="updateComments()" 
+            [article]="article"
+            >
+        </app-comment-form>
+        <app-comments-list
+            (commentDeleted)="updateComments()"
+            [comments]="comments"
+            [article]="article"
+            >
+        </app-comments-list>
+    </div>
+</div>

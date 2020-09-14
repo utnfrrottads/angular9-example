@@ -1,0 +1,70 @@
+.center-page{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.articles-section{
+    width: 75%;
+    background-color: rgb(243, 243, 243);
+    border-radius: 5px;
+    float: left;
+    padding: 20px;
+}
+
+.tags-section{
+    width: 20%;
+    background-color: rgb(223, 223, 223);
+    border-radius: 30px;
+    box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, 0.4);
+    float: right;
+    padding: 10px;
+}
+
+.tags-container{
+    margin: 0px;
+    min-height: 180px;
+}
+
+.tag{
+    background-color: rgb(141, 141, 141);
+    padding: 5px;
+    float: left;
+    list-style-type: none;
+    margin: 2px auto;
+    margin-left: 2px;
+    border-radius: 15px;
+}
+
+.btn-article{
+    background-color: rgb(216, 88, 255);
+    box-shadow: 2px 2px 5px  rgba(210, 63, 255, 0.8);
+    margin: 5px;
+}
+
+.btn-article:hover{
+    background-color: rgb(205, 48, 253);
+}
+
+.btn-article-active{
+    border-bottom: solid 3px rgb(144, 20, 245);
+}
+
+.paginator{
+    display: block;
+    width: 75%;
+    background-color: rgb(231, 231, 231);
+    border-radius: 5px;
+    clear: both;
+    list-style-type: none;
+    padding: 10px;
+}
+
+.page{
+    background-color: rgb(255, 104, 247);
+    padding: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 2px;
+    width: 40px;
+}

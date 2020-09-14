@@ -1,0 +1,33 @@
+<ul class="articles-container">
+    <li
+        *ngFor='let article of articles'
+        class="article-group"
+        >
+            <div class="align-left">
+                <img src={{article.author.image}} class="author-image">
+            </div>
+            <div class="">
+                <div>
+                    <span class="article-title">{{article.title}}</span>
+                </div>
+                <div>
+                    <span class="article-creation-date">{{article.createdAt | date:'medium'}}</span>
+                </div>
+            
+                <div class="article-description">
+                    <p>{{article.description}}</p>
+                </div>
+
+                <a href="javascript:void(0)" (click)="goToArticlePage(article)" class="link-more">More</a>
+                <div class="update-delete-section" *ngIf="belongsToAuthor(article.author)">
+                    <div (click)="updateArticle(article)" class="update">
+                        <fa-icon [icon]="updateIcon" title="Edit"></fa-icon>
+                    </div>
+                    <div (click)="deleteArticle(article)" class="delete">
+                        <fa-icon [icon]="deleteIcon" title="Delete"></fa-icon>
+                    </div>
+                </div>
+            </div>
+    </li>
+    <li *ngIf="articles.length === 0" class="no-articles">There are no articles yet</li>
+</ul>
