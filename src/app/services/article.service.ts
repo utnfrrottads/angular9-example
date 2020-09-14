@@ -20,7 +20,7 @@ export class ArticleService {
   }
 
   getArticle(){
-    if(!this.article){
+    if (!this.article){
       this.article = this.storage.get(this.articleKey);
     }
     return this.article;

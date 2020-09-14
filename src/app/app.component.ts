@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(){
-    this.token = this.storage.getAuthentication();  //has delay in updating header, but update it without refresh page (routing)
+    this.token = this.storage.getAuthentication();  // has delay in updating header, but update it without refresh page (routing)
   }
 
   logOut(){

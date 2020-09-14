@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email])
-  })
+  });
   formErrors: any = {username: undefined, password: undefined, email: undefined};
 
   constructor(
@@ -26,9 +26,9 @@ export class SignupComponent implements OnInit {
   }
 
   register(){
-    let user = this.signupForm.value;
+    const user = this.signupForm.value;
     this.http.registerUser(user).subscribe(response => {
-      if(response.errors === undefined){
+      if (response.errors === undefined){
         this.router.navigate(['home/all/1']);
       }
       else{

@@ -14,16 +14,16 @@ export class HomePageComponent implements OnInit {
   tags: string[] = [];
   readonly pageLimit = 10;
   pages: number[] = [];
-  articlesMode: string = 'all';
-  page: number = 1;
+  articlesMode = 'all';
+  page = 1;
 
   callbackPaginator = response => {
     this.articles = response.articles;
     const pagesCount = (Math.ceil(response.articlesCount / this.pageLimit));
-    
+
     this.pages = [];
-    for(let i=0; i < pagesCount; i++){
-      this.pages.push(i+1);
+    for (let i = 0; i < pagesCount; i++){
+      this.pages.push(i + 1);
     }
   }
 
@@ -41,10 +41,12 @@ export class HomePageComponent implements OnInit {
 
     this.getAllTags();
 
-    switch(this.articlesMode){
-      case 'all': this.http.getAllArticles(this.page, this.pageLimit).subscribe(this.callbackPaginator);
+    switch (this.articlesMode){
+      case 'all':
+        this.http.getAllArticles(this.page, this.pageLimit).subscribe(this.callbackPaginator);
         break;
-      case 'myArticles': this.http.getMyArticles(this.page, this.pageLimit, this.callbackPaginator);
+      case 'myArticles':
+        this.http.getMyArticles(this.page, this.pageLimit, this.callbackPaginator);
         break;
       default: this.router.navigate(['error']); console.log(this.articlesMode);
     }
@@ -63,14 +65,14 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['home/myArticles/' + page]);
     this.http.getMyArticles(this.page, this.pageLimit, this.callbackPaginator);
   }
-  
+
   changePage(page: number){
-    switch(this.articlesMode){
-      case 'all': 
+    switch (this.articlesMode){
+      case 'all':
         this.http.getAllArticles(page, this.pageLimit).subscribe(this.callbackPaginator);
         this.router.navigate(['home/all/' + page]);
         break;
-      case 'myArticles': 
+      case 'myArticles':
         this.http.getMyArticles(page, this.pageLimit, this.callbackPaginator);
         this.router.navigate(['home/myArticles/' + page]);
         break;

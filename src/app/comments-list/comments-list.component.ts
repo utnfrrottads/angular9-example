@@ -25,7 +25,7 @@ export class CommentsListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.storage.getAuthentication()){
+    if (this.storage.getAuthentication()){
       this.http.getCurrentUser().subscribe( response => this.currentUser = response.user);
     }
   }
@@ -35,7 +35,7 @@ export class CommentsListComponent implements OnInit {
   }
 
   belongsToAuthor(author: Author){
-    if(this.currentUser !== undefined && author.username === this.currentUser.username){
+    if (this.currentUser !== undefined && author.username === this.currentUser.username){
       return true;
     }
     else{

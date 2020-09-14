@@ -20,25 +20,22 @@ export class HttpService {
     private http: HttpClient,
     private storage: LocalStorageService) { }
 
-  getAllArticles(page: number, limit:number){
+  getAllArticles(page: number, limit: number){
     const offset = (page - 1) * limit;
     const url = `${this.baseUrl}articles?limit=${limit}&offset=${offset}`;
     return this.http.get<MultipleArticles>(url);
   }
 
-  getMyArticles(page: number, limit:number, callback){
+  getMyArticles(page: number, limit: number, callback){
     const offset = (page - 1) * limit;
-    let myArticles: Article[];
 
     this.getCurrentUser().subscribe( ({user}) => {
       const url = `${this.baseUrl}articles?author=${user.username}&limit=${limit}&offset=${offset}`;
       this.http.get<MultipleArticles>(url).subscribe(callback);
     });
-    
-    return myArticles;
   }
 
-  getArticlesByTag(tag:string) {
+  getArticlesByTag(tag: string) {
     const limit = 20;
     const url = `${this.baseUrl}articles?tag=${tag}&limit=${limit}`;
     return this.http.get<any>(url);
@@ -47,7 +44,7 @@ export class HttpService {
   createArticle(article: Article){
     const url = `${this.baseUrl}articles`;
     const token = this.storage.getAuthentication();
-    const headers = {Authorization: 'Token ' + token}
+    const headers = {Authorization: 'Token ' + token};
     return this.http.post<SingleArticle>(url, {article}, {headers});
   }
 
@@ -64,12 +61,12 @@ export class HttpService {
     const headers = {Authorization: 'Token ' + token};
     this.http.delete<BaseInterface>(url, {headers}).subscribe(
       response => {
-        if(response.errors !== undefined){
+        if (response.errors !== undefined){
           alert('Error when deleting article');
         }
       });
   }
-  
+
   getAllTags() {
     const url = `${this.baseUrl}tags`;
     return this.http.get<any>(url);
@@ -86,9 +83,9 @@ export class HttpService {
     const url = `${this.baseUrl}articles/${article.slug}/comments/${comment.id}`;
     const token = this.storage.getAuthentication();
     const headers = {Authorization: 'Token ' + token};
-    let observable = this.http.delete<BaseInterface>(url, {headers});
+    const observable = this.http.delete<BaseInterface>(url, {headers});
     observable.subscribe( response => {
-      if(response.errors !== undefined){
+      if (response.errors !== undefined){
         alert('Error when deleting comment');
       }
     });
@@ -110,9 +107,9 @@ export class HttpService {
 
   registerUser(user: User){
     const url = `${this.baseUrl}users`;
-    let observable = this.http.post<SingleUser>(url,{user});
+    const observable = this.http.post<SingleUser>(url, {user});
     observable.subscribe(response => {
-        if(response.errors === undefined){
+        if (response.errors === undefined){
           this.storage.saveLogIn(response.user);
         }
     });
@@ -121,7 +118,7 @@ export class HttpService {
 
   logIn(user: User){
     const url = `${this.baseUrl}users/login`;
-    let observable = this.http.post<SingleUser>(url,{user});
+    const observable = this.http.post<SingleUser>(url, {user});
     observable.subscribe(response => this.storage.saveLogIn(response.user));
     return observable;
   }

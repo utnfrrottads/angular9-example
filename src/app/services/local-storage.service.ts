@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { User } from '../model/user';
-import {LOCAL_STORAGE, WebStorageService} from 'ngx-webstorage-service'
+import {LOCAL_STORAGE, WebStorageService} from 'ngx-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +23,9 @@ export class LocalStorageService {
   logOut(){
     this.storage.remove(this.appID + this.currentUserID);
   }
-  
+
   set(key, value){
-    this.storage.set(this.appID + key, value)
+    this.storage.set(this.appID + key, value);
   }
 
   get(key){
