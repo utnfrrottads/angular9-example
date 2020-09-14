@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MultipleArticles, Article } from '../model/article';
 import { Router } from '@angular/router';
 import { ArticleService } from '../services/article.service';
@@ -7,18 +7,21 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { HttpService } from '../services/http.service';
 import { Author } from '../model/author';
 import { LocalStorageService } from '../services/local-storage.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-articles-list',
   templateUrl: './articles-list.component.html',
   styleUrls: ['./articles-list.component.scss']
 })
-export class ArticlesListComponent implements OnInit {
+export class ArticlesListComponent implements OnInit, OnDestroy {
 
   updateIcon = faEdit;
   deleteIcon = faTrash;
   currentUser: User;
   @Input() articles: Article[];
+
+  userSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -29,7 +32,13 @@ export class ArticlesListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.storage.getAuthentication()){
-      this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
+      this.userSubscription = this.http.getCurrentUser().subscribe(response => this.currentUser = response.user);
+    }
+  }
+
+  ngOnDestroy(){
+    if (this.userSubscription !== undefined){
+      this.userSubscription.unsubscribe();
     }
   }
 

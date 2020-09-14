@@ -1,24 +1,39 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MultipleArticles, Article, SingleArticle } from '../model/article';
 import { SingleUser, User } from '../model/user';
 import { Author } from '../model/author';
 import { MultipleComments, Comment } from '../model/comment';
 import { LocalStorageService } from './local-storage.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { BaseInterface } from '../model/base-interface';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
+export class HttpService implements OnDestroy {
 
   readonly baseUrl = 'https://conduit.productionready.io/api/';
 
+  getMyArticlesSubscription: Subscription;
+  deleteArticleSubscription: Subscription;
+  deleteCommentSubscription: Subscription;
+  registerUserSubscription: Subscription;
+  loginSubscription: Subscription;
+
   constructor(
     private http: HttpClient,
-    private storage: LocalStorageService) { }
+    private storage: LocalStorageService
+  ) { }
+
+  ngOnDestroy(){
+    this.getMyArticlesSubscription.unsubscribe();
+    this.deleteArticleSubscription.unsubscribe();
+    this.deleteCommentSubscription.unsubscribe();
+    this.registerUserSubscription.unsubscribe();
+    this.loginSubscription.unsubscribe();
+  }
 
   getAllArticles(page: number, limit: number){
     const offset = (page - 1) * limit;
@@ -29,7 +44,7 @@ export class HttpService {
   getMyArticles(page: number, limit: number, callback){
     const offset = (page - 1) * limit;
 
-    this.getCurrentUser().subscribe( ({user}) => {
+    this.getMyArticlesSubscription = this.getCurrentUser().subscribe( ({user}) => {
       const url = `${this.baseUrl}articles?author=${user.username}&limit=${limit}&offset=${offset}`;
       this.http.get<MultipleArticles>(url).subscribe(callback);
     });
@@ -59,7 +74,7 @@ export class HttpService {
     const url = `${this.baseUrl}articles/${article.slug}`;
     const token = this.storage.getAuthentication();
     const headers = {Authorization: 'Token ' + token};
-    this.http.delete<BaseInterface>(url, {headers}).subscribe(
+    this.deleteArticleSubscription = this.http.delete<BaseInterface>(url, {headers}).subscribe(
       response => {
         if (response.errors !== undefined){
           alert('Error when deleting article');
@@ -84,7 +99,7 @@ export class HttpService {
     const token = this.storage.getAuthentication();
     const headers = {Authorization: 'Token ' + token};
     const observable = this.http.delete<BaseInterface>(url, {headers});
-    observable.subscribe( response => {
+    this.deleteCommentSubscription = observable.subscribe( response => {
       if (response.errors !== undefined){
         alert('Error when deleting comment');
       }
@@ -108,7 +123,7 @@ export class HttpService {
   registerUser(user: User){
     const url = `${this.baseUrl}users`;
     const observable = this.http.post<SingleUser>(url, {user});
-    observable.subscribe(response => {
+    this.registerUserSubscription = observable.subscribe(response => {
         if (response.errors === undefined){
           this.storage.saveLogIn(response.user);
         }
@@ -119,7 +134,7 @@ export class HttpService {
   logIn(user: User){
     const url = `${this.baseUrl}users/login`;
     const observable = this.http.post<SingleUser>(url, {user});
-    observable.subscribe(response => this.storage.saveLogIn(response.user));
+    this.loginSubscription = observable.subscribe(response => this.storage.saveLogIn(response.user));
     return observable;
   }
 

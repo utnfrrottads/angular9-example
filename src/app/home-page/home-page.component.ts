@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Article } from '../model/article';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
 
   articles: Article[] = [];
   tags: string[] = [];
@@ -16,6 +17,7 @@ export class HomePageComponent implements OnInit {
   pages: number[] = [];
   articlesMode = 'all';
   page = 1;
+  paramsSubscription: Subscription;
 
   callbackPaginator = response => {
     this.articles = response.articles;
@@ -34,7 +36,7 @@ export class HomePageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.paramsSubscription = this.route.params.subscribe(params => {
       this.articlesMode = params.articlesMode;
       this.page = params.page;
     });
@@ -42,14 +44,23 @@ export class HomePageComponent implements OnInit {
     this.getAllTags();
 
     switch (this.articlesMode){
+      case undefined:
+        this.router.navigate(['home/all/1']);
+        this.http.getAllArticles(this.page, this.pageLimit).subscribe(this.callbackPaginator);
+        break;
       case 'all':
         this.http.getAllArticles(this.page, this.pageLimit).subscribe(this.callbackPaginator);
         break;
       case 'myArticles':
         this.http.getMyArticles(this.page, this.pageLimit, this.callbackPaginator);
         break;
-      default: this.router.navigate(['error']); console.log(this.articlesMode);
+      default:
+        this.router.navigate(['error']);
     }
+  }
+
+  ngOnDestroy(){
+    this.paramsSubscription.unsubscribe();
   }
 
   getAllArticles(page: number){
@@ -58,6 +69,7 @@ export class HomePageComponent implements OnInit {
   }
 
   getAllTags(){
+    this.tags = [];
     this.http.getAllTags().subscribe(response => this.tags = response.tags);
   }
 
