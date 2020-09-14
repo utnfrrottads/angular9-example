@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../model/article';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import { map, startWith } from 'rxjs/operators';
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.scss']
 })
-export class ArticleFormComponent implements OnInit {
+export class ArticleFormComponent implements OnInit, OnDestroy {
 
   tags: string[] = [];
   filteredTags: Observable<string[]>;
@@ -29,6 +29,8 @@ export class ArticleFormComponent implements OnInit {
 
   mode: string;
   article: Article;
+
+  modeSubscription: Subscription;
 
   constructor(
     private http: HttpService,
@@ -47,7 +49,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe( params => this.mode = params.mode);
+    this.modeSubscription = this.route.params.subscribe( params => this.mode = params.mode);
     this.autocompleteTags();
 
     switch (this.mode){
@@ -76,6 +78,10 @@ export class ArticleFormComponent implements OnInit {
         this.createArticle();
         break;
     }
+  }
+
+  ngOnDestroy(){
+    this.modeSubscription.unsubscribe();
   }
 
   createArticle(){

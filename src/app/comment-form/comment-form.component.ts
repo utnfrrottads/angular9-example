@@ -1,15 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-comment-form',
   templateUrl: './comment-form.component.html',
   styleUrls: ['./comment-form.component.scss']
 })
-export class CommentFormComponent implements OnInit {
+export class CommentFormComponent implements OnDestroy {
 
   commentForm = new FormGroup({
     body: new FormControl('', [Validators.required, Validators.maxLength(500)])
@@ -18,14 +19,16 @@ export class CommentFormComponent implements OnInit {
   @Input() article;
   @Output() commentSent = new EventEmitter();
 
+  commentSubscription: Subscription;
+
   constructor(
     private http: HttpService,
     private storage: LocalStorageService,
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-
+  ngOnDestroy(){
+    this.commentSubscription.unsubscribe();
   }
 
   sendComment(){
@@ -34,7 +37,7 @@ export class CommentFormComponent implements OnInit {
       this.router.navigate(['login']);
     }
     else{
-      this.http.addCommentToArticle(this.article, this.commentForm.value).subscribe( response => {
+      this.commentSubscription = this.http.addCommentToArticle(this.article, this.commentForm.value).subscribe( response => {
         if (response.errors !== undefined){
           alert('Error when commenting');
         }

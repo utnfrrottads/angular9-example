@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, DoCheck {
   constructor(
     private storage: LocalStorageService,
     private router: Router
-    ){}
+  ){}
 
   ngOnInit(){
     this.token = this.storage.getAuthentication();
