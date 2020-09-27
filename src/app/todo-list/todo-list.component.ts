@@ -1,26 +1,27 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from '../model/todo-item';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
   @Input() list: any[];
   @Output() itemRemoved = new EventEmitter();
   @Output() itemStateChanged = new EventEmitter();
-  constructor() { }
+  @Output() itemEdit = new EventEmitter();
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   removeItem(id) {
     this.itemRemoved.emit(id);
   }
 
-  completeTask(item:TodoItem) {
+  completeTask(item: TodoItem) {
     this.itemStateChanged.emit(item);
-
   }
 
+  updateTask(task: TodoItem) {}
 }

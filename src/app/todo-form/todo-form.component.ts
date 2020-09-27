@@ -12,13 +12,13 @@ export class TodoFormComponent {
     taskDescription: new FormControl('', Validators.required),
   });
 
+  @Output() add = new EventEmitter();
+
   saveTask() {
     let task = new TodoItem();
     task.description = this.taskForm.value.taskDescription;
     task.isCompleted = false;
     this.add.emit(task);
-    this.taskForm.reset();
+    this.taskForm.setValue({taskDescription: ''});
   }
-
-  @Output() add = new EventEmitter();
-}
+  }
