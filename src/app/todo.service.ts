@@ -18,6 +18,11 @@ export class TodoService {
     this.lastItemId += 10;
   }
 
+  update(task){
+    const index = this.list.findIndex((element) => element.id === task.id);
+    this.list.splice(index, 1, task);
+  }
+
   remove(id) {
     const index = this.list.findIndex((element) => element.id === id);
     this.list.splice(index, 1);

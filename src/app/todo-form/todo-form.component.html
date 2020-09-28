@@ -6,8 +6,9 @@
     type="submit" 
     [disabled]="!taskForm.valid"
     class="btn btn-primary">
-    Create
+    {{ flagEdit == true ? "Edit Item " + taskEditable.id : "Create" }}
   </button>
+  <button type="submit" hidden="flagEdit">Edit</button>
 </form>
 
 

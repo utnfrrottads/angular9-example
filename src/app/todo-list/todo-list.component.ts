@@ -23,5 +23,7 @@ export class TodoListComponent implements OnInit {
     this.itemStateChanged.emit(item);
   }
 
-  updateTask(task: TodoItem) {}
+  editItem(task: TodoItem) {
+    this.itemEdit.emit(task);
+  }
 }

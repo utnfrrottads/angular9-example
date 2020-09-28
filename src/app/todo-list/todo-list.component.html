@@ -4,7 +4,7 @@
       class="list-item">
       {{task.description}}
       <span>
-        <button class="btn btn-info" (click)="updateTask(task)">Edit</button>
+        <button class="btn btn-info" (click)="editItem(task)">Edit</button>
         <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
         <button class="btn btn-success" (click)="completeTask(task)">V</button>
       </span>
