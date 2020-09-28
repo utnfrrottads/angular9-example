@@ -2,8 +2,11 @@
     <li
       *ngFor="let task of list" [class.completed] = "task.isCompleted"
       class="list-item">
-      {{task.description}}
+      <div class="list-item-description">{{task.description}}
+      <div class="list-item-url">{{task.url}}</div>
+    </div>
       <span>
+        <button class="btn btn-info" (click)="editItem(task)">Edit</button>
         <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
         <button class="btn btn-success" (click)="completeTask(task)">V</button>
       </span>
