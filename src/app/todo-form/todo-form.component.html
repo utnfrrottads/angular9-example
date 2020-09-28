@@ -1,14 +1,14 @@
 
 
 <form [formGroup]="taskForm" (ngSubmit)="saveTask()"> 
-  <input type="text" formControlName="taskDescription">
+  <input type="text" formControlName="taskDescription" placeholder=Task>
+  <input type="text" formControlName="url" placeholder=URL>
   <button 
     type="submit" 
     [disabled]="!taskForm.valid"
     class="btn btn-primary">
-    {{ flagEdit == true ? "Edit Item " + taskEditable.id : "Create" }}
+    {{ flagEdit == true ? "Edit" : "Add Task" }}
   </button>
-  <button type="submit" hidden="flagEdit">Edit</button>
 </form>
 
 
