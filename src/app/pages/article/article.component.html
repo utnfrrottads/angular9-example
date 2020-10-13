@@ -1,0 +1,50 @@
+<div class="container mt-5 ">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+        <div id="first">
+            <div class="myform form ">
+                 <div class="logo mb-3">
+                     <div class="col-md-12 text-center">
+                        <h1 *ngIf="slug === null">Crear Articulo</h1>
+                        <h1 *ngIf="slug !== null">Editar Articulo</h1>
+                     </div>
+                </div>
+               <form action="" name="login" [formGroup]="form" (ngSubmit)="createArticle()">
+                       <div class="form-group">
+                          <label>Titulo</label>
+                          <input type="text" 
+                                 name="title"  
+                                 class="form-control"
+                                 placeholder="Ingrese Titulo"
+                                 formControlName="title"
+                                 [class.is-invalid]="fieldValid('title')">
+                       </div>
+                       <div class="form-group">
+                        <label>Descripción</label>
+                        <input type="text" 
+                               name="description"  
+                               class="form-control"
+                               placeholder="Ingrese Descripción"
+                               formControlName="description"
+                               [class.is-invalid]="fieldValid('description')">
+                     </div>
+                       <div class="form-group">
+                          <label >Cuerpo del articulo</label>
+                          <input type="text" 
+                                 name="body"   
+                                 class="form-control"  
+                                 placeholder="Ingrese cuerpo del Articulo"
+                                 formControlName="body"
+                                 [class.is-invalid]="fieldValid('body')">
+                       </div>
+                       <div class="col-md-12 text-center ">
+                          <button *ngIf="slug === null" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Crear</button>
+                          <button *ngIf="slug !== null" type="button" class=" btn btn-block mybtn btn-primary tx-tfm" (click)="updateArticle()">Editar</button>
+                          <button type="button" class=" btn btn-block mybtn btn-danger tx-tfm" routerLink="/home">Cancelar (Volver)</button>
+                       </div>
+                    </form>
+             
+            </div>
+        
+    </div>
+  </div>   

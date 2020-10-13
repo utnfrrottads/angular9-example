@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Home</a>
+    <button class="navbar-toggler disabled" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <button *ngIf="!islogged()" class="btn btn-outline-primary my-2 my-sm-0" routerLink='/login'>Iniciar Sesión</button>
+      <button *ngIf="!islogged()" class="btn btn-outline-info my-2 my-sm-0" routerLink='/register'>Registrarse</button>
+      <button *ngIf="islogged() && !commentForm" class="btn btn-success my-2 my-sm-0 mr-4 " type="submit" (click)="commentForm = !commentForm">Agregar comentario</button>
+    </div>
+    <button  class="btn btn-outline-danger my-2 my-sm-0 mr-4 " type="submit" routerLink="/home">Regresar</button>
+    <button *ngIf="islogged()" class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+  </nav>
+  <h3 class="m-3">Titulo: <span class="font-italic">{{article.title}}</span></h3>
+<div class="m-2">
+    <div class="comment-area" *ngIf="commentForm">
+        <div class="form-group mx-sm-3">
+
+            <textarea class="form-control mb-2 txt-area" rows="6" cols="140" [formControl]="commentControl"
+                    placeholder="Ingrese el comentario" >
+            </textarea>
+            <div class="col-md-12 text-center ">
+                <button type="submit" class=" btn btn-lg mybtn mr-4 btn-info tx-tfm" (click)="addComment()">Comentar</button>
+                <button type="button" class=" btn btn-lg mybtn btn-danger tx-tfm" (click)="commentForm = !commentForm">Cancelar</button>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-md-12 text-center ">
+    <table *ngIf="this.comments.length !== 0" class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" >Autor</th>
+            <th scope="col">Comentario</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comment of comments">
+            <td>{{comment.author.username}}</td>
+            <td>{{comment.body}}</td>
+            <td *ngIf="islogged()">
+                <button class="btn btn-outline-danger mr-1" (click)="deleteComment(comment.id)">Eliminar</button>
+            </td>
+            <td *ngIf="!islogged()">
+              <p class="text-danger"> Si desea Crear o Eliminar un comentario tiene que estar loggeado</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="this.comments.length === 0" class="alert alert-dark" role="alert">
+        No hay comentarios para este articulo
+      </div>
+</div>

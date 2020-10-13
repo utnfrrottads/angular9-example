@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Articulos</a>
+    <button class="navbar-toggler disabled" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <button *ngIf="islogged()" class="btn btn-success my-2 my-sm-0" type="submit" routerLink="/article">Nuevo Articulo</button>
+    </div>
+    <button *ngIf="!islogged()" class="btn btn-outline-primary my-2 mr-2 my-sm-0" routerLink='/login'>Iniciar Sesión</button>
+    <button *ngIf="!islogged()" class="btn btn-outline-info my-2 my-sm-0" routerLink='/register'>Registrarse</button>
+    <button *ngIf="islogged()" class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+  </nav>
+<div class="m-2">
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" >Titulo</th>
+            <th scope="col">Cuerpo</th>
+            <th scope="col" >Descripción</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let article of articles">
+            <td>{{article.title}}</td>
+            <td>{{article.body}}</td>
+            <td>{{article.description}}</td>
+            <td>
+                <button *ngIf="islogged() && article.author.username === username" class="btn btn-outline-info mr-1" (click)="updateArticle(article.slug)">Editar</button>
+                <button *ngIf="islogged() && article.author.username === username" class="btn btn-outline-danger mr-1" (click)="deleteArticle(article.slug)">Eliminar</button>
+                <button class="btn btn-outline-secondary" (click)="getComments(article.slug)">Comentarios</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-sm-4 text-left">
+          <button class="btn btn-secondary my-2 my-sm-0" (click)="getMoreArticles(false)">Previo</button>
+        </div>
+        <div class="col-sm-4 text-center">
+          <p>Página: {{page}}</p>
+        </div>
+        <div class="col-sm-4 text-right">
+          <button class="btn btn-secondary align-middle" (click)="getMoreArticles(true)">Siguiente</button>
+        </div>
+      </div>
+</div>
