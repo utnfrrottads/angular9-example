@@ -1,9 +1,25 @@
 
-<div *ngFor="let article of articles">
-    <h1>{{article.title}} </h1>
-    <p>{{article.body}}</p>
+<div class="nube_items">
+
+    <button (click)="loadTags()">Cargar Tags</button>
+
+    <div  *ngFor="let tag of tags">
+        <ul>
+            <li>{{tag}}</li>
+            <button (click)="loadArticles(tag)">Mostrar articulos</button>
+        </ul>               
+    </div>
+
 </div>
 
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
-<button (click)="loadTags()">Cargar Tags</button>
+<div class="tag_articles">
+    <div *ngFor="let article of articles" >
+            <h1>Titulo: {{article.title}}</h1>
+            <p>Cuerpo: {{article.body}}</p>
+            <p>Fecha de creación: {{article.createdAt}}</p>
+            <p>Lista de tags asociados a este articulo: {{article.tagList}}</p> 
+            <h5>Deja tu comentario</h5><textarea id="comentario"></textarea>        
+            <button (click)="addComment(article)">Agregar comentario</button>
+        </div>
+    
+</div>
