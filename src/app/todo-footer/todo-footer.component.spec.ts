@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodoFormComponent } from './todo-form.component';
+import { TodoFooterComponent } from './todo-footer.component';
 
-describe('TodoFormComponent', () => {
-  let component: TodoFormComponent;
-  let fixture: ComponentFixture<TodoFormComponent>;
+describe('TodoFooterComponent', () => {
+  let component: TodoFooterComponent;
+  let fixture: ComponentFixture<TodoFooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoFormComponent ]
+      declarations: [ TodoFooterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoFormComponent);
+    fixture = TestBed.createComponent(TodoFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

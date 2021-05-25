@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let item of list "
+    > {{item.desc}}
+    <button (click)="onItemRemoved(item)">X</button>
+    <button (click)="toggle(item)">-</button>
+</li>
+</ul>
