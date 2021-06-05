@@ -26,5 +26,8 @@ export class TodoFooterComponent implements OnInit {
     this.countCompleted =this.service.completedSize()
     return this.countCompleted;
   }
+  setItem(key:string, value:string){
+    this.service.setItem(key,value);
+  }
 
 }

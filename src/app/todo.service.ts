@@ -13,8 +13,12 @@ export class TodoService {
   
   add(task) {
     const id = this.lastItemId;
+    
     task.id = id;
+    /*
     this.list.push(task);
+    */
+    
     this.lastItemId += 10;
   }
 
@@ -33,5 +37,8 @@ export class TodoService {
 
   getName() {
     return 'TodoService 123' + this.storage.getName();
+  }
+  setItem(key:string, value:string){
+    this.storage.setItem(key,value);
   }
 }
