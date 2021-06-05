@@ -1,8 +1,10 @@
 <app-todo-form (add)="onTodoItemCreated($event)"></app-todo-form>
 <app-todo-list
   [list]="getList()"
+  [lsList]="getLocalStorageList()"
   (itemRemoved)="onTodoItemRemoved($event)"
   (itemStateChanged)="onItemStateChanged($event)"
+  (lsItemRemoved)="lsOnTodoItemRemoved($event)"
 >
 </app-todo-list>
 <app-todo-footer

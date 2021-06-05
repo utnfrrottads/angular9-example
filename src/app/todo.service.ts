@@ -15,18 +15,19 @@ export class TodoService {
     const id = this.lastItemId;
     
     task.id = id;
-    /*
     this.list.push(task);
-    */
-    
-    this.lastItemId += 10;
+    this.setItem(task.id,JSON.stringify(task));
+    console.log(localStorage);
+    this.lastItemId += 1;
   }
 
   remove(id) {
     const index = this.list.findIndex((element) => element.id === id);
     this.list.splice(index, 1);
   }
-
+  lsRemove(id){
+    this.storage.removeItem(id);
+  }
   incompletedSize() {
     return this.list.filter(item => !item.isCompleted).length;
 
@@ -40,5 +41,8 @@ export class TodoService {
   }
   setItem(key:string, value:string){
     this.storage.setItem(key,value);
+  }
+  getAll(){
+   return this.storage.getLocalStorage();
   }
 }

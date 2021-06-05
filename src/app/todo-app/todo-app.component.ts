@@ -17,8 +17,14 @@ export class TodoAppComponent  {
   getList() {
     return this.service.list;
   }
+  getLocalStorageList(){
+    return this.service.getAll();
+  }
   onTodoItemRemoved(id) {
     this.service.remove(id);
+  }
+  lsOnTodoItemRemoved(id) {
+    this.service.lsRemove(id);
   }
   onItemStateChanged(item: TodoItem) {
     item.toggleCompleted();
