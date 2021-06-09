@@ -24,7 +24,7 @@ export class LocalStorageService {
   clear(){
     localStorage.clear(); 
   }
-  getLocalStorage(){
+  getLocalStorage(){ //esta bien este metodo??
     
    if (localStorage.length === 0){
      console.log("local storage esta vacio");
@@ -36,7 +36,7 @@ export class LocalStorageService {
       console.log(this.lsArray[i]);
     }
    }
-   return this.lsArray;
+   return this.lsArray; 
   }
 
 }

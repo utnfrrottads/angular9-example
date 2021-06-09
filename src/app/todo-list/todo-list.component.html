@@ -1,18 +1,4 @@
-<h2>LISTA EN MEMORIA</h2>
-<ul class="list">
-    <li
-      *ngFor="let task of list" [class.completed] = "task.isCompleted"
-      class="list-item">
-      {{task.description}}
-      <span>
-        <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
-        <button class="btn btn-success" (click)="completeTask(task)">V</button>
-      </span>
-    </li>
-  </ul>
-<br>
-<br> 
-  <h2>LISTA EN localStorage</h2>
+<h2>LISTA EN localStorage</h2>
   <ul class="list"> 
     <li
       *ngFor="let task of lsList" [class.completed] = "task.isCompleted"
@@ -20,7 +6,7 @@
       {{task.description}}
       <span>
         <button class="btn btn-danger" (click)="lsRemoveItem(task.id)">X</button>
-        <button class="btn btn-success" (click)="completeTask(task)">V</button>
+        <button class="btn btn-success" (click)="lsCompleteTask(task)">V</button>
       </span>
     </li>
   </ul>

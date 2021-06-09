@@ -8,26 +8,19 @@ import { TodoItem } from '../model/todo-item';
 })
 export class TodoListComponent implements OnInit {
   array = [];
-  @Input() list: any[];
   @Input() lsList: any[];
-  @Output() itemRemoved = new EventEmitter();
-  @Output() itemStateChanged = new EventEmitter();
   @Output() lsItemRemoved = new EventEmitter();
+  @Output() lsItemChanged = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
-  }
-  removeItem(id) {
-    this.itemRemoved.emit(id);
   }
 
   lsRemoveItem(id){
     this.lsItemRemoved.emit(id);
   }
-
-  completeTask(item:TodoItem) {
-    this.itemStateChanged.emit(item);
-
+  lsCompleteTask(task: TodoItem){
+    this.lsItemChanged.emit(task);
   }
 
 }

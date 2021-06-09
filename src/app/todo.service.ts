@@ -6,43 +6,39 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class TodoService {
   
-  list = [];
   lastItemId = 0;
 
   constructor(private storage: LocalStorageService) { }
   
   add(task) {
     const id = this.lastItemId;
-    
     task.id = id;
-    this.list.push(task);
+
+    //CARGO localStorage
     this.setItem(task.id,JSON.stringify(task));
-    console.log(localStorage);
+    
     this.lastItemId += 1;
   }
 
-  remove(id) {
-    const index = this.list.findIndex((element) => element.id === id);
-    this.list.splice(index, 1);
-  }
   lsRemove(id){
     this.storage.removeItem(id);
   }
-  incompletedSize() {
-    return this.list.filter(item => !item.isCompleted).length;
+  
+  lsIncompletedSize(){
+    return this.getAll().filter(task => !task.isCompleted).length;
+  }
+  lsCompletedSize(){
+    return this.getAll().filter(task => task.isCompleted).length;
+  }
 
-  }
-  completedSize() {
-    return  this.list.filter(item => item.isCompleted).length ;
-  }
-
-  getName() {
-    return 'TodoService 123' + this.storage.getName();
-  }
   setItem(key:string, value:string){
     this.storage.setItem(key,value);
   }
   getAll(){
    return this.storage.getLocalStorage();
+  }
+  lsOnItemStateChanged(task){
+    this.setItem(task.id,JSON.stringify(task));
+    
   }
 }
