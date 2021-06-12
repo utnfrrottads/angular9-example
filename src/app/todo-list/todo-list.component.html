@@ -1,0 +1,12 @@
+<div>
+    <ul>
+        <li *ngFor="let item of list; let i = index"
+            [style.text-decoration]="item.isCompleted ? 'line-through red' : ''">
+
+            ID: {{ item.id }} - Tarea: {{ item.description }} - Completada: {{ item.isCompleted }}
+            
+            <input type="button" value="Eliminar" (click)="deleteTask( i )">
+            <input type="button" value="Completada" (click)="completedTask( item )">
+        </li>
+    </ul>
+</div>

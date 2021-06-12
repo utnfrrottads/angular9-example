@@ -1,16 +1,28 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { TodoItem } from './../model/todo-item';
+import { Component, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.scss']
 })
-export class TodoFormComponent implements OnInit {
+export class TodoFormComponent{
 
   @Output() add = new EventEmitter();
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  item: TodoItem;
+
+
+  constructor() { 
+    this.item = new TodoItem();
+  };
+
+  addTask() {
+    if ( !this.item.description ) {
+      return;
+    };
+    this.add.emit( this.item );
+    this.item = new TodoItem();
+  };
 
 }
