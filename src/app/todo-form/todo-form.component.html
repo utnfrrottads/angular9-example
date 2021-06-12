@@ -1,1 +1,5 @@
-<p>todo-form works!</p>
+<div>
+    <label>Ingrese una tarea:</label>
+    <input type="text" [(ngModel)]="item.description">
+    <input type="button" value="Agregar +" (click)="addTask()">
+</div>
