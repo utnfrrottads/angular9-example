@@ -14,16 +14,17 @@ export class TodoAppComponent  {
     private service: TodoService
   ) {}
 
-  getList() {
-    return this.service.list;
+  getLocalStorageList(){
+    return this.service.getAll();
   }
-  onTodoItemRemoved(id) {
-    this.service.remove(id);
+  lsOnTodoItemRemoved(id) {
+    this.service.lsRemove(id);
   }
-  onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+  lsOnItemStateChanged(task: TodoItem){
+    task.isCompleted = !task.isCompleted; 
+    this.service.lsOnItemStateChanged(task);
   }
   onTodoItemCreated(task) {
-    this.service.add(task)
+    this.service.add(task);
   }
 }

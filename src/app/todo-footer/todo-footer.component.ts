@@ -18,13 +18,18 @@ export class TodoFooterComponent implements OnInit {
   ngOnInit() {
 
   }
-  incompletedSize() {
-    this.countTodo = this.service.incompletedSize()
-    return this.countTodo;
+  lsIncompletedSize(){
+    let inc = this.service.lsIncompletedSize()
+    return inc;
   }
-  completedSize() {
-    this.countCompleted =this.service.completedSize()
-    return this.countCompleted;
+  lsCompletedSize(){
+    let inc = this.service.lsCompletedSize()
+    return inc;
+  }
+
+
+  setItem(key:string, value:string){
+    this.service.setItem(key,value);
   }
 
 }
