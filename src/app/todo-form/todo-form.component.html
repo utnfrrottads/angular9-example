@@ -1,1 +1,7 @@
-<p>todo-form works!</p>
+<div style="display: block;">
+    <label>Icono: </label><input style="margin-left: 5px;" type="text" [(ngModel)]="item.icon">
+</div>
+<div style="display: block;">
+    <label>Descripción: </label><input style="margin-left: 5px;" type="text" [(ngModel)]="item.description">
+</div>
+<button (click)="addItem()">Agregar</button>

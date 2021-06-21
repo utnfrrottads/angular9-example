@@ -1,0 +1,10 @@
+<h2>Tareas</h2>
+<ul>
+    <li *ngFor="let element of list">
+        <mat-icon aria-hidden="false">{{element.icon}}</mat-icon>
+        <label [style.text-decoration]="element.isCompleted ? 'line-through' : null">{{element.description}}</label>
+        <button (click)="change(element)">{{ element.isCompleted ? 'X' : 'V'}}</button>
+        <button (click)="edit(element)">Editar</button>
+        <button (click)="delete(element)">Borrar</button>
+    </li>
+</ul>
