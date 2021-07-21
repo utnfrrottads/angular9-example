@@ -20,7 +20,8 @@ export class TodoListComponent implements OnInit {
 
   completeTask(item:TodoItem) {
     this.itemStateChanged.emit(item);
-
   }
+
+  
 
 }

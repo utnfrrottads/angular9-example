@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {TodoItem} from '../model/todo-item';
-import { element } from 'protractor';
 import { TodoService } from '../todo.service';
 /** */
 @Component({
@@ -14,6 +13,10 @@ export class TodoAppComponent  {
     private service: TodoService
   ) {}
 
+  ngOnInit() {
+    this.service.loadListFromLocalStorage();
+  }
+
   getList() {
     return this.service.list;
   }
@@ -21,9 +24,9 @@ export class TodoAppComponent  {
     this.service.remove(id);
   }
   onItemStateChanged(item: TodoItem) {
-    item.toggleCompleted();
+    this.service.updateItemState(item);
   }
   onTodoItemCreated(task) {
-    this.service.add(task)
+    this.service.add(task);
   }
 }
